@@ -1,0 +1,30 @@
+//card
+
+.ant-progress-text {
+    display: none;
+}
+
+.ant-progress-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.ant-progress-inner {
+    border-radius: unset;
+    background-color: #d4d8de;
+}
+
+.ant-progress-bg {
+    border-radius: unset;
+}
+
+.ant-progress-show-info .ant-progress-outer {
+    margin-right: unset;
+    padding-right: unset;
+}
+
+.ant-progress-outer {
+    @include flexbox;
+
+}

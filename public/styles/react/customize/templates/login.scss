@@ -1,0 +1,32 @@
+.scb-login {
+    .login__form .form-group {
+        margin-bottom: 15px !important;
+        label{
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #304460;
+            font-size: 16px;
+        }
+        .ant-input-affix-wrapper{
+            min-height: 48px;
+        }
+    }
+
+    .btn-blue {
+        height: 48px !important;
+        background-color: blue !important;
+        color: #ffffff;
+
+        &:hover{
+            border: none;
+            background-color: #406add !important;
+        }
+    }
+    .ant-btn{
+        &:focus,&:active {
+            border: none;
+            background-color: #0080ff !important;
+            color: black;
+        }
+    }
+}

@@ -1,0 +1,74 @@
+.input-updown {
+    @include flexbox;
+    @include align-items(center);
+    .ant-input-number-group-wrapper {
+
+    }
+    .ant-input-number-group-addon {
+        padding: 0;
+        border: none;
+        width: unset;
+        float: left
+    }
+    .ant-btn {
+        &:hover,
+        &:focus {
+            color: unset;
+            border-color: #e1e1e1;
+        }
+    }
+    button {
+        background: #fff;
+        float: left;
+        border: 1px solid #e1e1e1;
+        cursor: pointer;
+        font-weight: 600;
+        outline: none;
+        height: 45px;
+        width: 45px;
+        text-align: center;
+        border-radius: 0;
+        font-size: 20px;
+        color: black;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: unset;
+    }
+    [ant-click-animating-without-extra-node]:after {
+        display: none;
+    }
+    .ant-input-number-handler-wrap {
+        display: none;
+    }
+    .ant-input-number-input-wrap {
+        height: 100%;
+    }
+    .ant-input-number {
+        background: #fff;
+        font-weight: 500;
+        height: 45px;
+        text-align: center;
+        width: 45px;
+        border: 1px solid #e1e1e1;
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
+        float: left;
+        -webkit-appearance: none;
+        font-size: 15px;
+        color: black;
+        padding: 0;
+        &.ant-input-number-focused {
+            box-shadow: unset;
+        }
+        &:focus {
+            box-shadow: unset;
+        }
+    }
+    .ant-input-number-input {
+        height: 100%;
+        text-align: center;
+    }
+}

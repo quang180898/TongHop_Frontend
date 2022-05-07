@@ -1,0 +1,44 @@
+.mainPage {
+    .loading_full {
+        position: absolute;
+        background-color: #646568a6;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+    }
+}
+.ant-spin-nested-loading>div>.ant-spin {
+    max-height: 100% !important;
+    top: 50%;
+    left: 50%;
+}
+
+.loading_h_100 {
+    .ant-spin-nested-loading {
+        height: 100%;
+    }
+
+    .ant-spin-container {
+        height: 100%;
+    }
+}
+
+.ant-spin-blur {
+    opacity: 1 !important;
+
+    &::after {
+        opacity: 0;
+    }
+}
+
+
+.anticon-loading {
+    width: 50px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.ant-spin-spinning {
+    position: fixed !important;
+    z-index: 999999999 !important;
+}

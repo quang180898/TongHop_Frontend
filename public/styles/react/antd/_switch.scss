@@ -1,0 +1,35 @@
+.ant-switch {
+    background-color: white !important;
+    border: solid 1px #ff3f3f;
+    min-width: 30px;
+    height: 19px;
+    line-height: 19px;
+    &.ant-switch-checked {
+        border: solid 1px #18d26b;
+        .ant-switch-handle {
+            left: calc(100% - 15px);
+            &::before {
+                background-color: #18d26b;
+            }
+        }
+    }
+    .ant-switch-handle {
+        width: 13px;
+        height: 13px;
+        &::before {
+            background-color: #ff3d3d;
+        }
+    }
+}
+.switch-check {
+    @include flexbox;
+    @include flex-wrap(nowrap);
+    @include align-items(center);
+    .text {
+        color: #ff3f3f;
+        margin-left: 8px;
+        &.active {
+            color: #18d26b;
+        }
+    }
+}

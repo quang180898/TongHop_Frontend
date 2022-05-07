@@ -1,0 +1,272 @@
+.modal-card {
+
+    &__btn {
+        @include flexbox;
+        @include justify-content(flex-end);
+
+        .btn {
+            height: 40px;
+        }
+    }
+
+    .modal-body {
+        padding-left: 25px;
+        padding-right: 25px;
+        border: 1px solid #fff;
+        background-color: #fff;
+    }
+
+    .ant-modal-content {
+        box-shadow: none;
+        background: transparent;
+    }
+
+    .modal-content {
+        background-color: unset;
+        border: unset;
+    }
+
+    .modal-header {
+        border-bottom: unset;
+    }
+
+    .ant-modal-footer {
+        border-top: unset;
+    }
+
+    .ant-btn {
+        margin: unset;
+    }
+
+    .ant-modal-content {
+        width: 100%;
+        border-radius: 0;
+    }
+    .ant-modal-close-x {
+        width: auto;
+        height: auto;
+        line-height: normal;
+    }
+    .ant-modal-close {
+        display: none;
+    }
+}
+
+.modal-open-sale {
+    .btn {
+        min-width: 190px;
+    }
+}
+
+.modal-change-state {
+    .swal-modal {
+        width: unset;
+        padding: 20px;
+
+        .swal-icon {
+            &:first-child {
+                margin-top: unset;
+            }
+        }
+    }
+
+    .swal-title,
+    .swal-text {
+        text-align: center;
+    }
+
+    .swal-icon--warning {
+        height: 80px;
+        width: 80px;
+        margin: 10px auto;
+
+    }
+
+    .swal-footer {
+        padding-top: 20px;
+    }
+}
+
+.ant-modal-body {
+	padding: 0;
+	margin: 0;
+	.modal-content {
+		@media (max-width: 767px) {
+			width: 100% !important;
+		}
+	}
+}
+
+.ant-modal {
+	@include align-items(center);
+}
+
+.modal_reload {
+	.ant-modal-content {
+		background-color: transparent;
+		border-radius: 0;
+		box-shadow: none;
+	}
+	.ant-modal-body {
+		background-color: #272a31;
+		border-radius: 10px;
+		padding: 30px 20px;
+	}
+	&__container {
+		text-align: center;
+		padding: 10px;
+		color: #fff;
+	}
+	&__text {
+		font-size: 30px;
+		margin-bottom: 20px;
+	}
+	&__button {
+		.btn {
+			text-transform: uppercase;
+		}
+		.btn_orange {
+			padding: 6px 10px;
+		}
+	}
+	.close {
+		border-radius: 50%;
+		width: 35px;
+		height: 35px;
+		padding: 0;
+		position: absolute;
+		right: -15px;
+		top: -12px;
+		background-color: #f4a239;
+		opacity: 1;
+		color: #fff;
+		font-size: 18px;
+	}
+}
+
+.modal-change-state {
+    .swal-modal {
+        width: unset;
+        padding: 20px;
+
+        .swal-icon {
+            &:first-child {
+                margin-top: unset;
+            }
+        }
+    }
+
+    .swal-title,
+    .swal-text {
+        text-align: center;
+    }
+
+    .swal-icon--warning {
+        height: 80px;
+        width: 80px;
+        margin: 10px auto;
+
+    }
+
+    .swal-footer {
+        padding-top: 20px;
+    }
+}
+
+.swal-overlay--show-modal .swal-modal {
+    border-radius: 0 !important;
+    padding: 10px 0;
+}
+
+.swal-icon--warning {
+    position: relative;
+    font-size: 70px;
+    color: #e94c4c;
+}
+
+.swal-modal .swal-icon:first-child {
+    margin-top: 15px;
+}
+
+/*.swal-modal .swal-icon--warning:before{*/
+
+/*    content: "\f071";*/
+
+/*    font-family: 'FontAwesome';*/
+
+/*}*/
+
+.swal-modal .swal-icon--warning {
+    // background-image: url(../images/error_icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.swal-modal {
+    width: 410px;
+}
+
+.swal-modal .swal-button-container {
+    margin: 0 12px;
+}
+
+.swal-modal .swal-icon {
+    border: none;
+}
+
+.swal-modal .swal-icon--warning__body {
+    height: 30px;
+    display: none;
+}
+
+.swal-modal .swal-title:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.swal-modal .swal-title {
+    font-size: 22px;
+}
+
+.swal-modal .swal-text {
+    font-size: 15px;
+}
+
+.swal-modal .swal-button--cancel {
+    color: #000000;
+    font-weight: 500;
+    border: solid 1px #999999;
+    padding: 6px 25px !important;
+    border-radius: 0;
+}
+
+.swal-modal .swal-button--confirm {
+    color: #fff;
+    font-weight: 500;
+    background-color: #6d30ab;
+    border: 1px solid #6d30ab;
+    padding: 6px 25px !important;
+    border-radius: 0;
+}
+
+.swal-modal .swal-footer {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swal-modal .swal-footer button,
+.swal-modal .swal-footer button:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.swal-modal .swal-button--cancel:focus,
+.swal-modal .swal-button--cancel:active {
+    border: solid 1px #999999;
+    background-color: #efefef;
+    color: #000000;
+}
+

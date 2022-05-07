@@ -1,0 +1,39 @@
+.content {
+    .box-content {
+        text-align: center;
+        margin-bottom: 30px;
+        img {
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+    .tab-content {
+        margin-left: -15px;
+        .col-lg-2 {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+        .view-more {
+            text-align: center;
+            margin-top: 25px;
+            a {
+                transition: ease all .3s;
+                display: inline-block;
+                font-weight: 500;
+                padding: 7px 25px;
+                border-radius: 3px;
+                font-size: 16px;
+                color: #f8c052;
+                background: #fff;
+                border: 1px solid #f8c052;
+                cursor: pointer;
+                text-decoration: none;
+                outline: none;
+                &:hover {
+                    background: #f8c052;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.collapse-base {
+    border: 1px solid #eee !important;
+    background-color: #fff;
+    padding: 15px;
+    .ant-collapse-item {
+        padding-bottom: 15px;
+        border: 0;
+        .ant-collapse-header { 
+            padding: 0 0 15px 0;
+            border-bottom: 1px solid #eee;
+            .ant-collapse-arrow {
+                top: 30%;
+                right: 0;
+            }
+        } 
+        .ant-collapse-content {
+            border-top: 0;
+            background-color: transparent;
+            .ant-collapse-content-box {
+                padding: 12px 0;
+            }
+        }
+    }
+}
