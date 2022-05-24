@@ -13,9 +13,9 @@ module.exports = {
 			portServer: 5004
 
 		},
-		// prod: {
-		// 	api: 'https://sale-adminv2.minerva.vn',
-		// 	cloudapi: 'https://cloudapi.minerva.vn'
-		// },
+		prod: {
+			// api: 'https://sale-adminv2.minerva.vn',
+			// cloudapi: 'https://cloudapi.minerva.vn'
+		},
 	}
 };
