@@ -14,7 +14,7 @@
     "bootstrap": "^4.6.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "concurrently": "^6.0.0",
-    "cors": "^2.8.5",
+    "css-minimizer-webpack-plugin": "^1.1.5",
     "express": "^4.17.1",
     "http-proxy-middleware": "^1.0.4",
     "i18next": "^20.1.0",
@@ -39,13 +39,28 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "client": "webpack serve --config webpack.config.js --open",
+    "client": "webpack-dev-server --config webpack.common.js --mode development --TARGET_ENV local --host",
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run clean\"",
-    "clean": "rmdir /s /q dist",
+    "build-domain": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
+    "clean-domain": "rmdir /s /q build-domain",
+    "clean": "rmdir /s /q build",
+    "clean-nm": "rmdir /s /q node_modules",
     "server": "node server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -56,15 +71,16 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-react-html-attrs": "^3.0.5",
-    "css-loader": "^5.2.0",
+    "copy-webpack-plugin": "^6.2.1",
+    "css-loader": "^3.6.0",
     "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.3.1",
-    "node-sass": "^5.0.0",
-    "sass-loader": "^11.0.1",
+    "html-webpack-plugin": "^4.4.1",
+    "node-sass": "4.14.1",
+    "sass-loader": "9.0.2",
     "style-loader": "^2.0.0",
-    "webpack": "^5.30.0",
-    "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0"
   },
   "keywords": [
     "javascript",

@@ -4,7 +4,7 @@
     left: 0;
     position: sticky;
     min-height: 69px;
-    z-index: 5;
+    z-index: 1000;
     .auto-hide-header {
         min-height: 69px;
         top: 0;
@@ -19,11 +19,18 @@
         align-items: center;
         justify-content: space-between;
         padding-bottom: 24px;
-        padding: 18px 80px;
+        padding: 15px 60px;
         max-width: 1920px;
         margin: 0 auto;
         -webkit-transition: opacity 0.3s ease-in-out;
         transition: opacity 0.3s ease-in-out;
+        .header-logo {
+            img {
+                display: block;
+                width: 100px;
+                height: 50px;
+            }
+        }
         &__center {
             width: 100%;
         }
@@ -222,6 +229,7 @@
 
 .horizontal-list {
     width: 100%;
+    padding: 0;
     text-align: center;
     margin-right: 0px;
     margin-left: 0px;

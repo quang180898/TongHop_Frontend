@@ -14,9 +14,12 @@ body {
     }
 }
 
+.main-animate {
+    min-height: 60.5vh;
+}
+
 .main-body {
     max-width: 100%;
-    min-height: 60.5vh;
 }
 
 .d-flex-column {
@@ -367,14 +370,6 @@ body {
     overflow: hidden;
 }
 
-// .card {
-//     background-color: #ffffff;
-//     padding: 25px;
-//     margin-bottom: 25px;
-//     border: none;
-//     border-radius: unset;
-// }
-
 .title {
     &__card {
         @include flexbox;
@@ -577,39 +572,6 @@ body {
     }
 }
 
-.action {
-    @include fw-normal;
-    font-size: 14px;
-    padding: 5px 6px;
-    text-align: center;
-    height: 30px;
-    width: 90px;
-    cursor: pointer;
-    border-radius: 3px;
-
-    &-join {
-        background-color: rgba(24, 210, 107, 0.1);
-        color: #18d26b;
-
-        &:hover,
-        &.active {
-            background-color: #18d26b;
-            color: #fff;
-        }
-    }
-
-    &-out {
-        background-color: rgba(255, 63, 63, 0.1);
-        color: #ff3f3f;
-
-        &:hover,
-        &.active {
-            background-color: #ff3f3f;
-            color: #fff;
-        }
-    }
-}
-
 .icon-avatar {
     .icon {
         @include flex_center();
@@ -660,14 +622,6 @@ body {
         @media (max-width: 480px) {
             margin: 0 0 15px 0;
         }
-    }
-}
-
-.notification {
-    .cus-alert {
-        position: fixed;
-        top: 60px;
-        right: 0;
     }
 }
 
@@ -1203,6 +1157,25 @@ body {
 
         @media (max-width: 767px) {
             margin-left: 0;
+        }
+    }
+}
+
+.breadcrumb-custom {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    .breadcrumb-custom-item {
+        display: inline-block;
+        font-size: 0.85714em;
+        color: #999999;
+        .icon {
+            padding: 0 6px;
+            font-size: 12px;
+        }
+        &.active {
+            font-weight: 500;
+            color: #4d4d4d;
         }
     }
 }
@@ -1748,6 +1721,130 @@ body {
             pointer-events: auto;
             cursor: zoom-out;
             touch-action: none;
+        }
+    }
+}
+
+.text-link {
+    a {
+        color: #666b77;
+        text-decoration: none;
+    }
+}
+
+.uni_text_6d30ab {
+    color: #6d30ab !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.m_pagination {
+    @include flexbox;
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    padding-top: 20px;
+
+    @media (max-width: 991px) {
+        @include flex-direction(column);
+        width: 100%;
+    }
+
+    .content {
+        display: inline-block;
+        font-size: 14px;
+        color: #000;
+        min-width: 32px;
+        height: 32px;
+
+        &_border {
+            cursor: pointer;
+            padding: 0 11px;
+            border: solid 1px #f9f9f9;
+            border-radius: 2px;
+            background-color: #f9f9f9;
+            margin: 0 5px;
+            display: inline-flex;
+
+            align-items: center;
+            transition: all 0.3s;
+
+            &:hover :not(.text-page) {
+                color: #000;
+            }
+        }
+    }
+
+    .item {
+        border: solid 1px #f9f9f9;
+        background-color: #f9f9f9;
+        color: inherit;
+        font-size: 14px;
+        transition: all 0.1s;
+        text-decoration: none !important;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        display: flex;
+        align-items: center;
+        &.disabled {
+            color: #6d6d6d;
+            font-weight: 200;
+            opacity: 0.9;
+            background-color: #f9f9f9;
+            cursor: not-allowed;
+        }
+    }
+
+    .text-page {
+        padding-right: 12px;
+        cursor: auto;
+        background-color: unset;
+        border: unset;
+    }
+
+    .page-current {
+        padding-left: 12px;
+        background-color: unset;
+        border: unset;
+    }
+
+    .vertical-dash {
+        color: #6d6d6d;
+        // font-weight: 200;
+        opacity: 0.5;
+        margin-left: 20px;
+        margin-right: 20px;
+        // border: solid 1px #d8d8d8;
+        height: 22px;
+        // font-size: 18px;
+    }
+
+    .page-number {
+        max-width: 65px;
+        height: 25px;
+        line-height: normal;
+        border: 1px solid #d8d8d8;
+        font-size: 13px;
+        padding-left: 5px;
+        padding-right: 5px;
+        @include align-items(center);
+    }
+
+    .ant-pagination {
+        @media (max-width: 991px) {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 480px) {
+            flex-wrap: wrap;
+
+            .ant-pagination-prev,
+            .ant-pagination-next {
+                width: 100%;
+            }
         }
     }
 }

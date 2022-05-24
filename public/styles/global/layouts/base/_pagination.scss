@@ -1,0 +1,109 @@
+// .ant-pagination {
+//     .ant-pagination-prev {
+//         color: #666b77;
+//         margin-right: 0;
+//         padding: 3px;
+//         min-width: 56px;
+//         height: 36px;
+//         border-right: 1px solid rgba(0, 128, 255, 0.1);
+//         background-color: rgba(0, 128, 255, 0.1);
+//         a {
+//             height: 100%;
+//         }
+//     }
+//     .ant-pagination-total-text {
+//         line-height: 36px;
+//         height: 36px;
+//     }
+//     .ant-pagination-next {
+//         margin-left: 0;
+//         padding: 3px;
+//         color: #666b77;
+//         min-width: 56px;
+//         height: 36px;
+//         background-color: rgba(0, 128, 255, 0.1);
+//         a {
+//             height: 100%;
+//         }
+//     }
+
+//     .ant-pagination-item {
+//         position: relative;
+//         border: none;
+//         border-right: 1px solid rgba(0, 128, 255, 0.1);
+//         border-radius: 0;
+//         line-height: normal;
+//         margin-right: 0;
+//         min-width: 36px;
+//         height: 36px;
+//         background-color: rgba(0, 128, 255, 0.1);
+//         &:hover {
+//             color: #ffffff;
+//             background-color: #0080ff;
+//         }
+//         a {
+//             @include transform(translate(-50%, -50%));
+//             position: absolute;
+//             top: 50%;
+//             left: 50%;
+//             padding: 3px;
+//             color: #666b77;
+//         }
+//     }
+
+//     .ant-pagination-item-active {
+//         border: none !important;
+//         background-color: #0080ff;
+//         a {
+//             color: #ffffff !important;
+//         }
+//     }
+
+//     .ant-pagination-total-text {
+//         color: #666b77;
+//     }
+// }
+.ant-pagination-disabled {
+    color: #6d6d6d;
+    opacity: 0.9;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+    display: none;
+}
+
+.ant-pagination-item-active {
+    border: 1px solid #000 !important;
+}
+
+.ant-pagination {
+    margin: 5px 0;
+}
+
+.ant-pagination-prev,
+.ant-pagination-next {
+    background-color: #f9f9f9;
+    padding: 0px 11px;
+    margin: 0 5px;
+    font-family: "Roboto", arial;
+    &:hover {
+        border-color: #000;
+    }
+}
+
+.ant-pagination-item {
+    background-color: #f9f9f9;
+    border: 1px solid #fff !important;
+    border-radius: unset;
+
+    &:hover {
+        border: 1px solid #000 !important;
+    }
+
+    &.ant-pagination-item-active {
+        border: 1px solid #000 !important;
+    }
+}

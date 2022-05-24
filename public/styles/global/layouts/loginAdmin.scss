@@ -1,0 +1,163 @@
+.login-admin {
+    @include flexbox;
+    @include flex-wrap(nowrap);
+    background-color: #ffffff;
+    height: 100vh;
+
+    @media (max-width: 992px) {
+        flex-direction: column;
+    }
+
+    @media (max-width: 767px) {
+        display: block;
+    }
+
+    &__bg {
+        width: 40%;
+        position: relative;
+        @media (max-width: 992px) {
+            width: 100%;
+            height: 35vh;
+        }
+    }
+    &__right {
+        @include flex_center;
+        @include flex-direction(column);
+        width: 60%;
+
+        @media (max-width: 1200px) {
+            padding: 0 10px;
+        }
+
+        @media (max-width: 992px) {
+            width: 100%;
+        }
+        @media (max-width: 481px) {
+            height: auto;
+            padding: 30px;
+        }
+    }
+    &__form {
+        width: 100%;
+        max-width: 460px;
+        @media (max-width: 992px) {
+            padding-top: 30px;
+        }
+        .btn-create-user {
+            width: unset !important;
+        }
+        .title {
+            @include fw-medium;
+            text-align: center;
+            font-size: 40px;
+            line-height: 1.33;
+            color: #304460;
+            width: 100%;
+            margin-bottom: 60px;
+            @media (max-width: 992px) {
+                margin-bottom: 30px;
+                font-size: 25px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 15px;
+            }
+            @media (max-width: 481px) {
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+        }
+        .label {
+            @include fw-bold;
+            font-size: 16px;
+            margin-bottom: 11px;
+            color: #304460;
+            @media (max-width: 992px) {
+                margin-bottom: 8px;
+                font-size: 14px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 6px;
+            }
+            @media (max-width: 481px) {
+                font-size: 12px;
+            }
+        }
+        .form-group {
+            margin-bottom: 45px;
+            .input-icon {
+                color: #717c99;
+            }
+            @media (max-width: 992px) {
+                margin-bottom: 25px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 10px;
+            }
+        }
+        .forgot-password {
+            @include fw-normal;
+            text-align: right;
+            margin-bottom: 40px;
+            @media (max-width: 992px) {
+                margin-bottom: 25px;
+            }
+            @media (max-width: 767px) {
+                margin-bottom: 15px;
+                text-align: center;
+                font-size: 14px;
+            }
+            @media (max-width: 481px) {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+        }
+        .btn {
+            max-height: 48px;
+            height: 100%;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 3px;
+            border: none;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            @media (max-width: 992px) {
+                margin-bottom: 15px;
+                font-size: 16px;
+            }
+            @media (max-width: 481px) {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+        }
+        .support-login {
+            @include fw-normal;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 9px;
+            color: #666b77;
+            @media (max-width: 992px) {
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+            @media (max-width: 481px) {
+                margin-bottom: unset;
+                font-size: 12px;
+            }
+
+            .text {
+                @include fw-medium;
+                color: #0080ff;
+            }
+        }
+    }
+    .ant-picker {
+        min-height: 48px;
+    }
+    .ant-select {
+        min-width: unset;
+        .ant-select-selector {
+            min-height: 48px !important;
+        }
+    }
+}
+

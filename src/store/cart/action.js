@@ -20,8 +20,9 @@ const actions = {
     type: actions.REMOVE_FROM_CART,
     params,
   }),
+  
   //----------
-  DecreaseQuantity: (params) => ({
+  decreaseQuantity: (params) => ({
     type: actions.DECREASE_QUANTITY,
     params,
   }),

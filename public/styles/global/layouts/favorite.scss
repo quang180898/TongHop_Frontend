@@ -1,0 +1,31 @@
+.favorite {
+    .favorite-templates {
+        padding-top: 30px;
+    }
+    .heading-page {
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        text-align: center;
+        h1 {
+            margin: 0;
+            display: inline-block;
+            position: relative;
+            font-size: 26px;
+            &::after {
+                background-image: url(../images/hearts-page.svg);
+                content: "";
+                background-size: 20px;
+                width: 20px;
+                height: 20px;
+                display: block;
+                position: absolute;
+                top: -3px;
+                right: -18px;
+            }
+        }
+    }
+    .favorite-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

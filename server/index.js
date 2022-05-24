@@ -1,21 +1,21 @@
 var path = require("path");
 var express = require("express");
-var cors = require('cors')
 var request = require("request");
 
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Define
-const PORT = 5000;
-const LOCAL_PATH = path.join(__dirname, "../dist");
+const LOCAL_PATH = path.join(__dirname, "../build");
 console.log('LOCAL_PATH:', LOCAL_PATH);
 
 var app = express(); // create express app
 app.use(express.static(LOCAL_PATH));
 app.use(express.static("public"));
 
-app.use(cors());
-app.use('/api/backend/', createProxyMiddleware({ target: 'http://localhost:8000', changeOrigin: true}));
+var env = require("../env/env");
+const PORT = env.MODE_ENV.local.portServer;
+
+app.use('/api/backend/', createProxyMiddleware({ target: 'http://localhost:8000', changeOrigin: true, secure: false}));
 
 // REACT
 app.get('/*', (req, res) => {

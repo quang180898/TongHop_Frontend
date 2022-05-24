@@ -1,0 +1,33 @@
+// purple
+$purple-header-bg: linear-gradient(87deg, #6d30ab 2%, #4a3bcc 132%);
+$purple-button: #6d30ab;
+$purple-heading-text-color: #4a3bcc;
+$purple-heading-before-bg: rgba(74, 59, 204, 0.65);
+$purple-heading-after-bg: rgba(74, 59, 204, 0.1);
+$purple-sidebar-text-color: #6d30ab;
+
+// green
+$dark-header-bg: linear-gradient(to right, #7bce92 0%, #38b6ac 100%);
+$dark-button: #61c49b;
+$dark-heading-text-color: #61c49b;
+$dark-heading-before-bg: #61c49b;
+$dark-heading-after-bg: #c2e9d9;
+$dark-sidebar-text-color: #61c49b;
+
+:root {
+    --color-header: #{$purple-header-bg};
+    --color-button: #{$purple-button};
+    --color-heading-text-color: #{$purple-heading-text-color};
+    --color-heading-before-bg: #{$purple-heading-before-bg};
+    --color-heading-after-bg: #{$purple-heading-after-bg};
+    --color-sidebar-text: #{$purple-sidebar-text-color};
+}
+
+.dark {
+    --color-header: #{$dark-header-bg};
+    --color-button: #{$dark-button};
+    --color-heading-text-color: #{$dark-heading-text-color};
+    --color-heading-before-bg: #{$dark-heading-before-bg};
+    --color-heading-after-bg: #{$dark-heading-after-bg};
+    --color-sidebar-text: #{$dark-sidebar-text-color};
+}

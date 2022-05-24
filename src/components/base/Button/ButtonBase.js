@@ -6,9 +6,7 @@ import { getValueAndSetDefault } from 'functions/Utils';
 
 const ButtonBase = (props) => {
 
-    //className button :   btn-white, btn-red, btn-blue, btn-red-outline, btn-white-outline,
-    //                     btn-blue-outline, btn-red-bd-none, btn-light-blue, btn-purple
-    const { className, label, onClick, isButton = true, iconClassname, url, htmlType, style, disabled, loading, debounce = true } = props
+    const { className, label, onClick, iconClassname, url, htmlType, style, disabled, loading, debounce = true } = props
 
     let timeOut
     const onDisablebClick = (value) => {
@@ -28,8 +26,6 @@ const ButtonBase = (props) => {
     }
 
     return (
-        isButton    //check có phải là loại nút (isButton = true (mặc định)) hay link (isButton = true) )
-            ?
             <Button
                 loading={loading}
                 className={`btn ${getValueAndSetDefault(className, '')}`}
@@ -37,19 +33,10 @@ const ButtonBase = (props) => {
                 disabled={disabled}
                 style={style}
                 htmlType={getValueAndSetDefault(htmlType, '')}
-            //classname icon exp: fas fa-folder-open
             >
                 {iconClassname && <i className={`btn-icon ${getValueAndSetDefault(iconClassname, '')}`} />}
                 {label}
             </Button>
-            :
-            <Link className={`btn  ${getValueAndSetDefault(className, '')}`} to={getValueAndSetDefault(url, '/')} style={style} >
-                {iconClassname && <i className={`btn-icon ${getValueAndSetDefault(iconClassname, '')}`} />}
-                <span className="btn-link">
-                    {label}
-                </span>
-
-            </Link>
     )
 }
 ButtonBase.propTypes = {

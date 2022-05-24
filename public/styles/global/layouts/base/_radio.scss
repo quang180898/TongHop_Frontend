@@ -1,0 +1,107 @@
+.radio-base {
+    .ant-radio-wrapper {
+        display: block;
+    }
+    .ant-radio-checked {
+        .ant-radio-inner {
+            background-color: #1890ff;
+        }
+    }
+    .ant-radio-inner {
+        border-radius: 2px;
+        &::after {
+            transform: rotate(45deg) scale(1) translate(-50%, -50%);
+            width: 5.71428571px;
+            height: 9.14285714px;
+            border: 2px solid #fff;
+            margin: 0;
+            top: 50%;
+            left: 21.5%;
+            border-top: 0;
+            border-left: 0;
+            border-radius: 0;
+            background-color: transparent;
+        }
+    }
+}
+.radio-checkout {
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 0 0 0 #338dbc inset;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    cursor: pointer;
+    vertical-align: -4px;
+    outline: 0 !important;
+    border: solid 1px #d9d9d9;
+    border-radius: 50%;
+    appearance: none;
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 4px;
+        height: 4px;
+        margin-left: -2px;
+        margin-top: -2px;
+        background-color: #fff;
+        border-radius: 50%;
+        transform: scale(0.2);
+        opacity: 0;
+        transition: all 0.2s ease-in-out 0.1s;
+    }
+    &:checked {
+        border: none;
+        box-shadow: 0 0 0 10px #338dbc inset;
+        &::after {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}
+
+.radio-group-custom {
+    width: 100%;
+    .ant-radio-wrapper {
+        width: 100%;
+        margin-right: 0;
+        padding: 1.3em;
+        border-top: 1px solid #d9d9d9;
+        color: #737373 !important;
+        &:first-child {
+            border-top: none;
+        }
+        .radio-label-store {
+            img {
+                margin-right: 10px;
+            }
+        }
+        .ant-radio-checked {
+            .ant-radio-inner {
+                box-shadow: 0 0 0 10px #338dbc inset;
+                &::after {
+                    transform: scale(1);
+                }
+            }
+            &::after {
+                animation: none;
+            }
+        }
+        .ant-radio-inner {
+            width: 18px;
+            height: 18px;
+            transition: all 0.2s ease-in-out;
+            &::after {
+                width: 4px;
+                height: 4px;
+                margin-left: -2px;
+                margin-top: -2px;
+                background-color: #fff;
+                border-radius: 50%;
+                transition: all 0.2s ease-in-out 0.1s !important;
+            }
+        }
+    }
+}

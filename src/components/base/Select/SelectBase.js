@@ -28,7 +28,7 @@ const SelectBase = (props) => {
     }, [value, datas])
 
     return (
-        <div className={`action select-base ${getValueAndSetDefault(classNameWrap, '')}`}>
+        <div className={`select-base ${getValueAndSetDefault(classNameWrap, '')}`}>
             <Select
                 loading={loading}
                 open={open}

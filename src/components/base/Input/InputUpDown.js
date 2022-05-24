@@ -7,9 +7,11 @@ const InputUpDown = ({
   suffix,
   value,
   onChange,
+  onClickDown,
+  onClickUp,
   className,
 }) => {
-  const [state, setState] = useState(1);
+  const [state, setState] = useState();
   const [disabled, setDisabled] = useState(false);
 
   const handleChange = (e) => {
@@ -17,9 +19,6 @@ const InputUpDown = ({
     if (newNumber > 0) {
       setState(newNumber);
     }
-    // if (onChange) {
-    //   onChange(state);
-    // }
   };
 
   useEffect(() => {
@@ -41,6 +40,20 @@ const InputUpDown = ({
     }
   }, [value]);
 
+  const downCount = () => {
+    if (onClickDown) {
+      onClickDown()
+    }
+    setState(state - 1)
+  }
+
+  const upCount = () => {
+    if (onClickUp) {
+      onClickUp()
+    }
+    setState(state + 1)
+  }
+
   return (
     <InputNumber
       className={`input-updown ${getValueAndSetDefault(className, "")}`}
@@ -52,14 +65,14 @@ const InputUpDown = ({
       addonBefore={
         <Button
           className=""
-          onClick={() => setState(state - 1)}
+          onClick={downCount}
           disabled={disabled}
         >
           <i class="las la-minus"></i>
         </Button>
       }
       addonAfter={
-        <Button className="" onClick={() => setState(state + 1)}>
+        <Button className="" onClick={upCount}>
           <i class="las la-plus"></i>
         </Button>
       }

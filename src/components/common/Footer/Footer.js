@@ -8,40 +8,24 @@ const Footer = () => {
           <div className="d-flex row">
             <div className="col-md-3 col-sm-6 col-xs-12 infomation mb-2">
               <div className="title-footer">
-                <h4 className="h4">GIÀY MERLY</h4>
+                <h4 className="h4">GIÀY SNEAKER</h4>
               </div>
               <div className="infomation-wanda">
-                <p>
-                  Giày nữ công sở Merly, Giày nữ big size, Giày đồng phục nữ.
-                </p>
                 <ul>
                   <li>
-                    <i className="fa fa-map-marker" aria-hidden="true"></i> 876
+                    <i className="fa fa-map-marker"></i> 876
                     Trường Sa, Phường 13, Quận 3, TP.HCM
                   </li>
                   <li>
                     <i className="fa fa-phone" aria-hidden="true"></i>{" "}
-                    <a rel="nofollow" href="tel:0908190856">
-                      0908190856
+                    <a  href="/#">
+                      01234567890
                     </a>
                   </li>
                   <li>
                     <i className="fa fa-envelope" aria-hidden="true"></i>{" "}
-                    <a rel="nofollow" href="mailto:sale@merlyshoes.com">
-                      sale@merlyshoes.com
-                    </a>
-                  </li>
-                  <li>
-                    CÔNG TY TNHH TM XNK QUỐC TẾ MINH QUÂN. MST: 0313526961
-                  </li>
-                  <li className="bocongthuong">
-                    <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=36278">
-                      <img
-                        className="dt-width-auto lazyloaded"
-                        width="160"
-                        height="40"
-                        src="//theme.hstatic.net/1000040357/1000808919/14/dathongbao.png?v=216"
-                      />
+                    <a href="/#">
+                      dangquangsneaker@gmail.com
                     </a>
                   </li>
                 </ul>
@@ -160,12 +144,12 @@ const Footer = () => {
                   </a>
                 </li>
                 <li className="instagram">
-                  <a href="https://www.facebook.com/merlyshoes">
+                  <a  href="/#">
                     <i className="fab fa-instagram" aria-hidden="true"></i>
                   </a>
                 </li>
                 <li className="facebook">
-                  <a href="https://www.instagram.com/merly_shoes/">
+                  <a  href="/#">
                     <i className="fab fa-facebook" aria-hidden="true"></i>
                   </a>
                 </li>
@@ -183,11 +167,7 @@ const Footer = () => {
                   © Copyright 2022 By
                   <a href="/" target="_blank" className="underline_hover link">
                     {" "}
-                    GIÀY MERLY.
-                  </a>
-                  <a target="_blank" href="https://www.haravan.com?ref=wanda">
-                    {" "}
-                    Powered by Haravan
+                    Đăng Quang Sneaker.
                   </a>
                 </p>
               </div>

@@ -1,0 +1,145 @@
+.shopping-cart {
+    .cart-template {
+        margin-top: 30px;
+        .cart-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            h2 {
+                font-size: 20px;
+                font-weight: 700;
+                margin: 0;
+            }
+            .cart-count {
+                border-bottom: 1px solid #000;
+            }
+        }
+        .item-wrap {
+            .cart-wrap {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 0;
+                border-bottom: 1px solid #eee;
+                .item-info {
+                    display: flex;
+                    &:first-child {
+                        width: 60%;
+                    }
+                    .item-img {
+                        max-width: 100px;
+                    }
+                    .item-title {
+                        margin-left: 15px;
+                        a {
+                            display: block;
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+                        .item-option {
+                            display: block;
+                            margin-top: 5px;
+                        }
+                    }
+                }
+                .item-qty {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    flex: 0 0 20%;
+                    align-items: center;
+                    button {
+                        width: 33px;
+                        height: 33px;
+                    }
+                    .ant-input-number {
+                        height: 33px;
+                        width: 33px;
+                    }
+                    .item-remove {
+                        margin-top: 10px;
+                        a {
+                            text-decoration: underline;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                .item-price {
+                    flex: 0 0 20%;
+                    text-align: right;
+                    span {
+                        font-weight: bold;
+                        color: #e70303;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar-checkout {
+        position: sticky;
+        top: 70px;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        .order-title {
+            font-size: 21px;
+            font-weight: 600;
+            line-height: normal;
+        }
+        .order-total {
+            padding: 15px 0px;
+            border: 1px solid #eee;
+            border-left: none;
+            border-right: none;
+            p {
+                margin: 0;
+                font-size: 17px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: bold;
+                span {
+                    color: #e70303;
+                    font-weight: bold;
+                    font-size: 21px;
+                }
+            }
+        }
+        .order-text {
+            padding: 15px 0;
+            p {
+                margin: 0;
+                line-height: 20px;
+            }
+        }
+        .order-note {
+            margin-bottom: 15px;
+            .note-label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: 700;
+                font-size: 16px;
+            }
+        }
+    }
+    a {
+        color: #000000 !important;
+        text-decoration: none;
+        outline: none;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            color: #ff6310 !important;
+            outline: none;
+        }
+    }
+    img {
+        max-width: 100%;
+    }
+    ul {
+        list-style-type: none;
+    }
+}

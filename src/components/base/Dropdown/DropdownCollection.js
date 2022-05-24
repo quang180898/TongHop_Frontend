@@ -2,7 +2,7 @@ import React from "react";
 
 const DropdownCollection = () => {
 
-    const [value, setValue] = React.useState(null)
+    const [value, setValue] = React.useState()
 
     const handleChange = (e) => {
         setValue(e.target.value)

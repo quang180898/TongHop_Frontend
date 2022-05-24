@@ -1,285 +1,278 @@
-import { Input, Menu } from "antd";
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { IMAGE_URL, PAGES_URL, SETTING_USER } from "contant";
+import { IMAGE_URL, PAGES_URL } from "contant";
 import { getLocalStore } from "functions/Utils";
 import { useDispatch, useSelector } from "react-redux";
 import MenuItems from "../Menu/MenuItems";
-
-const { Search } = Input;
-const { SubMenu } = Menu;
+import { ModalCustom } from "components/base/Modal";
+import { FormSearch, TableCart } from "./Item";
 
 const menuItems = [
-  {
-    title: "Nữ",
-    isOpen: false,
-    submenu: [
-      {
-        title: "web design",
-      },
-      {
-        title: "web development",
-      },
-      {
-        title: "SEO",
-      },
-    ],
-  },
-  {
-    title: "Túi xách nữ",
-    isOpen: false,
-    submenu: [
-      {
-        title: "1",
-      },
-      {
-        title: "2",
-      },
-      {
-        title: "3",
-      },
-    ],
-  },
-  {
-    title: "Nam",
-    isOpen: false,
-    submenu: [
-      {
-        title: "4",
-      },
-      {
-        title: "5",
-      },
-      {
-        title: "6",
-      },
-    ],
-  },
-  {
-    title: "Trẻ em",
-  },
-  {
-    title: "Gift card",
-  },
-  {
-    title: "CÉLINE DION COLLECTION",
-  },
-  {
-    title: "BLOG",
-  },
+    {
+        title: "Converse",
+        isOpen: false,
+        submenu: [
+            {
+                title: "web design",
+            },
+            {
+                title: "web development",
+            },
+            {
+                title: "SEO",
+            },
+        ],
+    },
+    {
+        title: "Vans",
+        isOpen: false,
+        submenu: [
+            {
+                title: "1",
+            },
+            {
+                title: "2",
+            },
+            {
+                title: "3",
+            },
+        ],
+    },
+    {
+        title: "Palladium",
+        isOpen: false,
+        submenu: [
+            {
+                title: "4",
+            },
+            {
+                title: "5",
+            },
+            {
+                title: "6",
+            },
+        ],
+    },
+    {
+        title: "K-wiss",
+    },
+    {
+        title: "Supra",
+    },
+    {
+        title: "Sản phẩm",
+    },
+    {
+        title: "Cửa hàng",
+    },
 ];
 
 const Header = (props) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const ref = useRef(null)
-  const userLocal = getLocalStore("user");
-  const [user, setUser] = useState(userLocal);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-  const [state, setState] = useState(menuItems);
-  const [isSearch, setSearch] = useState(false);
-  const [product, setProduct] = useState();
-  
+    let listLocation = history.location.pathname.split("/");
 
-  const store = useSelector((state) => state);
-  // const { listCategory } = store.homeReducer;
-  // const { addCart , deleteCart} = store.cartReducer
+    const ref = React.useRef(null);
+    const userLocal = getLocalStore("user");
+    const [user, setUser] = React.useState(userLocal);
 
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    setProduct(cart);
-    // dispatch(homeAction.loadListCategory())
-  }, []);
+    const [state, setState] = React.useState({
+        categories: menuItems,
+        cartCount: 0,
+    });
 
-  useEffect(() => {
-    if (product) { 
-      console.log(product);
-    }
-  }, [product]);
+    const [dataSearch, setDataSearch] = React.useState({
+        isSearch: false,
+        querySeach: ""
+    });
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleHideDropdown, true);
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("keydown", handleHideDropdown, true);
-      document.removeEventListener("click", handleClickOutside, true);
+    const [isSearch, setSearch] = React.useState(false);
+    const [visible, setVisible] = React.useState(false);
+
+    const store = useSelector((state) => state);
+    const { cartItems } = store.cartReducer;
+    const { favorites } = store.favoriteReducer;
+
+    React.useEffect(() => {
+        if (cartItems.cart) {
+            const dataCount = cartItems.cart
+                .map((item) => item.quantity)
+                .reduce((prev, next) => prev + next, 0);
+            setState((e) => ({ ...e, cartCount: dataCount }));
+        }
+    }, [cartItems.cart]);
+
+    React.useEffect(() => {
+        if (listLocation.length > 0) {
+            let dataSearch = null;
+            if (history.location.pathname.indexOf("search") != -1) {
+                let paramsSearch = new URLSearchParams(history.location.search);
+                dataSearch = paramsSearch.get("q");
+            }
+            setDataSearch(e => ({...e, querySeach: dataSearch, isSearch: false}))
+        }
+    }, [history.location]);
+
+    React.useEffect(() => {
+        document.addEventListener("keydown", handleHideDropdown, true);
+        document.addEventListener("click", handleClickOutside, true);
+        return () => {
+            document.removeEventListener("keydown", handleHideDropdown, true);
+            document.removeEventListener("click", handleClickOutside, true);
+        };
+    }, [ref]);
+
+    const handleHideDropdown = (event) => {
+        if (event.key === "Escape") {
+            setDataSearch(e => ({...e, isSearch: false}))
+        }
     };
-  }, [ref]);
 
-  // useEffect(() => {
-  //     if (addCart) {
-  //         setProduct(addCart)
-  //     }
-  // }, [addCart])
+    const handleClickOutside = (event) => {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setDataSearch(e => ({...e, isSearch: false}))
+        }
+    };
 
-  // useEffect(() => {
-  //     if (deleteCart) {
-  //         setProduct(deleteCart)
-  //     }
-  // }, [deleteCart])
+    const closeSearch = () => {
+        setDataSearch(e => ({...e, isSearch: false}))
+    };
 
-  // useEffect(() => {
-  //     if (listCategory) {
-  //         setState(listCategory.detail)
-  //     }
-  // }, [listCategory])
+    const onSearch = (value) => {
+        // dispatch(commonAction.filterHeader(value))
+    };
 
-  const handleHideDropdown = (event) => {
-    if (event.key === "Escape") {
-      setSearch(false);
-    }
-  };
+    // const handleClick = (e) => {
+    //   history.push(PAGES_URL.home.url + "category/" + e);
+    // };
 
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setSearch(false);
-    }
-  };
+    // const onMoveHome = () => {
+    //   history.push(PAGES_URL.home.url);
+    // };
 
-  const onSearch = (value) => {
-    // dispatch(commonAction.filterHeader(value))
-  };
+    // const onMoveProfile = () => {
+    //   history.push(PAGES_URL.home.url + "profile/" + user.customer_id);
+    // };
 
-  const handleClick = (e) => {
-    history.push(PAGES_URL.home.url + "category/" + e);
-  };
+    // const onChangeMenu = (value) => {
+    //     switch (value) {
+    //         case 1:
+    //             return onMoveProfile()
+    //         case 2:
+    //             return logOut()
+    //     }
+    // }
 
-  const onMoveHome = () => {
-    history.push(PAGES_URL.home.url);
-  };
+    const logOut = () => {
+        // xóa data storage
+        getLocalStore("user", true);
+        getLocalStore("payment", true);
+        //reload page and auto run /login
+        window.location.reload();
+    };
 
-  const onMoveProfile = () => {
-    history.push(PAGES_URL.home.url + "profile/" + user.customer_id);
-  };
+    const onMoveCart = () => {
+        history.push(PAGES_URL.cart.url);
+    };
 
-  // const onChangeMenu = (value) => {
-  //     switch (value) {
-  //         case 1:
-  //             return onMoveProfile()
-  //         case 2:
-  //             return logOut()
-  //     }
-  // }
+    const onMouseOut = () => {
+        const newData = [].concat(state.categories);
+        for (let i = 0; i < newData.length; i++) {
+            newData[i].isOpen = false;
+        }
+        setState((e) => ({ ...e, categories: newData }));
+    };
 
-  const logOut = () => {
-    // xóa data storage
-    getLocalStore("user", true);
-    getLocalStore("payment", true);
-    //reload page and auto run /login
-    window.location.reload();
-  };
+    const onCloseModal = () => {
+        setVisible(false);
+    };
 
-  const onMoveCart = () => {
-    history.push(PAGES_URL.cart.url);
-  };
-
-  const onMouseOut = () => {
-    const newData = [].concat(state);
-    for (let i = 0; i < newData.length; i++) {
-      newData[i].isOpen = false;
-    }
-    setState(newData);
-  };
-
-  return (
-    <header className="header-section">
-      <div className="auto-hide-header">
-        <div className="navigation" onMouseLeave={() => onMouseOut()}>
-          <div className="navigation__left">logo</div>
-          <div className="navigation__center">
-            <ul className="horizontal-list">
-              <MenuItems data={state} />
-            </ul>
-          </div>
-          <div className="navigation__right">
-            <div className="search-wrap" onClick={() => setSearch(true)}>
-              <img
-                className="icon-search"
-                src={`${IMAGE_URL + "icons8-search.svg"}`}
-              ></img>
-              <input
-                type="text"
-                placeholder="Tìm kiếm"
-                className="input-search"
-              />
+    return (
+        <header className="header-section">
+            <div className="auto-hide-header">
+                <div className="navigation" onMouseLeave={() => onMouseOut()}>
+                    <div className="navigation__left">
+                        <Link to={PAGES_URL.home.url} className="header-logo">
+                            <img
+                                src={`${IMAGE_URL + "logo-sneaker.jpg"}`}
+                            ></img>
+                        </Link>
+                    </div>
+                    <div className="navigation__center">
+                        <ul className="horizontal-list">
+                            <MenuItems data={state.categories} />
+                        </ul>
+                    </div>
+                    <div className="navigation__right">
+                        <div
+                            className="search-wrap"
+                            onClick={() => setSearch(true)}
+                        >
+                            <img
+                                className="icon-search"
+                                src={`${IMAGE_URL + "icons8-search.svg"}`}
+                            ></img>
+                            <input
+                                type="text"
+                                defaultValue={dataSearch.querySeach}
+                                placeholder="Tìm kiếm"
+                                className="input-search"
+                                readOnly
+                            />
+                        </div>
+                        <div className="header-account">
+                            <img
+                                className="icon-account"
+                                src={`${IMAGE_URL + "my_account.svg"}`}
+                            ></img>
+                        </div>
+                        <div
+                            className="header-heart"
+                            onClick={() => history.push(PAGES_URL.favorite.url)}
+                        >
+                            <img
+                                className="icon-like"
+                                src={`${IMAGE_URL + "heart.svg"}`}
+                            />
+                            <span className="number-like">
+                                {favorites.length}
+                            </span>
+                        </div>
+                        <div
+                            className="header-cart"
+                            onClick={() => setVisible(true)}
+                        >
+                            <img
+                                className="icon-cart"
+                                src={`${IMAGE_URL + "shopping-cart.svg"}`}
+                            />
+                            <span className="number-like">
+                                {state.cartCount}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <FormSearch
+                    dataSearch={dataSearch}
+                    closeSearch={closeSearch}
+                    refSearch={ref}
+                />
             </div>
-            <div className="header-account">
-              <img
-                className="icon-account"
-                src={`${IMAGE_URL + "my_account.svg"}`}
-              ></img>
-            </div>
-            <div className="header-heart">
-              <img
-                className="icon-like"
-                src={`${IMAGE_URL + "heart.svg"}`}
-              />
-              <span className="number-like">2</span>
-            </div>
-            <div className="header-cart">
-              <img
-                className="icon-cart"
-                src={`${IMAGE_URL + "shopping-cart.svg"}`}
-              />
-              <span className="number-like">2</span>
-            </div>
-          </div>
-        </div>
-        <div className={`header-search ${isSearch ? "is-active" : ""}`} ref={ref}>
-        <div className="header-search__top">
-          <div className="navigation">
-            <div className="navigation__left">logo</div>
-            <div className="search-home">
-              <form className="search-home__form">
-                <button
-                  type="submit"
-                  className="search-home__submit"
-                  style={{ border: "none", background: "none" }}
-                >
-                  <img
-                    className="img-submit"
-                    src={`${IMAGE_URL + "search.png"}`}
-                  ></img>
-                </button>
-                <input
-                  type="search"
-                  className="search-home__input"
-                  placeholder="Nhập từ khóa tìm kiếm"
-                ></input>
-              </form>
-            </div>
-            <button type="button" className="search-btn-round" onClick={() => setSearch(false)}>
-              <img 
-                className="icon-close"
-                src={`${IMAGE_URL + "close.png"}`}></img>
-              </button>
-          </div>
-        </div>
-        <div className="header-search__bottom">
-          <div className="search-popular">
-            <div className="search-popular__wrapper">
-              <span>Từ khoá tìm kiếm nhiều nhất</span>
-              <ul>
-                <li>
-                  <a href="/#">Giày nike</a>
-                </li>
-                <li>
-                  <a href="/#">Giày supra</a>
-                </li>
-                <li>
-                  <a href="/#">Giày converse</a>
-                </li>
-                <li>
-                  <a href="/#">Giày Vans</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </header>
-  );
+            <ModalCustom
+                title="Giỏ hàng"
+                classModal="modal-cart"
+                visible={visible}
+                onCancel={() => setVisible(false)}
+                widthModal={500}
+                isShowClose={true}
+                isHeaderCart={true}
+                isHeaderBase={false}
+            >
+                <TableCart onCloseModal={onCloseModal} />
+            </ModalCustom>
+        </header>
+    );
 };
 
 export default Header;

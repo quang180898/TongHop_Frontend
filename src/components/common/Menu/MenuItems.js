@@ -4,7 +4,7 @@ const MenuItems = ({ data }) => {
   const [state, setState] = React.useState([]);
 
   React.useEffect(() => {
-    if (data.length > 0) {
+    if (data?.length > 0) {
       setState(data);
     }
   }, [data]);

@@ -65,9 +65,17 @@ export const PAGES_URL = {
         url: '/register',
         title: 'Register'
     },
-    forgotPassword: {
-        url: '/forgotPassword',
-        title: 'ForgotPassword'
+    mainReset: {
+        url: '/reset',
+        title: 'ResetMain'
+    },
+    favorite: {
+        url: '/favorite',
+        title: 'Favorite'
+    },
+    search: {
+        url: '/search',
+        title: 'Search'
     },
     home: {
         url: '/',
@@ -108,6 +116,18 @@ export const PAGES_URL = {
     cart: {
         url: '/cart',
         title: 'shopping-cart'
+    },
+    checkout: {
+        url: '/checkouts',
+        title: 'checkouts'
+    },
+    mainLogin: {
+        url: '/login',
+        title: 'main-login'
+    },
+    mainRegister: {
+        url: '/register',
+        title: 'main-register'
     },
     accountBook: {
         url: '/account-book',

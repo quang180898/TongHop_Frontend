@@ -189,3 +189,7 @@
     @include align-items(center);
     @include justify-content(center);
 }
+
+@mixin LineAwesome {
+	font-family: "Line Awesome Free";
+}

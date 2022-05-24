@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
-const Breadcrumb = ({ router }) => {
+const Breadcrumb = ({ router, isAdmin = false }) => {
   const history = useHistory();
 
   const pathCurrent = history.location.pathname;
@@ -21,7 +21,7 @@ const Breadcrumb = ({ router }) => {
   }, [pathCurrent]);
 
   return (
-    <div className="page-breadcrumb breadcrumb-collection">
+    <div className={`page-breadcrumb ${!isAdmin ? 'breadcrumb-collection': ''}`}>
       <div className="container">
         <ol className="breadcrumb">
           {results.length > 0

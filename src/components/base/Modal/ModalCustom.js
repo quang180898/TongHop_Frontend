@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { CardHeader } from 'components/common/Card';
 
 const ModalCustom = (props) => {
-    const { visible, widthModal, title, classBody, classModal, onCancel, style, isHeaderBase = true, isHeaderCart = false, centered = true, strongName, maskClosable = false, keyboard = false } = props
+    const { visible, widthModal, title, titleCart, classBody, classModal, onCancel, style, isShowClose = false, isHeaderBase = true, isHeaderCart = false, centered = true, strongName, maskClosable = false, keyboard = false } = props
 
     return (
         visible ? <Modal
@@ -15,9 +15,12 @@ const ModalCustom = (props) => {
             onCancel={onCancel}
             style={style}
             centered={centered}
+            closeIcon={
+                <a className='close-modal'/>
+            }
             // maskClosable={maskClosable}
             keyboard={keyboard}
-            className={`modal-card ${getValueAndSetDefault(classModal, '')}`}
+            className={`modal-card ${getValueAndSetDefault(classModal, '')} ${isShowClose ? 'show-close' : ''}`}
             width={getValueAndSetDefault(widthModal, '390px')}
             destroyOnClose={true}
         >
@@ -25,7 +28,7 @@ const ModalCustom = (props) => {
                 {isHeaderBase && <CardHeader title={title} strongName={strongName} /> }
                 {isHeaderCart && 
                     <div className='modal-cart-header'>
-                        
+                        {title}
                     </div>
                 }    
                 <div className={`modal-body ${getValueAndSetDefault(classBody, '')}`}>

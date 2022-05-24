@@ -39,7 +39,7 @@ const SliderRelated = ({ className, children = [] }) => {
       {...settings}
     >
       {children.map((item, index) => (
-        <ProductBlock key={index}/>
+        <ProductBlock item={item} key={index}/>
       ))}
     </Slider>
   );

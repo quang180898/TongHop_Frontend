@@ -1,0 +1,42 @@
+.search-main {
+    .search-templates {
+        padding-top: 30px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+    .search-content {
+        .empty-search {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center !important;
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 400px;
+            .subtext {
+                margin-bottom: 15px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            &__action {
+                input {
+                    display: block;
+                    padding: 12px 14px;
+                    border-radius: 0;
+                    border: 1px solid #cfcfcf;
+                    width: 100%;
+                    line-height: normal;
+                    resize: none;
+                    transition: border-color 0.1s ease-in-out;
+                    background: transparent;
+                    &:focus {
+                        border-color: #a50008;
+                        outline: 0;
+                    }
+                }
+            }
+        }
+    }
+}

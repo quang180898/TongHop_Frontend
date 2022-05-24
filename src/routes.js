@@ -1,13 +1,24 @@
-import React, { lazy } from 'react';
-import { PAGES_URL } from './contant';
+import React, { lazy } from "react";
+import { PAGES_URL } from "./contant";
 
 // const Page404 = lazy(() => import('../templates/ErrorPage/Page404'));
 // const Login = lazy(() => import('./templates/Account/Login'));
 // const ForgotPassword = lazy(() => import('./templates/Account/ForgotPassword'));
 // const Register = lazy(() => import('./templates/Account/Register'));
-const Home = lazy(() => import('./templates/Home/Home'));
-const Collection = lazy(() => import('./templates/Collection/Collection'));
-const ProductDetail = lazy(() => import('./templates/ProductDetail/ProductDetail'));
+const Home = lazy(() => import("./templates/Main/Home/Home"));
+const Collection = lazy(() => import("./templates/Main/Collection/Collection"));
+const ProductDetail = lazy(() =>
+    import("./templates/Main/ProductDetail/ProductDetail")
+);
+const ShoppingCart = lazy(() =>
+    import("./templates/Main/ShoppingCart/ShoppingCart")
+);
+const Checkout = lazy(() => import("./templates/Main/Checkout/Checkout"));
+const Favorite = lazy(() => import("./templates/Main/Favorite/Favorite"));
+const Search = lazy(() => import("./templates/Main/Search/Search"));
+const MainLogin = lazy(() => import("./templates/Main/MainLogin/MainLogin"));
+const MainRegister = lazy(() => import("./templates/Main/MainRegister/MainRegister"));
+const MainReset = lazy(() => import("./templates/Main/MainReset/MainReset"));
 // const Profile = lazy(() => import('./templates/Profile/Profile'));
 // const Product = lazy(() => import('./templates/Product/Product'));
 // const Admin = lazy(() => import('./templates/Admin/Admin'));
@@ -28,8 +39,6 @@ const ProductDetail = lazy(() => import('./templates/ProductDetail/ProductDetail
 
 // const ManageCart = lazy(() => import('./templates/Cart/ManageCart'));
 
-
-
 // const LOGINS = [
 //     {
 //         "path": PAGES_URL.login.url,
@@ -47,20 +56,51 @@ const ProductDetail = lazy(() => import('./templates/ProductDetail/ProductDetail
 
 const MAIN = [
     {
-        "path": PAGES_URL.home.url,
-        "component": Home,
-        "label": "Trang chủ"
+        path: PAGES_URL.home.url,
+        component: Home,
+        label: "Trang chủ",
     },
     {
-        "path": PAGES_URL.collection.url,
-        "component": Collection,
-        "label": "Danh mục"
+        path: PAGES_URL.collection.url,
+        component: Collection,
+        label: "Danh mục",
     },
     {
-        "path": PAGES_URL.product.url,
-        "component": ProductDetail,
-        "label": "Chi tiết sản phẩm"
+        path: PAGES_URL.product.url,
+        component: ProductDetail,
+        label: "Chi tiết sản phẩm",
     },
+    {
+        path: PAGES_URL.cart.url,
+        component: ShoppingCart,
+        label: "Giỏ hàng",
+    },
+    {
+        path: PAGES_URL.favorite.url,
+        component: Favorite,
+        label: "Danh sách yêu thích",
+    },
+    {
+        path: PAGES_URL.search.url,
+        component: Search,
+        label: "Tìm kiếm",
+    },
+    {
+        path: PAGES_URL.mainLogin.url,
+        component: MainLogin,
+        label: "Đăng nhập",
+    },
+    {
+        path: PAGES_URL.mainRegister.url,
+        component: MainRegister,
+        label: "Đăng ký",
+    },
+    {
+        path: PAGES_URL.mainReset.url,
+        component: MainReset,
+        label: "Phục hồi mật khẩu",
+    },
+
     // {
     //     "path": PAGES_URL.profile.url + "/:accountId",
     //     "component": Profile
@@ -73,7 +113,15 @@ const MAIN = [
     //     "path": PAGES_URL.cart.url,
     //     "component": ManageCart
     // }
-]
+];
+
+const PERSONAL = [
+    {
+        path: PAGES_URL.checkout.url,
+        component: Checkout,
+        label: "Thông tin giao hàng",
+    },
+];
 
 // const ADMIN = [
 //     {
@@ -165,16 +213,16 @@ const ERROR = [
     //     "component": Page404,
     //     "label": ""
     // }
-]
+];
 
 const getPathList = (DATA) => {
-    var list = []
+    var list = [];
     for (var i = 0; i < DATA.length; i++) {
         if (DATA[i]) {
-            list.push(DATA[i].path)
+            list.push(DATA[i].path);
         }
     }
-    return list
-}
+    return list;
+};
 
-export { MAIN, getPathList }
+export { MAIN, PERSONAL, getPathList };

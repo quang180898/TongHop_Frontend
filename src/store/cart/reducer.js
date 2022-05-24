@@ -1,49 +1,32 @@
+import { addToCart, decreaseQuantity, removeFormCart } from "functions/Utils";
 import { cartAction } from "store/actions";
 
 const initialState = {
-  cartItems: JSON.parse(localStorage.getItem("carts") || "[]"),
+    cartItems: JSON.parse(localStorage.getItem("carts")) || {
+        cart: [],
+        total: 0,
+    },
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case cartAction.ADD_TO_CART:
-      const cartItems = [].concat(state.cartItems);
+    switch (action.type) {
+        case cartAction.ADD_TO_CART:
+            console.log(state.cartItems);
+            return {
+                cartItems: addToCart(state.cartItems, action.params),
+            };
 
-      let alreadyExists = false;  
-      cartItems.forEach((x) => {
-        if (x.id === action.params.id) {
-          alreadyExists = true;
-          x.count++;
-        }
-      });
-      if (!alreadyExists) {
-        cartItems.push({ ...action.params, count: 1 });
-      }
+        case cartAction.DECREASE_QUANTITY:
+            return {
+                cartItems: decreaseQuantity(state.cartItems, action.params),
+            };
 
-      localStorage.setItem("carts", JSON.stringify(cartItems));
+        case cartAction.REMOVE_FROM_CART:
+            return {
+                cartItems: removeFormCart(state.cartItems, action.params),
+            };
 
-      return {
-        cartItems: cartItems,
-      };
-
-      // let existed_item = cartItems.find((item) => action.params.id === item.id);
-
-      // if (existed_item) {
-      //   existed_item.count += 1;
-      //   localStorage.setItem("carts", JSON.stringify([...cartItems]));
-      //   return {
-      //     cartItems: [...cartItems],
-      //   };
-      // }
-
-      // action.params.count = action.params.count ? action.params.count : 1;
-
-      // localStorage.setItem("carts", JSON.stringify([action.params, ...cartItems]));
-      // return {
-      //   cartItems: [action.params, ...cartItems],
-      // };
-
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 };

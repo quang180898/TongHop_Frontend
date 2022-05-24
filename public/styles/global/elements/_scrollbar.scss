@@ -27,6 +27,26 @@
     }
 }
 
+@mixin scrollbarSquare {
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        background-color: #8B8B8B;
+    }
+  
+    /*this is the little scrolly dealio in the bar*/
+    &::-webkit-scrollbar-thumb {
+        background-color: #000000;
+        height: 3px;
+    }
+    /*nobody needs this little scrollbar corner, I mean really, get rid of it haha*/
+    &::-webkit-scrollbar-corner {
+        display: none;
+        height: 0px;
+        width: 0px;
+    }
+}
+
 @mixin scrollbarTable {
 
     /*change the thinkness of the scrollbar here*/

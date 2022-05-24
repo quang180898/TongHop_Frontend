@@ -1,0 +1,22 @@
+.login-main {
+    margin-top: 50px;
+    padding-bottom: 30px;
+    .account-action {
+        padding-top: 15px;
+        a {
+            color: #000000;
+            text-decoration: none;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                color: #ff6310;
+                text-decoration: none;
+                outline: none;
+            }
+        }
+        .color-ff6310 {
+            color: #ff6310;
+            text-decoration: underline;
+        }
+    }
+}

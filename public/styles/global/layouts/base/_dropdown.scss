@@ -1,0 +1,36 @@
+.dropdown-blue-overlay {
+    .ant-dropdown-menu-item {
+        color: #367be3;
+    }
+}
+
+.dropdown-base-overlay {
+    .icon {
+        color: #6d30ab;
+        font-size: 18px;
+        padding: 0 10px 0 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #111;
+    }
+}
+
+.dropdown-collection {
+    padding: 0 15px;
+    font-size: 15px;
+    height: 36px;
+    line-height: 36px;
+    font-weight: 400;
+    min-width: 175px;
+    outline: none;
+    appearance: none;
+    text-indent: 0.01px;
+    cursor: pointer;
+    border: 1px solid #000;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-color: transparent;
+    background-image: url(../images/sort-az.svg);
+}
