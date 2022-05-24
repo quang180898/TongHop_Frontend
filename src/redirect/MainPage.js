@@ -10,6 +10,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "components/common/Header";
 import { Footer } from "components/common/Footer";
+import ErrorMain from "templates/Main/ErrorMain/ErrorMain";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const MainPage = () => {
                             </Route>
                         ))}
                         {/* <Redirect from={PAGES_URL.payment.url} to={PAGES_URL.home.url} /> */}
-                        {/* <Route component={PageNotFound} /> */}
+                        <Route component={ErrorMain} />
                     </Switch>
                 </Suspense>
                 <Footer />
