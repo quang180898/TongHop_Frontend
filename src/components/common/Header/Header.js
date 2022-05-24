@@ -264,7 +264,7 @@ const Header = (props) => {
                     refSearch={ref}
                 />
             </div>
-            <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" />
+            <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" language="vi_VN"/>
             <ModalCustom
                 title="Giỏ hàng"
                 classModal="modal-cart"
