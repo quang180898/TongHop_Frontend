@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuItems from "../Menu/MenuItems";
 import { ModalCustom } from "components/base/Modal";
 import { FormSearch, TableCart } from "./Item";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const menuItems = [
     {
@@ -84,7 +85,7 @@ const Header = (props) => {
 
     const [dataSearch, setDataSearch] = React.useState({
         isSearch: false,
-        querySeach: ""
+        querySeach: "",
     });
 
     const [isSearch, setSearch] = React.useState(false);
@@ -110,7 +111,11 @@ const Header = (props) => {
                 let paramsSearch = new URLSearchParams(history.location.search);
                 dataSearch = paramsSearch.get("q");
             }
-            setDataSearch(e => ({...e, querySeach: dataSearch, isSearch: false}))
+            setDataSearch((e) => ({
+                ...e,
+                querySeach: dataSearch,
+                isSearch: false,
+            }));
         }
     }, [history.location]);
 
@@ -125,18 +130,18 @@ const Header = (props) => {
 
     const handleHideDropdown = (event) => {
         if (event.key === "Escape") {
-            setDataSearch(e => ({...e, isSearch: false}))
+            setDataSearch((e) => ({ ...e, isSearch: false }));
         }
     };
 
     const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target)) {
-            setDataSearch(e => ({...e, isSearch: false}))
+            setDataSearch((e) => ({ ...e, isSearch: false }));
         }
     };
 
     const closeSearch = () => {
-        setDataSearch(e => ({...e, isSearch: false}))
+        setDataSearch((e) => ({ ...e, isSearch: false }));
     };
 
     const onSearch = (value) => {
@@ -259,6 +264,7 @@ const Header = (props) => {
                     refSearch={ref}
                 />
             </div>
+            <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" />
             <ModalCustom
                 title="Giỏ hàng"
                 classModal="modal-cart"
