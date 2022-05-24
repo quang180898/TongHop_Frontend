@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuItems from "../Menu/MenuItems";
 import { ModalCustom } from "components/base/Modal";
 import { FormSearch, TableCart } from "./Item";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const menuItems = [
     {
@@ -264,7 +263,6 @@ const Header = (props) => {
                     refSearch={ref}
                 />
             </div>
-            <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" />
             <ModalCustom
                 title="Giỏ hàng"
                 classModal="modal-cart"
