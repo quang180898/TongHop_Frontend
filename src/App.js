@@ -9,6 +9,7 @@ import { PAGES_URL } from 'contant';
 import { TOKEN, TOKENADMIN } from './functions/Utils';
 import MainPage from 'redirect/MainPage';
 import PersonalPage from 'redirect/PersonalPage';
+import ErrorMain from 'templates/Main/ErrorMain/ErrorMain';
 
 const MainRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -50,6 +51,7 @@ const App = () => {
                         <Route render={props => <PrivateAdminRoute {...props} />} />
                     </Route> */}
                     {/* <Route render={props => <PrivateRoute {...props} />} /> */}
+                    <Route component={ErrorMain} />
                 </Switch>
             </Router>
         </Provider>

@@ -19,6 +19,7 @@ const Search = lazy(() => import("./templates/Main/Search/Search"));
 const MainLogin = lazy(() => import("./templates/Main/MainLogin/MainLogin"));
 const MainRegister = lazy(() => import("./templates/Main/MainRegister/MainRegister"));
 const MainReset = lazy(() => import("./templates/Main/MainReset/MainReset"));
+const Page404 = lazy(() => import("./templates/Main/ErrorMain/ErrorMain"));
 // const Profile = lazy(() => import('./templates/Profile/Profile'));
 // const Product = lazy(() => import('./templates/Product/Product'));
 // const Admin = lazy(() => import('./templates/Admin/Admin'));
@@ -208,11 +209,11 @@ const PERSONAL = [
 
 // error page
 const ERROR = [
-    // {
-    //     "path": "/404",
-    //     "component": Page404,
-    //     "label": ""
-    // }
+    {
+        "path": "/404",
+        "component": Page404,
+        "label": ""
+    }
 ];
 
 const getPathList = (DATA) => {
@@ -225,4 +226,4 @@ const getPathList = (DATA) => {
     return list;
 };
 
-export { MAIN, PERSONAL, getPathList };
+export { MAIN, PERSONAL, ERROR, getPathList };
