@@ -21,27 +21,6 @@ const dataRouter = [
     },
 ];
 
-const optionsRadioStore = [
-    {
-        label: (
-            <span className="radio-label-store">
-                <strong>Sneaker 10 Trung Mỹ Tây: </strong>10 Trung Mỹ Tây, Quận
-                12, Hồ Chí Minh
-            </span>
-        ),
-        value: 1,
-    },
-    {
-        label: (
-            <span className="radio-label-store">
-                <strong>Sneaker 10 Tân Chánh Hiệp: </strong>10 Tân Chánh Hiệp,
-                Quận 12, Hồ Chí Minh
-            </span>
-        ),
-        value: 2,
-    },
-];
-
 const optionsRadioPayment = [
     {
         label: (
@@ -64,31 +43,6 @@ const optionsRadioPayment = [
 ];
 
 const MainCheckout = () => {
-
-    const [dataRadio, setDataRadio] = React.useState({
-        radioFirst: true,
-        radioSecond: false,
-        key: 0,
-    });
-
-    const onClickRadioFirst = () => {
-        setDataRadio((e) => ({
-            ...e,
-            radioFirst: true,
-            radioSecond: false,
-            key: 0,
-        }));
-    };
-
-    const onClickRadioSecond = () => {
-        setDataRadio((e) => ({
-            ...e,
-            radioFirst: false,
-            radioSecond: true,
-            key: 1,
-        }));
-    };
-
     return (
         <div className="main">
             <div className="main-header">
@@ -124,28 +78,16 @@ const MainCheckout = () => {
                     </div>
                 </div>
                 <div className="checkout-delivery">
-                    <CollapseBase
-                        className="collapse-checkout"
-                        forceRender={true}
-                        showArrow={false}
-                        ghost={true}
-                        activeKey={{ ["activeKey"]: dataRadio.key }}
-                    >
-                        <div
-                            header={
-                                <div
-                                    className="radio-wrapper"
-                                    onClick={onClickRadioFirst}
-                                >
-                                    <RadioCheckout
-                                        form={true}
-                                        name="radio_delivery"
-                                        checked={dataRadio.radioFirst}
-                                    />
-                                    <span>Giao tận nơi</span>
-                                </div>
-                            }
-                        >
+                    <div className="content-box">
+                        <div className="radio-wrapper">
+                            <RadioCheckout
+                                form={true}
+                                name="radio_delivery"
+                                checked={true}
+                            />
+                            <span>Giao tận nơi</span>
+                        </div>
+                        <div className="address-wrapper">
                             <div className="row">
                                 <div className="col-12 col-sm-12">
                                     <Form.Item label="Địa chỉ">
@@ -174,35 +116,8 @@ const MainCheckout = () => {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            header={
-                                <div
-                                    className="radio-wrapper"
-                                    onClick={onClickRadioSecond}
-                                >
-                                    <RadioCheckout
-                                        form={true}
-                                        name="radio_delivery"
-                                        checked={dataRadio.radioSecond}
-                                    />
-                                    <span>Nhận tại cửa hàng</span>
-                                </div>
-                            }
-                        ></div>
-                    </CollapseBase>
-                </div>
-                {dataRadio.radioSecond && (
-                    <div className="checkout-store">
-                        <div className="content-header">
-                            <h2 className="content-title">Nhận tại cửa hàng</h2>
-                        </div>
-                        <div className="content-box">
-                            <Form.Item name="radio-store" noStyle>
-                                <RadioGroupCustom options={optionsRadioStore} />
-                            </Form.Item>
-                        </div>
                     </div>
-                )}
+                </div>
                 <div className="checkout-payment">
                     <div className="content-header">
                         <h2 className="content-title">

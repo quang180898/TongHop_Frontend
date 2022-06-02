@@ -1848,3 +1848,27 @@ body {
         }
     }
 }
+.back-to-top {
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 0;
+    position: fixed;
+    right: -80px;
+    padding: 1px 10px;
+    border-radius: 3px;
+    z-index: 1;
+    background-color: transparent;
+    z-index: 2000;
+    bottom: 65px;
+    transition: all 0.3s ease;
+    &:hover {
+        background-color: #000000;
+        color: #fff;
+    }
+    i {
+        font-size: 20px;
+    }
+    &.active {
+        right: 13px;
+    }
+}

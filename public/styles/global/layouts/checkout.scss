@@ -303,24 +303,15 @@
             }
             .checkout-delivery {
                 margin-bottom: 2em;
-                .ant-collapse-header {
-                    overflow: hidden;
-                    .radio-wrapper {
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        top: 0;
-                        right: 0;
-                        bottom: 0;
-                        left: 0;
-                        display: flex;
-                        align-items: center;
-                        padding-left: 15px;
-                    }
+                .radio-wrapper {
+                    padding: 1.3em;
                 }
-            }
-            .checkout-store {
-                padding-bottom: 3em;
+                .address-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    border-top: 1px solid #d9d9d9;
+                    padding: 0.8em 0.6em;
+                }
             }
             .content-footer {
                 display: flex;

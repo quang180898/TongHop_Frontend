@@ -1,43 +1,60 @@
 //libs
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import { MAIN } from "../routes";
 import { Animated } from "react-animated-css";
-// import PageNotFound from 'templates/ErrorPage/PageNotFound';
-import { getLocalStore, removeEmptyFromObj } from "functions/Utils";
-import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import { Header } from "components/common/Header";
 import { Footer } from "components/common/Footer";
 import ErrorMain from "templates/Main/ErrorMain/ErrorMain";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const MainPage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
-    // const urlCurrent = location.pathname.split('/')[1]
-    // console.log(location)
-    const queryParams = new URLSearchParams(location.search);
-    const messageParams = queryParams.get("message");
 
-    useEffect(() => {
-        if (messageParams === "Success") {
-            const payment = getLocalStore("payment");
-            const user = getLocalStore("user");
-            let data = {
-                book_id: parseInt(payment.id),
-                user_id: parseInt(user.customer_id),
-                date_borrow: moment().format("DD/MM/YYYY HH:mm:ss"),
-                date_return: moment()
-                    .add(6, "days")
-                    .format("DD/MM/YYYY HH:mm:ss"),
-            };
-            const params = removeEmptyFromObj(data);
-            if (params) {
-                dispatch(bookAction.createAccountBook(params));
+    const [showButton, setShowButton] = React.useState(false);
+    // const urlCurrent = location.pathname.split('/')[1]
+    // const queryParams = new URLSearchParams(location.search);
+    // const messageParams = queryParams.get("message");
+
+    // useEffect(() => {
+    //     if (messageParams === "Success") {
+    //         const payment = getLocalStore("payment");
+    //         const user = getLocalStore("user");
+    //         let data = {
+    //             book_id: parseInt(payment.id),
+    //             user_id: parseInt(user.customer_id),
+    //             date_borrow: moment().format("DD/MM/YYYY HH:mm:ss"),
+    //             date_return: moment()
+    //                 .add(6, "days")
+    //                 .format("DD/MM/YYYY HH:mm:ss"),
+    //         };
+    //         const params = removeEmptyFromObj(data);
+    //         if (params) {
+    //             dispatch(bookAction.createAccountBook(params));
+    //         }
+    //     }
+    // }, [messageParams]);
+
+    React.useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+                setShowButton(true);
+            } else {
+                setShowButton(false);
             }
-        }
-    }, [messageParams]);
+        });
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth", // for smoothly scrolling
+        });
+    };
 
     return (
         <div className="main-body">
@@ -66,6 +83,10 @@ const MainPage = () => {
                     </Switch>
                 </Suspense>
                 <Footer />
+                <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" language="vi_VN"/>
+                <button className={`back-to-top ${showButton ? "active" : ""}`} onClick={scrollToTop}>
+                    <i className="fas fa-angle-double-up"></i>
+                </button>
             </div>
         </div>
     );

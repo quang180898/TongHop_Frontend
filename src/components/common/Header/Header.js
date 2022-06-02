@@ -6,53 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuItems from "../Menu/MenuItems";
 import { ModalCustom } from "components/base/Modal";
 import { FormSearch, TableCart } from "./Item";
-import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const menuItems = [
     {
         title: "Converse",
-        isOpen: false,
-        submenu: [
-            {
-                title: "web design",
-            },
-            {
-                title: "web development",
-            },
-            {
-                title: "SEO",
-            },
-        ],
     },
     {
         title: "Vans",
-        isOpen: false,
-        submenu: [
-            {
-                title: "1",
-            },
-            {
-                title: "2",
-            },
-            {
-                title: "3",
-            },
-        ],
     },
     {
         title: "Palladium",
-        isOpen: false,
-        submenu: [
-            {
-                title: "4",
-            },
-            {
-                title: "5",
-            },
-            {
-                title: "6",
-            },
-        ],
     },
     {
         title: "K-wiss",
@@ -212,7 +175,9 @@ const Header = (props) => {
                     <div className="navigation__right">
                         <div
                             className="search-wrap"
-                            onClick={() => setSearch(true)}
+                            onClick={() =>
+                                setDataSearch((e) => ({ ...e, isSearch: true }))
+                            }
                         >
                             <img
                                 className="icon-search"
@@ -264,7 +229,6 @@ const Header = (props) => {
                     refSearch={ref}
                 />
             </div>
-            <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" language="vi_VN"/>
             <ModalCustom
                 title="Giỏ hàng"
                 classModal="modal-cart"
