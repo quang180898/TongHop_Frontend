@@ -1,1 +1,1 @@
-web: npm run build-domain
+web: npm run start
