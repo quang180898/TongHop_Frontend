@@ -40,7 +40,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    // "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV prod",
+    "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
     "client": "webpack-dev-server --config webpack.common.js --mode development --TARGET_ENV local --host",
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run clean\"",
     "clean-domain": "rmdir /s /q build-domain",
