@@ -1,1 +1,0 @@
-web: npm run build-domain && npm run server
