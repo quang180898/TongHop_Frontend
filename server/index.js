@@ -6,6 +6,11 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Define
 const LOCAL_PATH = path.join(__dirname, "../build");
+
+if (process.env.TARGET_ENV === "domain") {
+    LOCAL_PATH = path.join(__dirname, "../build-domain");
+}
+ 
 console.log('LOCAL_PATH:', LOCAL_PATH);
 
 var app = express(); // create express app
