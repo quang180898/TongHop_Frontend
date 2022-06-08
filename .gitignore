@@ -3,4 +3,6 @@
 package-lock.json
 release-builds/
 build/
+build-prod/
+build-domain/
 node_modules/
