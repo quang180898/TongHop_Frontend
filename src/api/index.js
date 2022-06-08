@@ -7,7 +7,7 @@ let PREFIX_BE = "/api/backend/";
 switch (process.env.TARGET_ENV) {
     default:
         DOMAIN = MODE_ENV.local;
-        // DOMAIN.api = "";
+        DOMAIN.api = "";
         break;
 }
 
