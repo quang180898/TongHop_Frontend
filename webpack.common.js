@@ -169,14 +169,14 @@ module.exports = (options, argv) => {
             filename: "[name].[hash]." + dateTimeBuild + ".js",
             chunkFilename: "[name].[hash]." + dateTimeBuild + ".js",
         };
-        // config.plugins.push(
-        //     new webpack.DefinePlugin({
-        //         "process.env": {
-        //             TARGET_ENV: JSON.stringify(argv.TARGET_ENV),
-        //             DOMAIN_URL: JSON.stringify(argv.TARGET_ENV),
-        //         },
-        //     })
-        // );
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                "process.env": {
+                    TARGET_ENV: JSON.stringify(argv.TARGET_ENV),
+                    DOMAIN_URL: JSON.stringify(argv.TARGET_ENV),
+                },
+            })
+        );
     }
 
     return config;
