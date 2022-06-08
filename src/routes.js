@@ -1,4 +1,7 @@
+import { convertContant } from "functions/Utils";
 import React, { lazy } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { PAGES_URL } from "./contant";
 
 // const Page404 = lazy(() => import('../templates/ErrorPage/Page404'));
@@ -17,7 +20,9 @@ const Checkout = lazy(() => import("./templates/Main/Checkout/Checkout"));
 const Favorite = lazy(() => import("./templates/Main/Favorite/Favorite"));
 const Search = lazy(() => import("./templates/Main/Search/Search"));
 const MainLogin = lazy(() => import("./templates/Main/MainLogin/MainLogin"));
-const MainRegister = lazy(() => import("./templates/Main/MainRegister/MainRegister"));
+const MainRegister = lazy(() =>
+    import("./templates/Main/MainRegister/MainRegister")
+);
 const MainReset = lazy(() => import("./templates/Main/MainReset/MainReset"));
 const Page404 = lazy(() => import("./templates/Main/ErrorMain/ErrorMain"));
 // const Profile = lazy(() => import('./templates/Profile/Profile'));
@@ -63,6 +68,11 @@ const MAIN = [
     },
     {
         path: PAGES_URL.collection.url,
+        component: Collection,
+        label: "Danh mục",
+    },
+    {
+        path: PAGES_URL.collection.url + "/:BrandId",
         component: Collection,
         label: "Danh mục",
     },
@@ -210,10 +220,10 @@ const PERSONAL = [
 // error page
 const ERROR = [
     {
-        "path": "/404",
-        "component": Page404,
-        "label": ""
-    }
+        path: "/404",
+        component: Page404,
+        label: "",
+    },
 ];
 
 const getPathList = (DATA) => {

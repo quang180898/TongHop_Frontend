@@ -2,18 +2,15 @@ module.exports = {
 	NODE_ENV: 'none',
 	MODE_ENV: {
 		local: {
-			// api: 'https://saledev-adminv2.minerva.vn',
+			api: 'https://backend-sneaker.herokuapp.com',
 			//dev
 			show_log: true,
 			hot: true,
 			liveReload: true,
 			host: 'localhost',
 			port: 3006,
-			portServer: 5004
+			portServer: 8000
 
 		},
-		// prod: {
-		// 	api: 'https://sale-adminv2.minerva.vn',
-		// },
 	}
 };

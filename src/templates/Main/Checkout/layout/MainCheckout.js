@@ -49,7 +49,7 @@ const MainCheckout = () => {
                 <Link to={PAGES_URL.home.url} className="logo">
                     <img src={`${IMAGE_URL + "logo-sneaker.jpg"}`} />
                 </Link>
-                <BreadcrumbCustom router={dataRouter} />
+                <BreadcrumbCustom router={dataRouter} isCheckout={true}/>
             </div>
             <div className="main-content">
                 <div className="content-header">

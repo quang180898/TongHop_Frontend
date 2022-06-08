@@ -109,6 +109,7 @@ module.exports = (options, argv) => {
           port: argv.mode.port ? argv.mode.port : envLocal && envLocal.MODE_ENV.local.port,
           hot: envLocal && envLocal.MODE_ENV.local.hot,
           host: argv.mode ? argv.mode.host : envLocal && envLocal.MODE_ENV.local.host,
+          open: true,
       }
       config.output = {
           path: path.join(__dirname, 'build'),

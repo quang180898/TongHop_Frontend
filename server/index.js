@@ -15,7 +15,7 @@ app.use(express.static("public"));
 var env = require("../env/env");
 const PORT = env.MODE_ENV.local.portServer;
 
-app.use('/api/backend/', createProxyMiddleware({ target: 'http://localhost:8000', changeOrigin: true, secure: false}));
+app.use('/api/', createProxyMiddleware({ target: env.MODE_ENV.local.api, changeOrigin: true, secure: false}));
 
 // REACT
 app.get('/*', (req, res) => {

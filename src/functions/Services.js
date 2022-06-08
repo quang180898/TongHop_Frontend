@@ -33,8 +33,7 @@ function getUrl(url, data = {}) {
 }
 
 function getHeader(content_type = CONTENT_TYPE) {
-    let headers;
-        headers = {
+    let headers = {
             'MNV-encode': MNV_ENCODE,
             'MNV-LANGUAGE': MNV_LANGUAGE,
         }
@@ -108,6 +107,7 @@ function handleResponseText(response) {
 
 function handleRequest(url, options) {
 
+    // console.log({url, options});
     options['url'] = url;
     if (options.hasOwnProperty("body")) {
         if (MNV_ENCODE === 1) {
@@ -115,6 +115,12 @@ function handleRequest(url, options) {
         }
         else {
             options['body'] = JSON.stringify(options['body'])
+        }
+    }
+    else {
+        if (options["method"] == "POST" || options["method"] == "PUT") {
+            showNotification.error({ title: "Missing body", message: url })
+            return false
         }
     }
 

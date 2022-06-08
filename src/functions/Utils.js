@@ -535,7 +535,7 @@ export const removeExtraSpace = (s) => {
 
 // get (value or label or something ) from constants file
 export const convertContant = (value, array, index = "value") => {
-    let params = array.find((e) => e[index] == value);
+    let params =  array?.length > 0 ? array.find((e) => e[index] == value) : null;
     if (params) {
         return params;
     } else {

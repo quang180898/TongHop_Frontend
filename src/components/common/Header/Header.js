@@ -3,33 +3,8 @@ import { Link, useHistory } from "react-router-dom";
 import { IMAGE_URL, PAGES_URL } from "contant";
 import { getLocalStore } from "functions/Utils";
 import { useDispatch, useSelector } from "react-redux";
-import MenuItems from "../Menu/MenuItems";
 import { ModalCustom } from "components/base/Modal";
-import { FormSearch, TableCart } from "./Item";
-
-const menuItems = [
-    {
-        title: "Converse",
-    },
-    {
-        title: "Vans",
-    },
-    {
-        title: "Palladium",
-    },
-    {
-        title: "K-wiss",
-    },
-    {
-        title: "Supra",
-    },
-    {
-        title: "Sản phẩm",
-    },
-    {
-        title: "Cửa hàng",
-    },
-];
+import { FormSearch, MenuItems, TableCart } from "./Item";
 
 const Header = (props) => {
     const dispatch = useDispatch();
@@ -42,7 +17,6 @@ const Header = (props) => {
     const [user, setUser] = React.useState(userLocal);
 
     const [state, setState] = React.useState({
-        categories: menuItems,
         cartCount: 0,
     });
 
@@ -144,14 +118,6 @@ const Header = (props) => {
         history.push(PAGES_URL.cart.url);
     };
 
-    const onMouseOut = () => {
-        const newData = [].concat(state.categories);
-        for (let i = 0; i < newData.length; i++) {
-            newData[i].isOpen = false;
-        }
-        setState((e) => ({ ...e, categories: newData }));
-    };
-
     const onCloseModal = () => {
         setVisible(false);
     };
@@ -159,7 +125,7 @@ const Header = (props) => {
     return (
         <header className="header-section">
             <div className="auto-hide-header">
-                <div className="navigation" onMouseLeave={() => onMouseOut()}>
+                <div className="navigation">
                     <div className="navigation__left">
                         <Link to={PAGES_URL.home.url} className="header-logo">
                             <img
@@ -169,7 +135,7 @@ const Header = (props) => {
                     </div>
                     <div className="navigation__center">
                         <ul className="horizontal-list">
-                            <MenuItems data={state.categories} />
+                            <MenuItems />
                         </ul>
                     </div>
                     <div className="navigation__right">
