@@ -9,8 +9,7 @@ module.exports = {
 			liveReload: true,
 			host: 'localhost',
 			port: 3006,
-			portServer: 8000
-
+			portServer: 5004
 		},
 	}
 };

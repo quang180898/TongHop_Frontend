@@ -13,7 +13,6 @@ app.use(express.static(LOCAL_PATH));
 app.use(express.static("public"));
 
 var env = require("../env/env");
-const PORT = env.MODE_ENV.local.portServer;
 
 app.use('/api/', createProxyMiddleware({ target: env.MODE_ENV.local.api, changeOrigin: true, secure: false}));
 
@@ -23,6 +22,9 @@ app.get('/*', (req, res) => {
 })
 
 // START
+
+const PORT = process.env.PORT || env.MODE_ENV.local.portServer;
+
 app.listen(PORT, () => {
     console.log("Server started on port " + PORT);
 })
