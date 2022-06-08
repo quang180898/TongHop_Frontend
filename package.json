@@ -42,7 +42,7 @@
   "scripts": {
     "client": "webpack-dev-server --config webpack.common.js --mode development --TARGET_ENV local --host",
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run clean\"",
-    "build-domain": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
+    "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
     "clean-domain": "rmdir /s /q build-domain",
     "clean": "rmdir /s /q build",
     "clean-nm": "rmdir /s /q node_modules",
