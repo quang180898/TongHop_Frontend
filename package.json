@@ -40,14 +40,13 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV dev",
     "client": "webpack-dev-server --config webpack.common.js --mode development --TARGET_ENV local --host",
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run clean\"",
-    "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
     "clean-domain": "rmdir /s /q build-domain",
     "clean": "rmdir /s /q build",
     "clean-nm": "rmdir /s /q node_modules",
     "server": "node server/index.js",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
