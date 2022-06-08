@@ -40,10 +40,9 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "build-domain": "webpack --config webpack.common.js --mode production --TARGET_ENV domain",
-    "heroku-postbuild": "npm run start",
+    "heroku-postbuild": "webpack --config webpack.common.js --mode production --TARGET_ENV domain --domain=https://frontend-sneaker.herokuapp.com",
     "client": "webpack-dev-server --config webpack.common.js --mode development --TARGET_ENV local --host",
-    "start": "concurrently \"npm run build-domain\" \"npm run server\" ",
+    "start": "concurrently \"npm run client\" \"npm run server\" \"npm run clean\"",
     "clean-domain": "rmdir /s /q build-domain",
     "clean": "rmdir /s /q build",
     "clean-nm": "rmdir /s /q node_modules",
