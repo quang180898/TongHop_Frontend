@@ -8,7 +8,6 @@ switch (process.env.TARGET_ENV) {
     default:
         DOMAIN = MODE_ENV.local;
         DOMAIN.api = "";
-        DOMAIN.cloudapi = "";
         break;
 }
 
