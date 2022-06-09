@@ -19,6 +19,23 @@ let BRAND = {
     BRAND_DELETE: DOMAIN.api + PREFIX_BE + "v1/brand/delete/",
 };
 
+let CATEGORY = {
+    CATEGORY_LIST: DOMAIN.api + PREFIX_BE + "v1/category/",
+    CATEGORY_DETAIL: DOMAIN.api + PREFIX_BE + "v1/category/detail/",
+    CATEGORY_UPDATE: DOMAIN.api + PREFIX_BE + "v1/category/create_or_update/",
+    CATEGORY_DELETE: DOMAIN.api + PREFIX_BE + "v1/category/delete/",
+};
+
+let SHOES = {
+    SHOES_LIST: DOMAIN.api + PREFIX_BE + "v1/shoes/",
+    SHOES_DETAIL: DOMAIN.api + PREFIX_BE + "v1/shoes/detail/",
+    SHOES_SAME: DOMAIN.api + PREFIX_BE + "v1/shoes/same_category/",
+    SHOES_UPDATE: DOMAIN.api + PREFIX_BE + "v1/shoes/create_or_update/",
+    SHOES_DELETE: DOMAIN.api + PREFIX_BE + "v1/shoes/delete/",
+};
+
 export default {
     ...BRAND,
+    ...CATEGORY,
+    ...SHOES,
 };

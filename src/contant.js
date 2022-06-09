@@ -86,8 +86,8 @@ export const PAGES_URL = {
         title: 'collection'
     },
     product: {
-        url: '/products',
-        title: 'products'
+        url: '/product',
+        title: 'product'
     },
     admin: {
         url: '/admin',
@@ -100,10 +100,6 @@ export const PAGES_URL = {
     author: {
         url: '/author',
         title: 'author'
-    },
-    category: {
-        url: '/categories',
-        title: 'categories'
     },
     book: {
         url: '/book',

@@ -2,28 +2,32 @@ import { Breadcrumb, BreadcrumbCustom } from "components/common/Breadcrumb";
 import { IMAGE_URL, PAGES_URL } from "contant";
 import { convertContant } from "functions/Utils";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { MAIN } from "routes";
+import { categoryAction } from "store/actions";
 import { CollectionFilter, CollectionList } from "./layout";
 
 const Collection = () => {
 
+    const { BrandId } = useParams();
+    const dispatch = useDispatch();
+
     const [state, setState] = React.useState({
         dataBrand: null,
     })
-    const { BrandId } = useParams();
 
     const store = useSelector((state) => state);
     const { listBrand } = store.brandReducer;
 
-    console.log(listBrand)
+    React.useEffect(() => {
+        dispatch(categoryAction.getListCategory())
+    }, [])
 
     React.useEffect(() => {
         if (listBrand) {
-            let detail = listBrand.detail
+            let detail = [].concat(listBrand.detail)
             if (listBrand.success) {
-                console.log(detail)
                 setState(e => ({...e, dataBrand: detail}))
             }
         }
