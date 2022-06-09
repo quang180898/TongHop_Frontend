@@ -17,8 +17,9 @@ const MenuItems = () => {
 
     React.useEffect(() => {
         if (listBrand) {
-            let detail = listBrand.detail;
+            let detail = [].concat(listBrand.detail);
             if (listBrand.success) {
+                detail.push({brand_id: null, brand_name: "Tất cả SP"})
                 setState(detail);
             }
         }
@@ -32,7 +33,7 @@ const MenuItems = () => {
                     className="horizontal-list__item"
                     key={index}
                 >
-                    <a href={PAGES_URL.collection.url + "/" + items.brand_id} className="item-link">
+                    <a href={items.brand_id != null ? PAGES_URL.collection.url + "/" + items.brand_id : PAGES_URL.collection.url} className="item-link">
                         {items.brand_name}
                         <span className="line-bottom">{items.brand_name}</span>
                     </a>
