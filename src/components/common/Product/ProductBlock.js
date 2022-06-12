@@ -69,7 +69,9 @@ const ProductBlock = ({ item }) => {
         let newData = {};
         const index = cartItems.cart.indexOf(
             cartItems.cart.filter(
-                (e) => e.id === item.id && e.size === item.size[0]
+                (e) =>
+                    e.shoes_id === item.shoes_id &&
+                    e.size === item.shoes_quantity[0].size
             )[0]
         );
         if (index != -1) {
@@ -77,6 +79,7 @@ const ProductBlock = ({ item }) => {
         } else {
             newData = item;
         }
+        console.log(newData)
         setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
         dispatch(cartAction.addToCart({ product: item }));
     };
@@ -92,18 +95,27 @@ const ProductBlock = ({ item }) => {
     return (
         <div className="product-block">
             <div className="product-img">
-                <div className="product-sale">
-                    <span>-20%</span>
-                </div>
+                {item.discount_percent > 0 ? (
+                    <div className="product-sale">
+                        <span>-{item.discount_percent}%</span>
+                    </div>
+                ) : (
+                    ""
+                )}
                 <a href="/#" className="image-resize">
-                    <img src={item.image} alt="product image" />
+                    <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="product image" />
                 </a>
                 <div className="product-wishlist">
                     <Tooltip title="Yêu thích" placement="left" arrow>
-                        <button className="" onClick={() => dispatch(favoriteAction.addToFavorite(item))}>
+                        <button
+                            className=""
+                            onClick={() =>
+                                dispatch(favoriteAction.addToFavorite(item))
+                            }
+                        >
                             {favorites
-                                .map((item) => item.id)
-                                .includes(item.id) ? (
+                                .map((item) => item.shoes_id)
+                                .includes(item.shoes_id) ? (
                                 <img
                                     src={`${IMAGE_URL + "heart-fill.svg"}`}
                                     alt="heart-fill"
@@ -137,7 +149,7 @@ const ProductBlock = ({ item }) => {
             </div>
             <div className="product-detail">
                 <h3 className="product-name">
-                    <a>{item.name}</a>
+                    <a>{item.shoes_name}</a>
                 </h3>
                 <div className="reviews-star">
                     <i className="star-off-png" title="Not rated yet!"></i>
@@ -152,18 +164,30 @@ const ProductBlock = ({ item }) => {
                 </div>
                 <div className="group-sku">
                     <span className="first-sku">
-                        SKU: <span className="name-sku">VN0A4P3U6UX</span>
+                        SKU: <span className="name-sku">{item.shoes_code}</span>
                     </span>
                 </div>
                 <div className="price">
-                    <div className="special-price mr-2">
-                        <span className="price-new">
-                            {convertCurrency(item.price, "đ")}
-                        </span>
-                    </div>
-                    <div className="special-price">
-                        <span className="price-old">2.000.000 đ</span>
-                    </div>
+                    {item.discount_percent > 0 ? (
+                        <>
+                            <div className="special-price mr-2">
+                                <span className="price-new">
+                                    {convertCurrency(item.sale_price, "đ")}
+                                </span>
+                            </div>
+                            <div className="special-price">
+                                <span className="price-old">
+                                    {convertCurrency(item.retail_price, "đ")}
+                                </span>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="special-price mr-2">
+                            <span className="price-new">
+                                {convertCurrency(item.sale_price, "đ")}
+                            </span>
+                        </div>
+                    )}
                 </div>
             </div>
             <ModalCustom

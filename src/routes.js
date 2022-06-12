@@ -77,7 +77,7 @@ const MAIN = [
         label: "Danh mục",
     },
     {
-        path: PAGES_URL.product.url,
+        path: PAGES_URL.product.url + "/:ShoesId",
         component: ProductDetail,
         label: "Chi tiết sản phẩm",
     },

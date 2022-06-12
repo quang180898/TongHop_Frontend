@@ -1074,33 +1074,33 @@ export const addToCart = (data, items) => {
 
     const product = items.product;
 
-    const selectedValue = items.size ? items.size : product.size[0];
+    const selectedValue = items.size ? items.size : product.shoes_quantity[0].size;
 
     const quantity = items.quantity ? items.quantity : 1;
 
-    if (cartItems.filter((p) => p.id === product.id).length === 0) {
+    if (cartItems.filter((p) => p.shoes_id === product.shoes_id).length === 0) {
         cartItems.push({
             ...product,
-            id: product.id,
+            shoes_id: product.shoes_id,
             quantity: 0,
             size: selectedValue,
         });
     } else if (
-        cartItems.filter((p) => p.id === product.id).length > 0 &&
+        cartItems.filter((p) => p.shoes_id === product.shoes_id).length > 0 &&
         cartItems
-            .filter((p) => p.id === product.id && p.size === selectedValue)
+            .filter((p) => p.shoes_id === product.shoes_id && p.size === selectedValue)
             .map((p) => p.size)[0] !== selectedValue
     ) {
         cartItems.push({
             ...params,
-            id: product.id,
+            shoes_id: product.shoes_id,
             quantity: 0,
             size: selectedValue,
         });
     } else {
         const index = cartItems.indexOf(
             cartItems.filter(
-                (item) => item.id === product.id && item.size === selectedValue
+                (item) => item.shoes_id === product.shoes_id && item.size === selectedValue
             )[0]
         );
         cartItems[index] = {
@@ -1111,7 +1111,7 @@ export const addToCart = (data, items) => {
     // Determine index of cartItem
     const index = cartItems.indexOf(
         cartItems.filter(
-            (item) => item.id === product.id && item.size === selectedValue
+            (item) => item.shoes_id === product.shoes_id && item.size === selectedValue
         )[0]
     );
 
@@ -1122,10 +1122,10 @@ export const addToCart = (data, items) => {
 
     let cartTotal = data.total ? data.total : 0;
 
-    cartTotal += product.price * quantity;
+    cartTotal += product.sale_price * quantity;
 
     newData.total = cartTotal;
-
+    console.log(newData)
     localStorage.setItem("carts", JSON.stringify(newData));
     return newData;
 };
@@ -1145,7 +1145,7 @@ export const decreaseQuantity = (data, items) => {
     // Determine index of cartItem
     const index = cartItems.indexOf(
         cartItems.filter(
-            (item) => item.id === product.id && item.size === selectedValue
+            (item) => item.shoes_id === product.shoes_id && item.size === selectedValue
         )[0]
     );
 
@@ -1161,7 +1161,7 @@ export const decreaseQuantity = (data, items) => {
 
     let cartTotal = data.total;
 
-    cartTotal -= product.price;
+    cartTotal -= product.sale_price;
 
     newData.total = cartTotal;
 
@@ -1184,7 +1184,7 @@ export const removeFormCart = (data, items) => {
     // Determine index of cartItem
     const index = cartItems.indexOf(
         cartItems.filter(
-            (item) => item.id === product.id && item.size === selectedValue
+            (item) => item.shoes_id === product.shoes_id && item.size === selectedValue
         )[0]
     );
 
@@ -1198,7 +1198,7 @@ export const removeFormCart = (data, items) => {
 
     let cartTotal = data.total;
 
-    cartTotal -= product.price * quantity;
+    cartTotal -= product.sale_price * quantity;
 
     newData.total = cartTotal;
 

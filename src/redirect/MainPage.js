@@ -83,8 +83,10 @@ const MainPage = () => {
                     </Switch>
                 </Suspense>
                 <Footer />
-                {/* <MessengerCustomerChat pageId="109983121722150" appId="405283984806330" language="vi_VN"/> */}
-                <button className={`back-to-top ${showButton ? "active" : ""}`} onClick={scrollToTop}>
+                <button
+                    className={`back-to-top ${showButton ? "active" : ""}`}
+                    onClick={scrollToTop}
+                >
                     <i className="fas fa-angle-double-up"></i>
                 </button>
             </div>

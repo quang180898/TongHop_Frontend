@@ -2,12 +2,12 @@ import api from "api";
 import { getHeader, getUrl, handleRequest } from "functions/Services";
 
 export const shoesService = {
-    getShoesList() {
+    getShoesList({ params }) {
         const requestOptions = {
             method: "GET",
             headers: getHeader(),
         };
-        const url = getUrl(api.SHOES_LIST);
+        const url = getUrl(api.SHOES_LIST, params);
         return handleRequest(url, requestOptions);
     },
 

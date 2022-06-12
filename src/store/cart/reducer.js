@@ -11,7 +11,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case cartAction.ADD_TO_CART:
-            console.log(state.cartItems);
             return {
                 cartItems: addToCart(state.cartItems, action.params),
             };

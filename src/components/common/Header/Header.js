@@ -129,7 +129,7 @@ const Header = (props) => {
                     <div className="navigation__left">
                         <Link to={PAGES_URL.home.url} className="header-logo">
                             <img
-                                src={`${IMAGE_URL + "logo-sneaker.jpg"}`}
+                                src={`${IMAGE_URL + "logo-sneaker.jpg"}`} alt="logo"
                             ></img>
                         </Link>
                     </div>
@@ -148,6 +148,7 @@ const Header = (props) => {
                             <img
                                 className="icon-search"
                                 src={`${IMAGE_URL + "icons8-search.svg"}`}
+                                alt="image"
                             ></img>
                             <input
                                 type="text"
@@ -161,6 +162,7 @@ const Header = (props) => {
                             <img
                                 className="icon-account"
                                 src={`${IMAGE_URL + "my_account.svg"}`}
+                                alt="image"
                             ></img>
                         </div>
                         <div
@@ -170,6 +172,7 @@ const Header = (props) => {
                             <img
                                 className="icon-like"
                                 src={`${IMAGE_URL + "heart.svg"}`}
+                                alt="image"
                             />
                             <span className="number-like">
                                 {favorites.length}
@@ -182,6 +185,7 @@ const Header = (props) => {
                             <img
                                 className="icon-cart"
                                 src={`${IMAGE_URL + "shopping-cart.svg"}`}
+                                alt="image"
                             />
                             <span className="number-like">
                                 {state.cartCount}

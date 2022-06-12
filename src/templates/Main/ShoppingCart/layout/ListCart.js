@@ -53,7 +53,7 @@ const ListCart = () => {
                                 <li className="item-info">
                                     <div className="item-img">
                                         <a>
-                                            <img src={item.image} />
+                                            <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="image"/>
                                         </a>
                                     </div>
                                     <div className="item-title">
@@ -62,12 +62,12 @@ const ListCart = () => {
                                             <span>{item.size}</span>
                                         </span>
                                         <span className="item-option">
-                                            <span>SKU: {item.sku}</span>
+                                            <span>SKU: {item.shoes_code}</span>
                                         </span>
                                         <span className="item-option">
                                             <span>
                                                 {convertCurrency(
-                                                    item.price,
+                                                    item.sale_price,
                                                     "đ"
                                                 )}
                                             </span>
@@ -103,7 +103,7 @@ const ListCart = () => {
                                 <li className="item-price">
                                     <span className="money">
                                         {convertCurrency(
-                                            item.price * item.quantity,
+                                            item.sale_price * item.quantity,
                                             "đ"
                                         )}
                                     </span>

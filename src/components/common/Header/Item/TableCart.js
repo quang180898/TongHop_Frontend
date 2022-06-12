@@ -43,7 +43,7 @@ const TableCart = ({onCloseModal}) => {
         <tr className="list-item" key={index}>
           <td className="img">
             <a href="/#">
-              <img src={item.image} alt="image" />
+              <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="image"/>
             </a>
           </td>
           <td className="item">
@@ -56,7 +56,7 @@ const TableCart = ({onCloseModal}) => {
               onClickDown={() => onClickDown(item, item.size)}
               onClickUp={() => onClickUp(item, item.size)}
             />
-            <span className="pro-price-view">{convertCurrency(item.price, "đ")}</span>
+            <span className="pro-price-view">{convertCurrency(item.sale_price, "đ")}</span>
             <span
               className="remove-cart"
               onClick={() =>

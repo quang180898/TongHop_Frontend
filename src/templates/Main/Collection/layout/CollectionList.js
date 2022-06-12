@@ -1,10 +1,16 @@
 import { DropdownCollection } from "components/base/Dropdown";
 import { ProductBlock } from "components/common/Product";
-import { listProduct } from "dataFake/dataFake";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { shoesAction } from "store/actions";
 import { usePagination } from "useHook";
 
 const CollectionList = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    let listLocation = history.location.pathname.split("/");
+
     const [state, setState] = React.useState({
         dataShoes: null,
         totalPage: null,
@@ -12,6 +18,9 @@ const CollectionList = () => {
         page: 1,
         limit: 6,
     });
+
+    const store = useSelector((state) => state.shoesReducer);
+    const { listShoes } = store;
 
     const pagination = usePagination({
         showTotal: true,
@@ -21,16 +30,25 @@ const CollectionList = () => {
         limit: state.limit,
     });
 
-    const callApi = (region = state.region, province = state.province, projectType = state.projectType, projectStatus = state.projectStatus) => {
-      dispatch(commonAction.getProjectList({
-          page: isPage ? 1 : state.page,
-          region_id: region > 0 ? region : null,
-          province_id: province > 0 ? province : null,
-          setting_type: projectType > 0 ? projectType : null,
-          status_id: projectStatus > 0 ? projectStatus : null,
-          limit: 6
-      }))
-  }
+    const callApi = () => {
+        dispatch(shoesAction.getListShoes({ page: state.page }));
+    };
+
+    React.useEffect(() => {
+        if (listLocation.length > 0) {
+            let paramsSearch = new URLSearchParams(history.location.search);
+            callApi();
+        }
+    }, [history.location, state.page]);
+
+    React.useEffect(() => {
+        if (listShoes) {
+            let detail = [].concat(listShoes.detail);
+            if (listShoes.success) {
+                setState((e) => ({ ...e, dataShoes: detail }));
+            }
+        }
+    }, [listShoes]);
 
     return (
         <div className="col-md-9 col-sm-12 col-xs-12 collection-list">
@@ -46,9 +64,9 @@ const CollectionList = () => {
                 </div>
             </div>
             <div className="content-product-list d-flex">
-                {state &&
-                    state.length > 0 &&
-                    state.map((item, index) => {
+                {state?.dataShoes &&
+                    state?.dataShoes?.length > 0 &&
+                    state.dataShoes.map((item, index) => {
                         return (
                             <div
                                 className="col-lg-3 col-md-3 col-sm-4 col-xs-6 pr-0 d-flex-column"
