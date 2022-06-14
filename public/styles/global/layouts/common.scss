@@ -22,6 +22,12 @@ body {
     max-width: 100%;
 }
 
+.mainPage {
+    &.is-profile {
+        background: #f8f8f8 ;
+    }
+}
+
 .d-flex-column {
     display: flex;
     flex-direction: column;

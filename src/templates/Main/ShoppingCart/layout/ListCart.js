@@ -57,7 +57,7 @@ const ListCart = () => {
                                         </a>
                                     </div>
                                     <div className="item-title">
-                                        <a>{item.name}</a>
+                                        <a>{item.shoes_name}</a>
                                         <span className="item-option">
                                             <span>{item.size}</span>
                                         </span>

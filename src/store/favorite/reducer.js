@@ -12,11 +12,11 @@ export default (state = initialState, action) => {
             const favorites = [].concat(state.favorites);
 
             // If an item isn't already a favorite, create one and push it to the array; otherwise remove it from the array
-            if (favorites.filter((p) => p.id === data.id).length !== 1) {
+            if (favorites.filter((p) => p.shoes_id === data.shoes_id).length !== 1) {
                 favorites.push(data);
             } else {
                 const index = favorites.indexOf(
-                    favorites.filter((item) => item.id === data.id)[0]
+                    favorites.filter((item) => item.shoes_id === data.shoes_id)[0]
                 );
                 favorites.splice(index, 1);
             }

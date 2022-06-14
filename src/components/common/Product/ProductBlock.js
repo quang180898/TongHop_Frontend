@@ -1,4 +1,4 @@
-import { IMAGE_URL } from "contant";
+import { IMAGE_URL, PAGES_URL } from "contant";
 import Tooltip from "@mui/material/Tooltip";
 import React from "react";
 import { ModalCustom, ModalNotification } from "components/base/Modal";
@@ -8,48 +8,16 @@ import { ButtonBase } from "components/base/Button";
 import { InputUpDown } from "components/base/Input";
 import { SliderDouble, SliderMain } from "components/base/Slider";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAction, favoriteAction } from "store/actions";
+import { cartAction, favoriteAction, shoesAction } from "store/actions";
 import { convertCurrency } from "functions/Utils";
-
-const dataFake = [
-    {
-        id: 1,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 2,
-        image: "https://drake.vn/image/cache/catalog/Converse/GIA%CC%80Y%202/172681C/172681C_P21-650x650.jpg",
-    },
-    {
-        id: 3,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 4,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 5,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 6,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 7,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-    {
-        id: 8,
-        image: "https://cdn.shopify.com/s/files/1/0456/5070/6581/products/172676C-1_1024x1024@2x.jpg?v=1650368665",
-    },
-];
+import { Link } from "react-router-dom";
 
 const ProductBlock = ({ item }) => {
     const [formBlock] = Form.useForm();
 
     const dispatch = useDispatch();
+
+    const [state, setState] = React.useState(null);
 
     const [visible, setVisible] = React.useState({
         isShow: false,
@@ -58,20 +26,30 @@ const ProductBlock = ({ item }) => {
 
     const [modalSuccess, setModalSuccess] = React.useState({
         isShow: false,
-        item,
+        item: null,
     });
 
     const store = useSelector((state) => state);
     const { cartItems } = store.cartReducer;
     const { favorites } = store.favoriteReducer;
+    const { detailShoes } = store.shoesReducer;
+
+    React.useEffect(() => {
+        if (detailShoes) {
+            let detail = detailShoes.detail;
+            if (detailShoes.success) {
+                setState(detail);
+            }
+        }
+    }, [detailShoes]);
 
     const addToCart = (item) => {
         let newData = {};
         const index = cartItems.cart.indexOf(
             cartItems.cart.filter(
                 (e) =>
-                    e.shoes_id === item.shoes_id &&
-                    e.size === item.shoes_quantity[0].size
+                    e.shoes_id === item?.shoes_id &&
+                    e.size === item?.shoes_quantity[0].size
             )[0]
         );
         if (index != -1) {
@@ -79,23 +57,38 @@ const ProductBlock = ({ item }) => {
         } else {
             newData = item;
         }
-        console.log(newData)
         setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
         dispatch(cartAction.addToCart({ product: item }));
     };
 
-    const onSubmitFormLayout = (e) => {
-        console.log(e);
+    const showQuickModal = (e) => {
+        dispatch(shoesAction.getDetailShoes({ shoes_id: e }));
+        setVisible((e) => ({ ...e, isShow: true }));
     };
 
-    const onChange = (value) => {
-        console.log(value);
+    const onSubmitFormLayout = (e) => {
+        let newData = {};
+        const index = cartItems.cart.indexOf(
+            cartItems.cart.filter(
+                (e) =>
+                    e.shoes_id === item?.shoes_id &&
+                    e.size === e.size
+            )[0]
+        );
+        if (index != -1) {
+            newData = cartItems.cart[index];
+        } else {
+            newData = item;
+        }
+        setVisible((e) => ({ ...e, isShow: false }))
+        setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
+        dispatch(cartAction.addToCart({ product: item , size: e.size, quantity: e.updown }));
     };
 
     return (
         <div className="product-block">
             <div className="product-img">
-                {item.discount_percent > 0 ? (
+                {item?.discount_percent > 0 ? (
                     <div className="product-sale">
                         <span>-{item.discount_percent}%</span>
                     </div>
@@ -103,7 +96,10 @@ const ProductBlock = ({ item }) => {
                     ""
                 )}
                 <a href="/#" className="image-resize">
-                    <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="product image" />
+                    <img
+                        src={`data:image/jpeg;base64, ${item?.image_bytes}`}
+                        alt="product image"
+                    />
                 </a>
                 <div className="product-wishlist">
                     <Tooltip title="Yêu thích" placement="left" arrow>
@@ -114,8 +110,8 @@ const ProductBlock = ({ item }) => {
                             }
                         >
                             {favorites
-                                .map((item) => item.shoes_id)
-                                .includes(item.shoes_id) ? (
+                                .map((item) => item?.shoes_id)
+                                .includes(item?.shoes_id) ? (
                                 <img
                                     src={`${IMAGE_URL + "heart-fill.svg"}`}
                                     alt="heart-fill"
@@ -138,9 +134,7 @@ const ProductBlock = ({ item }) => {
                     <div className="quick-view btn-two ">
                         <button
                             className=""
-                            onClick={() =>
-                                setVisible((e) => ({ ...e, isShow: true }))
-                            }
+                            onClick={() => showQuickModal(item.shoes_id)}
                         >
                             Xem nhanh
                         </button>
@@ -149,7 +143,7 @@ const ProductBlock = ({ item }) => {
             </div>
             <div className="product-detail">
                 <h3 className="product-name">
-                    <a>{item.shoes_name}</a>
+                    <a>{item?.shoes_name}</a>
                 </h3>
                 <div className="reviews-star">
                     <i className="star-off-png" title="Not rated yet!"></i>
@@ -164,27 +158,28 @@ const ProductBlock = ({ item }) => {
                 </div>
                 <div className="group-sku">
                     <span className="first-sku">
-                        SKU: <span className="name-sku">{item.shoes_code}</span>
+                        SKU:{" "}
+                        <span className="name-sku">{item?.shoes_code}</span>
                     </span>
                 </div>
                 <div className="price">
-                    {item.discount_percent > 0 ? (
+                    {item?.discount_percent > 0 ? (
                         <>
                             <div className="special-price mr-2">
                                 <span className="price-new">
-                                    {convertCurrency(item.sale_price, "đ")}
+                                    {convertCurrency(item?.sale_price, "đ")}
                                 </span>
                             </div>
                             <div className="special-price">
                                 <span className="price-old">
-                                    {convertCurrency(item.retail_price, "đ")}
+                                    {convertCurrency(item?.retail_price, "đ")}
                                 </span>
                             </div>
                         </>
                     ) : (
                         <div className="special-price mr-2">
                             <span className="price-new">
-                                {convertCurrency(item.sale_price, "đ")}
+                                {convertCurrency(item?.sale_price, "đ")}
                             </span>
                         </div>
                     )}
@@ -200,30 +195,45 @@ const ProductBlock = ({ item }) => {
             >
                 <div className="row">
                     <div className="col-md-6 col-sm-6">
-                        <SliderDouble datas={dataFake} />
+                        <SliderDouble datas={state?.image_bytes} />
                     </div>
                     <div className="col-md-6 col-sm-6">
                         <div className="product-title">
-                            <h2>
-                                Converse Chuck Taylor All Star 1970s Recycled
-                                Rpet Canvas
-                            </h2>
+                            <h2>{state?.shoes_name}</h2>
                             <span className="pro-sku">
                                 <strong>SKU: </strong>
-                                SP020139
+                                {state?.shoes_code}
                             </span>
                         </div>
                         <div className="product-price">
-                            <span className="pro-price">199,000₫</span>
-                            <del>320,000₫</del>
+                            {state?.discount_percent > 0 ? (
+                                <>
+                                    <span className="pro-price">
+                                        {convertCurrency(
+                                            state?.sale_price,
+                                            "đ"
+                                        )}
+                                    </span>
+                                    <span className="price-compare">
+                                        <del>
+                                            {convertCurrency(
+                                                state?.retail_price,
+                                                "đ"
+                                            )}
+                                        </del>
+                                    </span>
+                                </>
+                            ) : (
+                                <span className="pro-price">
+                                    {convertCurrency(state?.retail_price, "đ")}
+                                </span>
+                            )}
                         </div>
                         <div className="product-description">
                             <div className="rte">
-                                Converse Chuck 70 Recycled RPET Canvas được “tái
-                                sinh” với chất liệu tái chế bảo vệ môi trường
-                                tối đa.
+                                {state?.shoes_description}
                             </div>
-                            <a href="/#">Xem chi tiết »</a>
+                            <Link to={PAGES_URL.product.url + "/" + state?.shoes_id}>Xem chi tiết »</Link>
                         </div>
                         <Form form={formBlock} onFinish={onSubmitFormLayout}>
                             <SelectSwatch
@@ -231,14 +241,12 @@ const ProductBlock = ({ item }) => {
                                 form={formBlock}
                                 nameHeader="Kích thước"
                                 nameForm="size"
-                                options={item.size}
+                                options={state?.shoes_quantity}
                             />
                             <div className="header-content">Số lượng:</div>
                             <div className="quantity-area">
                                 <Form.Item name="updown" noStyle>
-                                    <InputUpDown
-                                        onChange={onChange}
-                                    ></InputUpDown>
+                                    <InputUpDown/>
                                 </Form.Item>
                             </div>
                         </Form>

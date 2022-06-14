@@ -47,10 +47,6 @@ const App = () => {
                     <Route exact path={getPathList(PERSONAL)} >
                         <Route render={props => <PersonalRoute {...props} />} />
                     </Route>
-                    {/* <Route exact path={getPathList(ADMIN)} >
-                        <Route render={props => <PrivateAdminRoute {...props} />} />
-                    </Route> */}
-                    {/* <Route render={props => <PrivateRoute {...props} />} /> */}
                     <Route component={ErrorMain} />
                 </Switch>
             </Router>

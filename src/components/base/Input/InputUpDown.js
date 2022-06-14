@@ -11,7 +11,7 @@ const InputUpDown = ({
   onClickUp,
   className,
 }) => {
-  const [state, setState] = useState();
+  const [state, setState] = useState(1);
   const [disabled, setDisabled] = useState(false);
 
   const handleChange = (e) => {

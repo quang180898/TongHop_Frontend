@@ -13,6 +13,7 @@ const ProductDetail = () => {
 
     React.useEffect(() => {
         dispatch(shoesAction.getDetailShoes({ shoes_id: ShoesId }));
+        dispatch(shoesAction.getSameShoes({ shoes_id: ShoesId , limit: 6, page: 1}))
     }, []);
 
     return (

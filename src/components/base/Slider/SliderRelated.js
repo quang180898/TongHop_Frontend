@@ -38,7 +38,7 @@ const SliderRelated = ({ className, children = [] }) => {
       prevArrow={<PrevArrow />}
       {...settings}
     >
-      {children.map((item, index) => (
+      {children?.length > 0 && children.map((item, index) => (
         <ProductBlock item={item} key={index}/>
       ))}
     </Slider>

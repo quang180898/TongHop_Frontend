@@ -48,8 +48,7 @@ export const getLocalStore = (text, remove = false) => {
 const tokenAdmin = () => {
     if (getLocalStore("user")) {
         let token = getLocalStore("user").permission_code;
-        if (token === 1) {
-            console.log(token);
+        if (token === "1") {
             return token;
         } else {
             return null;
@@ -61,9 +60,11 @@ export const TOKENADMIN = tokenAdmin();
 
 const token = () => {
     if (getLocalStore("user")) {
-        let token = getLocalStore("user");
-        if (token) {
+        let token = getLocalStore("user").permission_code;
+        if (token === "2") {
             return token;
+        } else {
+            return null;
         }
     }
     return null;
@@ -1079,9 +1080,11 @@ export const addToCart = (data, items) => {
     const quantity = items.quantity ? items.quantity : 1;
 
     if (cartItems.filter((p) => p.shoes_id === product.shoes_id).length === 0) {
+        console.log("chua co cart:", product)
         cartItems.push({
             ...product,
             shoes_id: product.shoes_id,
+            image_bytes: typeof product?.image_bytes == "string" ?  product.image_bytes : product.image_bytes[0].image_bytes ,
             quantity: 0,
             size: selectedValue,
         });
@@ -1091,9 +1094,11 @@ export const addToCart = (data, items) => {
             .filter((p) => p.shoes_id === product.shoes_id && p.size === selectedValue)
             .map((p) => p.size)[0] !== selectedValue
     ) {
+        console.log("co cart:", product)
         cartItems.push({
-            ...params,
+            ...product,
             shoes_id: product.shoes_id,
+            image_bytes: typeof product?.image_bytes == "string" ?  product.image_bytes : product.image_bytes[0].image_bytes,
             quantity: 0,
             size: selectedValue,
         });
@@ -1125,7 +1130,6 @@ export const addToCart = (data, items) => {
     cartTotal += product.sale_price * quantity;
 
     newData.total = cartTotal;
-    console.log(newData)
     localStorage.setItem("carts", JSON.stringify(newData));
     return newData;
 };

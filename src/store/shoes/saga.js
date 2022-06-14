@@ -41,6 +41,19 @@ export function* getShoesSame(payload) {
     }
 }
 
+// get home shoes
+export function* getShoesHome(payload) {
+    try {
+        const response = yield shoesService.getShoesHome({ params: payload.params })
+        response.success
+            ? yield put({ type: shoesAction.GET_HOME_SHOES_SUCCESS, response })
+            : yield put({ type: shoesAction.GET_HOME_SHOES_FAILURE, response });
+
+    } catch (err) {
+        yield put({ type: shoesAction.GET_HOME_SHOES_FAILURE, response: { detail: err } });
+    }
+}
+
 // post update shoes
 export function* postShoesUpdate(payload) {
     try {
@@ -74,6 +87,7 @@ export default function* rootSaga() {
         takeLatest(shoesAction.POST_UPDATE_SHOES_REQUEST, postShoesUpdate),
         takeLatest(shoesAction.POST_DELETE_SHOES_REQUEST, postShoesDelete),
         takeLatest(shoesAction.GET_SAME_SHOES_REQUEST, getShoesSame),
+        takeLatest(shoesAction.GET_HOME_SHOES_REQUEST, getShoesHome),
     ]);
 
 }

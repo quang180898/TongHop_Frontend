@@ -12,6 +12,10 @@ const actions = {
     GET_SAME_SHOES_FAILURE: name + 'GET_SAME_SHOES_FAILURE',
     GET_SAME_SHOES_SUCCESS: name + 'GET_SAME_SHOES_SUCCESS',
 
+    GET_HOME_SHOES_REQUEST: name + 'GET_HOME_SHOES_REQUEST',
+    GET_HOME_SHOES_FAILURE: name + 'GET_HOME_SHOES_FAILURE',
+    GET_HOME_SHOES_SUCCESS: name + 'GET_HOME_SHOES_SUCCESS',
+
     POST_DELETE_SHOES_REQUEST: name + 'POST_DELETE_SHOES_REQUEST',
     POST_DELETE_SHOES_FAILURE: name + 'POST_DELETE_SHOES_FAILURE',
     POST_DELETE_SHOES_SUCCESS: name + 'POST_DELETE_SHOES_SUCCESS',
@@ -37,6 +41,12 @@ const actions = {
     /*SAME SHOES*/
     getSameShoes: (params) => ({
         type: actions.GET_SAME_SHOES_REQUEST,
+        params
+    }),
+
+    /*HOME SHOES*/
+    getHomeShoes: (params) => ({
+        type: actions.GET_HOME_SHOES_REQUEST,
         params
     }),
 

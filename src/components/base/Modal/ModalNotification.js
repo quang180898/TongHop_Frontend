@@ -43,16 +43,13 @@ const ModalNotification = (props) => {
                     <div className="media-left">
                         <span className="quantity">{visible.item.quantity ? visible.item.quantity + 1 : 1}</span>
                         <div className="thumb-cart">
-                            <img
-                                width="70px"
-                                src={visible.item.image}
-                            />
+                            <img width="70px" src={`data:image/jpeg;base64, ${visible?.item?.image_bytes}`} alt="image"/>
                         </div>
                     </div>
                     <div className="media-body">
-                        <div className="media-title">{visible.item.name}</div>
+                        <div className="media-title">{visible?.item?.shoes_name}</div>
                         <div className="media-price">
-                            <span>{visible.item.price}</span>
+                            <span>{visible?.item?.sale_price}</span>
                         </div>
                     </div>
                 </div>

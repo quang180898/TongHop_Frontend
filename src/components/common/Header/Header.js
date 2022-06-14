@@ -13,8 +13,7 @@ const Header = (props) => {
     let listLocation = history.location.pathname.split("/");
 
     const ref = React.useRef(null);
-    const userLocal = getLocalStore("user");
-    const [user, setUser] = React.useState(userLocal);
+    const user = getLocalStore("user");
 
     const [state, setState] = React.useState({
         cartCount: 0,
@@ -114,10 +113,6 @@ const Header = (props) => {
         window.location.reload();
     };
 
-    const onMoveCart = () => {
-        history.push(PAGES_URL.cart.url);
-    };
-
     const onCloseModal = () => {
         setVisible(false);
     };
@@ -129,7 +124,8 @@ const Header = (props) => {
                     <div className="navigation__left">
                         <Link to={PAGES_URL.home.url} className="header-logo">
                             <img
-                                src={`${IMAGE_URL + "logo-sneaker.jpg"}`} alt="logo"
+                                src={`${IMAGE_URL + "logo-sneaker.jpg"}`}
+                                alt="logo"
                             ></img>
                         </Link>
                     </div>
@@ -158,16 +154,23 @@ const Header = (props) => {
                                 readOnly
                             />
                         </div>
-                        <div className="header-account">
+                        <Link
+                            className="header-account header-tooltip"
+                            to={user ? PAGES_URL.profile.url : PAGES_URL.mainLogin.url}
+                            data-original-title={`${user ? "Hi, " + user.name : "Đăng nhập" }`}
+                            data-tooltip="tooltip"
+                        >
                             <img
                                 className="icon-account"
                                 src={`${IMAGE_URL + "my_account.svg"}`}
                                 alt="image"
                             ></img>
-                        </div>
-                        <div
-                            className="header-heart"
-                            onClick={() => history.push(PAGES_URL.favorite.url)}
+                        </Link>
+                        <Link
+                            className="header-heart header-tooltip"
+                            data-original-title="Danh sách yêu thích"
+                            data-tooltip="tooltip"
+                            to={PAGES_URL.favorite.url}
                         >
                             <img
                                 className="icon-like"
@@ -177,10 +180,12 @@ const Header = (props) => {
                             <span className="number-like">
                                 {favorites.length}
                             </span>
-                        </div>
-                        <div
-                            className="header-cart"
+                        </Link>
+                        <a
                             onClick={() => setVisible(true)}
+                            className="header-cart header-tooltip"
+                            data-original-title="Giỏ hàng"
+                            data-tooltip="tooltip"
                         >
                             <img
                                 className="icon-cart"
@@ -190,7 +195,7 @@ const Header = (props) => {
                             <span className="number-like">
                                 {state.cartCount}
                             </span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <FormSearch

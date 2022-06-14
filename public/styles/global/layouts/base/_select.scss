@@ -51,7 +51,6 @@
         .ant-select-arrow {
             color: #8b8b8b;
         }
-
     }
 
     .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
@@ -102,6 +101,24 @@
         margin-right: 8px;
         position: relative;
         vertical-align: bottom;
+        &.sold-out {
+            opacity: 0.5;
+            label {
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                    width: 50%;
+                    height: 50%;
+                    background: url(../images/sold-out.png) no-repeat;
+                    background-size: contain;
+                }
+            }
+        }
         &:not(.color) {
             label {
                 padding: 0 5px;

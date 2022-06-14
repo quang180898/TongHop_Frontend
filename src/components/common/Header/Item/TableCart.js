@@ -37,18 +37,23 @@ const TableCart = ({onCloseModal}) => {
     history.push(PAGES_URL.cart.url)
   }
 
+  const onRedirectCheckout = () => {
+    onCloseModal()
+    history.push(PAGES_URL.checkout.url)
+  }
+
   const Tbody = React.useCallback(
     (item, index) => {
       return (
         <tr className="list-item" key={index}>
           <td className="img">
             <a href="/#">
-              <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="image"/>
+              <img src={`data:image/jpeg;base64, ${item?.image_bytes}`} alt="image"/>
             </a>
           </td>
           <td className="item">
             <a className="pro-title-view" href="/#">
-              {item.name}
+              {item.shoes_name}
             </a>
             <span className="variant">{item.size}</span>
             <InputUpDown
@@ -100,7 +105,7 @@ const TableCart = ({onCloseModal}) => {
         </div>
         <div className="button-total">
           <ButtonBase className="btn-black-outline mr-3" label="Xem giỏ hàng" onClick={onRedirectCart}/>
-          <ButtonBase className="btn-black-outline-1" label="Thanh toán"/>
+          <ButtonBase className="btn-black-outline-1" label="Thanh toán" onClick={onRedirectCheckout}/>
         </div>
       </div>
     </div>

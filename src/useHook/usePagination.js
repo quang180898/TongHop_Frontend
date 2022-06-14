@@ -1,7 +1,7 @@
 import { PaginationBase } from 'components/base/Pagination';
 import React from 'react';
 
-const usePagination = ({ page, totalRecord, totalPage, limit, className, showTotal }) => {
+const usePagination = ({ page, totalRecord, totalPage, limit, className }) => {
     const [state, setState] = React.useState({
         Pagination: null,
         page: 0
@@ -26,7 +26,6 @@ const usePagination = ({ page, totalRecord, totalPage, limit, className, showTot
         if (totalPage > 0 && totalRecord > 0) {
             let html = (
                 <PaginationBase
-                    showTotal={showTotal}
                     totalRecord={totalRecord}
                     page={state.page}
                     limit={limit}

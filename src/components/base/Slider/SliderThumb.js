@@ -11,7 +11,7 @@ const SliderThumb = ({ className, sliderRef, children = [] }) => {
     infinite: true,
     speed: 500,
     vertical: true,
-    slidesToShow: 5,
+    slidesToShow: children ? parseInt(children.length) : 1,
     slidesToScroll: 1,
   };
 

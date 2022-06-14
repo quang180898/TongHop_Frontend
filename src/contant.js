@@ -65,6 +65,10 @@ export const PAGES_URL = {
         url: '/register',
         title: 'Register'
     },
+    profile: {
+        url: '/profile',
+        title: 'Profile'
+    },
     mainReset: {
         url: '/reset',
         title: 'ResetMain'

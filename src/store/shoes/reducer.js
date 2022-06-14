@@ -83,6 +83,32 @@ export default (state = initialState, action) => {
                 error: action.err
             };
 
+        // home shoes
+        case shoesAction.GET_HOME_SHOES_REQUEST:
+            return {
+                ...state,
+                homeShoes: null,
+                isLoadingHomeShoesResponse: true,
+                success: false,
+                error: false
+            };
+        case shoesAction.GET_HOME_SHOES_SUCCESS:
+            return {
+                ...state,
+                homeShoes: action.response,
+                isLoadingHomeShoesResponse: false,
+                success: true,
+                error: false
+            };
+        case shoesAction.GET_HOME_SHOES_FAILURE:
+            return {
+                ...state,
+                homeShoes: action.response,
+                isLoadingHomeShoesResponse: false,
+                success: false,
+                error: action.err
+            };
+
         // delete shoes
         case shoesAction.POST_DELETE_SHOES_REQUEST:
             return {
@@ -143,6 +169,7 @@ export default (state = initialState, action) => {
                 sameShoes: null,
                 deleteShoes: null,
                 updateShoes: null,
+                homeShoes: null,
             };
 
         default:

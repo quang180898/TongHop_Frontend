@@ -2,11 +2,13 @@ import { DropdownCollection } from "components/base/Dropdown";
 import { ProductBlock } from "components/common/Product";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { shoesAction } from "store/actions";
 import { usePagination } from "useHook";
 
 const CollectionList = () => {
+
+    const {BrandId} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     let listLocation = history.location.pathname.split("/");
@@ -31,7 +33,7 @@ const CollectionList = () => {
     });
 
     const callApi = () => {
-        dispatch(shoesAction.getListShoes({ page: state.page }));
+        dispatch(shoesAction.getListShoes({ page: state.page, limit: 6, brand_id: BrandId }));
     };
 
     React.useEffect(() => {
@@ -45,7 +47,10 @@ const CollectionList = () => {
         if (listShoes) {
             let detail = [].concat(listShoes.detail);
             if (listShoes.success) {
-                setState((e) => ({ ...e, dataShoes: detail }));
+                let totalPage = listShoes.total_page
+                let totalRecord = listShoes.total_record
+                let page = listShoes.page
+                setState((e) => ({ ...e, totalPage, totalRecord, page, dataShoes: detail }));
             }
         }
     }, [listShoes]);

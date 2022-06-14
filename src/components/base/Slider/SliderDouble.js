@@ -37,8 +37,8 @@ const SliderDouble = ({ className, datas = [] }) => {
         arrows={false}
         ref={(slider) => (slider1 = slider)}
       >
-        {datas.map((item, index) => (
-          <img src={item.image} key={index} />
+        {datas?.length > 0 && datas.map((item, index) => (
+          <img src={`data:image/jpeg;base64, ${item?.image_bytes}`} key={index} alt="image"/>
         ))}
       </Slider>
       <Slider
@@ -50,8 +50,8 @@ const SliderDouble = ({ className, datas = [] }) => {
         focusOnSelect={true}
         arrows={true}
       >
-        {datas.map((item, index) => (
-          <img src={item.image} key={index} />
+        {datas?.length > 0 && datas.map((item, index) => (
+          <img src={`data:image/jpeg;base64, ${item?.image_bytes}`} key={index} alt="image"/>
         ))}
       </Slider>
     </div>

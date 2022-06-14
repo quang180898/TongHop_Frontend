@@ -25,7 +25,7 @@ const MainRegister = lazy(() =>
 );
 const MainReset = lazy(() => import("./templates/Main/MainReset/MainReset"));
 const Page404 = lazy(() => import("./templates/Main/ErrorMain/ErrorMain"));
-// const Profile = lazy(() => import('./templates/Profile/Profile'));
+const Profile = lazy(() => import('./templates/Main/Profile/Profile'));
 // const Product = lazy(() => import('./templates/Product/Product'));
 // const Admin = lazy(() => import('./templates/Admin/Admin'));
 // const User = lazy(() => import('./templates/User/ManageUser/ManageUser'));
@@ -112,10 +112,12 @@ const MAIN = [
         label: "Phục hồi mật khẩu",
     },
 
-    // {
-    //     "path": PAGES_URL.profile.url + "/:accountId",
-    //     "component": Profile
-    // },
+    {
+        path: PAGES_URL.profile.url,
+        component: Profile,
+        label: "Thông tin tài khoản",
+    },
+    
     // {
     //     "path": PAGES_URL.product.url + "/:bookId",
     //     "component": Product

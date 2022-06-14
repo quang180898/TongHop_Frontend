@@ -29,6 +29,15 @@ export const shoesService = {
         return handleRequest(url, requestOptions);
     },
 
+    getShoesHome() {
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(),
+        };
+        const url = getUrl(api.SHOES_HOME);
+        return handleRequest(url, requestOptions);
+    },
+
     postShoesUpdate({params}) {
         const requestOptions = {
             method: "POST",
@@ -47,6 +56,6 @@ export const shoesService = {
         };
         const url = getUrl(api.SHOES_DELETE);
         return handleRequest(url, requestOptions);
-    }
+    },
     
 };
