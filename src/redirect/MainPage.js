@@ -8,18 +8,15 @@ import { Animated } from "react-animated-css";
 import { useDispatch } from "react-redux";
 import { Header } from "components/common/Header";
 import { Footer } from "components/common/Footer";
-import ErrorMain from "templates/Main/ErrorMain/ErrorMain";
 import { TOKEN } from "functions/Utils";
 import { PAGES_URL } from "contant";
-// import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const MainPage = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
     const [showButton, setShowButton] = React.useState(false);
-    const urlCurrent = location.pathname.split('/')[1]
-    console.log(urlCurrent)
+    const urlCurrent = location.pathname.split("/")[1];
     // const queryParams = new URLSearchParams(location.search);
     // const messageParams = queryParams.get("message");
 
@@ -61,13 +58,20 @@ const MainPage = () => {
 
     return (
         <div className="main-body">
-            <div className={`mainPage ${urlCurrent == "profile" ? 'is-profile' : ''}`}>
+            <div
+                className={`mainPage ${
+                    urlCurrent == "profile" ? "is-profile" : ""
+                }`}
+            >
                 <Header />
                 <Suspense fallback={""}>
-                    {TOKEN == null && (
-                        <Redirect from={PAGES_URL.profile.url} to={PAGES_URL.login.url} />
-                    )}
                     <Switch>
+                        {TOKEN === null && (
+                            <Redirect
+                                from={PAGES_URL.profile.url}
+                                to={PAGES_URL.mainLogin.url}
+                            />
+                        )}
                         {MAIN.map((data, idx) => (
                             <Route exact key={idx} path={data.path}>
                                 <Animated

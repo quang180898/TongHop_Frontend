@@ -10,9 +10,9 @@ const DropdownCollection = () => {
 
     return (
         <select className="dropdown-collection" value={value} onChange={handleChange}>
-          <option value="fruit">Fruit</option>
-          <option value="vegetable">Vegetable</option>
-          <option value="meat">Meat</option>
+          <option value="1">Mới nhất</option>
+          <option value="2">từ A-Z</option>
+          <option value="3">từ Z-A</option>
         </select>
     )
 }

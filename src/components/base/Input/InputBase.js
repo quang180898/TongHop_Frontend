@@ -1,14 +1,32 @@
-import React from 'react';
-import { Input } from 'antd';
-import { getValueAndSetDefault } from 'functions/Utils';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Input } from "antd";
+import { getValueAndSetDefault } from "functions/Utils";
+import PropTypes from "prop-types";
 
 const InputBase = (props) => {
-
-    const { className, value, defaultValue, onChange, icon, disabled, readOnly,
-        placeholder, hasCheckValid, validValue, name, onPressEnter, onBlur, type, classNameWrap, maxLength } = props
+    const {
+        className,
+        value,
+        defaultValue,
+        onChange,
+        icon,
+        disabled,
+        readOnly,
+        placeholder,
+        hasCheckValid,
+        validValue,
+        name,
+        onPressEnter,
+        onBlur,
+        type,
+        classNameWrap,
+        maxLength,
+    } = props;
     return (
-        <div className={`input-base ${getValueAndSetDefault(classNameWrap, '')}${hasCheckValid ? ' check-valid' : ''}${validValue ? ' active' : ''}  `}
+        <div
+            className={`input-base ${getValueAndSetDefault(classNameWrap, "")}${
+                hasCheckValid ? " check-valid" : ""
+            }${validValue ? " active" : ""}  `}
         >
             <Input
                 name={name}
@@ -27,8 +45,8 @@ const InputBase = (props) => {
                 type={type}
             />
         </div>
-    )
-}
+    );
+};
 
 InputBase.propTypes = {
     className: PropTypes.string,
@@ -40,7 +58,7 @@ InputBase.propTypes = {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     onPressEnter: PropTypes.func,
-    onBlur: PropTypes.func
-}
+    onBlur: PropTypes.func,
+};
 
 export default InputBase;

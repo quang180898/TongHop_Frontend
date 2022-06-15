@@ -1,12 +1,9 @@
-import { getLocalStore } from "functions/Utils";
-
 export const IMAGE_URL = "../../images/";
 
 export const CONTENT_TYPE = 'application/json; charset=utf-8';
 export const CONTENT_MULITPART = 'multipart/form-data';
 export const MNV_ENCODE = 0;
 export const MAX_SIZE_IMAGE = 2500000; //limit size image
-export const MNV_LANGUAGE = getLocalStore('language');
 export const ERROR_SERVER = 'Đã xảy ra lỗi'; //check status error fail
 export const CARD_EQUAL = "d-flex flex-column"; //for 2 card equal
 
@@ -57,9 +54,9 @@ export const SETTING_USER = [
 export const USER_AVATAR_URL = 'user/avatar'
 
 export const PAGES_URL = {
-    login: {
-        url: '/login',
-        title: 'Login'
+    adminLogin: {
+        url: '/admin/login',
+        title: 'Login admin'
     },
     register: {
         url: '/register',
@@ -101,18 +98,6 @@ export const PAGES_URL = {
         url: '/user',
         title: 'user'
     },
-    author: {
-        url: '/author',
-        title: 'author'
-    },
-    book: {
-        url: '/book',
-        title: 'book'
-    },
-    publishing: {
-        url: '/publishing',
-        title: 'publishing-company'
-    },
     cart: {
         url: '/cart',
         title: 'shopping-cart'
@@ -129,10 +114,6 @@ export const PAGES_URL = {
         url: '/register',
         title: 'main-register'
     },
-    accountBook: {
-        url: '/account-book',
-        title: 'account-book'
-    },
     payment: {
         url: '/payment',
         title: 'payment'
@@ -141,4 +122,8 @@ export const PAGES_URL = {
         url: '/notify',
         title: 'notify'
     },
+    brand: {
+        url: '/admin/brand',
+        title: 'brand'
+    }
 }

@@ -15,7 +15,7 @@ const SliderMain = ({ className, data = []}) => {
       {data.length > 0 && data.map((item, index) => {
           return (
             <div key={index}>
-              <img src={item.image} />
+              <img className="banner-home" src={item.image}/>
             </div>
           );
         })}

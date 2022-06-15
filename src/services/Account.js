@@ -1,8 +1,12 @@
-import api from 'api';
-import { getHeader, getUrl, handleRequest, postWithFormData } from "functions/Services";
+import api from "api";
+import {
+    getHeader,
+    getUrl,
+    handleRequest,
+    postWithFormData,
+} from "functions/Services";
 
 export const accountService = {
-
     getListAccount() {
         const requestOptions = {
             method: "GET",
@@ -14,26 +18,21 @@ export const accountService = {
 
     postLogin({ params }) {
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: getHeader(),
-            body: params
+            body: params,
         };
 
-        const url = getUrl(api.ACCOUNT_LOGIN)
-        return handleRequest(url, requestOptions) 
+        const url = getUrl(api.ACCOUNT_LOGIN);
+        return handleRequest(url, requestOptions);
     },
 
-    postRegister({params}) {
-        const requestOptions = {
-            method: 'POST',
-            headers: getHeader(),
-            body: params
-        };
-        const url = getUrl(api.ACCOUNT_REGISTER)
-        return handleRequest(url, requestOptions) 
+    postRegister({ params }) {
+        const body = params;
+        return postWithFormData(body, api.ACCOUNT_REGISTER);
     },
 
-    getDetailAccount({params}) {
+    getDetailAccount({ params }) {
         const requestOptions = {
             method: "GET",
             headers: getHeader(),
@@ -44,12 +43,12 @@ export const accountService = {
 
     postUpdateAccount({ params }) {
         const body = params;
-        return postWithFormData(body, api.ACCOUNT_UPDATE)
+        return postWithFormData(body, api.ACCOUNT_UPDATE);
     },
 
     postChangeAccount({ params }) {
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: getHeader(),
             body: params,
         };
@@ -57,7 +56,7 @@ export const accountService = {
         return handleRequest(url, requestOptions);
     },
 
-    postDeleteAccount({params}) {
+    postDeleteAccount({ params }) {
         const requestOptions = {
             method: "POST",
             headers: getHeader(),
@@ -67,7 +66,7 @@ export const accountService = {
         return handleRequest(url, requestOptions);
     },
 
-    postActiveAccount({params}) {
+    postActiveAccount({ params }) {
         const requestOptions = {
             method: "POST",
             headers: getHeader(),
@@ -76,6 +75,4 @@ export const accountService = {
         const url = getUrl(api.ACCOUNT_ACTIVE);
         return handleRequest(url, requestOptions);
     },
-    
-}
-
+};

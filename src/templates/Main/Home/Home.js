@@ -3,13 +3,11 @@ import { SliderMain } from "components/base/Slider";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { shoesAction } from "store/actions";
+import { IMAGE_URL } from "contant";
 
 const dataFake = [
     {
-        image: "https://file.hstatic.net/1000040357/file/happy_birthday1920x890-_65264940032c4aa493940e25e2e3cb74.jpg",
-    },
-    {
-        image: "https://file.hstatic.net/1000040357/file/happy_birthday1920x890-_65264940032c4aa493940e25e2e3cb74.jpg",
+        image: IMAGE_URL + "banner-home.jpg",
     },
     {
         image: "https://file.hstatic.net/1000040357/file/happy_birthday1920x890-_65264940032c4aa493940e25e2e3cb74.jpg",

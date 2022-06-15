@@ -46,8 +46,8 @@ export const getLocalStore = (text, remove = false) => {
 
 // token
 const tokenAdmin = () => {
-    if (getLocalStore("user")) {
-        let token = getLocalStore("user").permission_code;
+    if (getLocalStore("admin")) {
+        let token = getLocalStore("admin").permission_code;
         if (token === "1") {
             return token;
         } else {
@@ -1209,3 +1209,4 @@ export const removeFormCart = (data, items) => {
     localStorage.setItem("carts", JSON.stringify(newData));
     return newData;
 };
+

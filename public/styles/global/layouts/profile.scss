@@ -40,5 +40,58 @@
                 padding-left: 10px;
             }
         }
+        .profile-content {
+            margin-top: 40px;
+            ul {
+                padding: 0;
+                list-style-type: none;
+                .profile-item {
+                    margin-bottom: 15px;
+                    .profile-name {
+                        display: flex;
+                        align-items: center;
+                        padding: 3px 0;
+                        text-decoration: none;
+                        color: #000000;
+                        i {
+                            font-size: 20px;
+                        }
+                        span {
+                            margin-left: 10px;
+                        }
+                    }
+                    &.active {
+                        .profile-name {
+                            color: #ff6310 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .profile-right {
+        height: 100%;
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        .profile-title {
+            font-size: 21px;
+        }
+        table {
+            width: 100%;
+            tr {
+                td {
+                    padding: 10px;
+                    text-align: left;
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+        .profile-change {
+            margin-top: 30px;
+            width: 250px;
+        }
     }
 }

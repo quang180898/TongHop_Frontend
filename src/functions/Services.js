@@ -1,4 +1,4 @@
-import { CONTENT_TYPE, ERROR_SERVER, MNV_ENCODE, MNV_LANGUAGE } from '../contant.js';
+import { CONTENT_TYPE, ERROR_SERVER, MNV_ENCODE } from '../contant.js';
 import { showNotification } from './Utils.js';
 
 var pako = require('pako');

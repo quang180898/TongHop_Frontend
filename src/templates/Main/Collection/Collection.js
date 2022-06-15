@@ -51,7 +51,7 @@ const Collection = () => {
             <div className="collection-template">
                 <div className="container">
                     <div className="collection-banner">
-                        <img src={`${IMAGE_URL + "banner-vans.jpg"}`} />
+                        <img src={`${IMAGE_URL + "banner-collection.jpg"}`} />
                     </div>
                     <div className="row d-flex">
                         <CollectionFilter />

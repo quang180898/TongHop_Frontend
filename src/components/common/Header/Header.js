@@ -80,39 +80,6 @@ const Header = (props) => {
         setDataSearch((e) => ({ ...e, isSearch: false }));
     };
 
-    const onSearch = (value) => {
-        // dispatch(commonAction.filterHeader(value))
-    };
-
-    // const handleClick = (e) => {
-    //   history.push(PAGES_URL.home.url + "category/" + e);
-    // };
-
-    // const onMoveHome = () => {
-    //   history.push(PAGES_URL.home.url);
-    // };
-
-    // const onMoveProfile = () => {
-    //   history.push(PAGES_URL.home.url + "profile/" + user.customer_id);
-    // };
-
-    // const onChangeMenu = (value) => {
-    //     switch (value) {
-    //         case 1:
-    //             return onMoveProfile()
-    //         case 2:
-    //             return logOut()
-    //     }
-    // }
-
-    const logOut = () => {
-        // xóa data storage
-        getLocalStore("user", true);
-        getLocalStore("payment", true);
-        //reload page and auto run /login
-        window.location.reload();
-    };
-
     const onCloseModal = () => {
         setVisible(false);
     };

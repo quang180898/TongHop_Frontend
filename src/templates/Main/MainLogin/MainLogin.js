@@ -32,7 +32,7 @@ const MainLogin = () => {
                     window.location.replace("/");
                 }
             } else {
-                showNotification.error({ title: loginAccount.detail });
+                showNotification.error({ title: detail });
                 setTimeout(() => {
                     dispatch(accountAction.clearData());
                 }, 5000);
