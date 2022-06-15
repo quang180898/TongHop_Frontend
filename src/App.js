@@ -58,12 +58,12 @@ const App = () => {
                     <Route exact path={getPathList(PERSONAL)}>
                         <Route render={(props) => <PersonalRoute {...props} />}/>
                     </Route>
-                    {/* <Route exact path={getPathList(LOGINS)}>
+                    <Route exact path={getPathList(LOGINS)}>
                         <Route render={(props) => <PublicRoute {...props} />} />
                     </Route>
                     <Route exact path={getPathList(ADMIN)}>
                         <Route render={(props) => <PrivateRoute {...props} />} />
-                    </Route> */}
+                    </Route>
                     <Route component={ErrorMain} />
                 </Switch>
             </Router>
