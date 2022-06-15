@@ -1,3 +1,5 @@
+import { getLocalStore } from "functions/Utils";
+
 export const IMAGE_URL = "../../images/";
 
 export const CONTENT_TYPE = 'application/json; charset=utf-8';
@@ -7,6 +9,7 @@ export const MAX_SIZE_IMAGE = 2500000; //limit size image
 export const ERROR_SERVER = 'Đã xảy ra lỗi'; //check status error fail
 export const CARD_EQUAL = "d-flex flex-column"; //for 2 card equal
 
+// export const MNV_LANGUAGE = getLocalStore('language');
 export const FORMAT_DATE_API = "YYYY-MM-DD"
 export const FORMAT_HOUR_API = "DD/MM/YYYY HH:mm:ss"
 
@@ -95,7 +98,7 @@ export const PAGES_URL = {
         title: 'admin'
     },
     user: {
-        url: '/user',
+        url: '/admin/user',
         title: 'user'
     },
     cart: {
@@ -125,5 +128,21 @@ export const PAGES_URL = {
     brand: {
         url: '/admin/brand',
         title: 'brand'
+    },
+    category: {
+        url: '/admin/category',
+        title: 'category'
+    },
+    shoes: {
+        url: '/admin/shoes',
+        title: 'shoes'
+    },
+    order: {
+        url: '/admin/order',
+        title: 'order'
+    },
+    discount: {
+        url: '/admin/discount',
+        title: 'discount'
     }
 }

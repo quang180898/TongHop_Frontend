@@ -4,7 +4,7 @@ const initialState = {};
 
 export default (state = initialState, action) => {
     switch (action.type) {
-
+        
         // get list brand
         case brandAction.GET_LIST_BRAND_REQUEST:
             return {

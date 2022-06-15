@@ -22,6 +22,9 @@ const Home = () => {
 
     React.useEffect(() => {
         dispatch(shoesAction.getHomeShoes());
+        // fetch("http://127.0.0.1:8000/api/backend/v1/brand/")
+        //     .then((response) => console.log(response))
+        //     .then((data) => console.log(data));
     }, []);
 
     React.useEffect(() => {
@@ -43,7 +46,7 @@ const Home = () => {
                     state.map((item, index) => {
                         return (
                             <div className="home-wrapper" key={index}>
-                                <div className="box-content" >
+                                <div className="box-content">
                                     <img
                                         src={`data:image/jpeg;base64, ${item?.shoes_brand_image}`}
                                         alt="image"

@@ -29,6 +29,28 @@ const Page404 = lazy(() => import("./templates/Main/ErrorMain/ErrorMain"));
 const Profile = lazy(() => import('./templates/Main/Profile/Profile'));
 const Admin = lazy(() => import('./templates/Admin/Dashboard/Dashboard'));
 const ManageBrand = lazy(() => import('./templates/Admin/ManageBrand/Manage/ManageBrand'));
+const CreateBrand = lazy(() => import('./templates/Admin/ManageBrand/Create/CreateBrand'));
+const EditBrand = lazy(() => import('./templates/Admin/ManageBrand/Edit/EditBrand'));
+
+const ManageCategory = lazy(() => import('./templates/Admin/ManageCategory/Manage/ManageCategory'));
+const CreateCategory = lazy(() => import('./templates/Admin/ManageCategory/Create/CreateCategory'));
+const EditCategory= lazy(() => import('./templates/Admin/ManageCategory/Edit/EditCategory'));
+
+const ManageUser = lazy(() => import('./templates/Admin/ManageUser/Manage/ManageUser'));
+const CreateUser = lazy(() => import('./templates/Admin/ManageUser/Create/CreateUser'));
+const EditUser= lazy(() => import('./templates/Admin/ManageUser/Edit/EditUser'));
+
+const ManageShoes = lazy(() => import('./templates/Admin/ManageShoes/Manage/ManageShoes'));
+const CreateShoes = lazy(() => import('./templates/Admin/ManageShoes/Create/CreateShoes'));
+const EditShoes= lazy(() => import('./templates/Admin/ManageShoes/Edit/EditShoes'));
+
+const ManageOrder = lazy(() => import('./templates/Admin/ManageOrder/Manage/ManageOrder'));
+const CreateOrder = lazy(() => import('./templates/Admin/ManageOrder/Create/CreateOrder'));
+const EditOrder = lazy(() => import('./templates/Admin/ManageOrder/Edit/EditOrder'));
+
+const ManageDiscount = lazy(() => import('./templates/Admin/ManageDiscount/Manage/ManageDiscount'));
+const CreateDiscount = lazy(() => import('./templates/Admin/ManageDiscount/Create/CreateDiscount'));
+const EditDiscount = lazy(() => import('./templates/Admin/ManageDiscount/Edit/EditDiscount'));
 
 
 const LOGINS = [
@@ -39,10 +61,6 @@ const LOGINS = [
     // {
     //     "path": PAGES_URL.forgotPassword.url,
     //     "component": ForgotPassword
-    // },
-    // {
-    //     "path": PAGES_URL.register.url,
-    //     "component": Register
     // },
 ]
 
@@ -122,78 +140,94 @@ const ADMIN = [
     {
         "path": PAGES_URL.brand.url,
         "component": ManageBrand,
-        "label": "Quản lý thương hiệu"
+        "label": "Quản lý thương hiệu giày"
     },
-    // {
-    //     "path": PAGES_URL.user.url + "/add",
-    //     "component": CreateUser,
-    //     "label": "Thêm người dùng"
-    // },
-    // {
-    //     "path": PAGES_URL.user.url + "/:accountId",
-    //     "component": EditUser,
-    //     "label": "Cập nhật người dùng"
-    // },
-    // {
-    //     "path": PAGES_URL.user.url + "/:accountId",
-    //     "component": EditUser,
-    //     "label": "Cập nhật người dùng"
-    // },
-    // {
-    //     "path": PAGES_URL.author.url ,
-    //     "component": Author,
-    //     "label": "Quản lý tác giả"
-    // },
-    // {
-    //     "path": PAGES_URL.author.url + "/add",
-    //     "component": CreateAuthor,
-    //     "label": "Thêm tác giả"
-    // },
-    // {
-    //     "path": PAGES_URL.category.url,
-    //     "component": Category,
-    //     "label": "Quản lý danh mục"
-    // },
-    // {
-    //     "path": PAGES_URL.category.url + "/add",
-    //     "component": CreateCategory,
-    //     "label": "Thêm danh mục"
-    // },
-    // {
-    //     "path": PAGES_URL.book.url,
-    //     "component": Book,
-    //     "label": "Quản lý sách"
-    // },
-    // {
-    //     "path": PAGES_URL.book.url + "/add",
-    //     "component": CreateEditBook,
-    //     "label": "Thêm sách"
-    // },
-    // {
-    //     "path": PAGES_URL.book.url + "/:bookId",
-    //     "component": CreateEditBook,
-    //     "label": "Sửa sách"
-    // },
-    // {
-    //     "path": PAGES_URL.publishing.url,
-    //     "component": ManagePublishing,
-    //     "label": "Quản lý nhà xuất bản"
-    // },
-    // {
-    //     "path": PAGES_URL.publishing.url + "/add",
-    //     "component": CreatePublishing,
-    //     "label": "Thêm nhà xuất bản"
-    // },
-    // {
-    //     "path": PAGES_URL.accountBook.url,
-    //     "component": ManageBookAccount,
-    //     "label": "Quản lý sách người dùng"
-    // },
-    // {
-    //     "path": PAGES_URL.accountBook.url + "/add",
-    //     "component": CreateBookAccount,
-    //     "label": "Thêm sách người dùng"
-    // },
+    {
+        "path": PAGES_URL.brand.url + "/create",
+        "component": CreateBrand,
+        "label": "Thêm thương hiệu giày"
+    },
+    {
+        "path": PAGES_URL.brand.url + "/edit/:BrandId",
+        "component": EditBrand,
+        "label": "Chỉnh sửa thương hiệu giày"
+    },
+    
+    {
+        "path": PAGES_URL.category.url ,
+        "component": ManageCategory,
+        "label": "Quản lý kiểu giày"
+    },
+    {
+        "path": PAGES_URL.category.url + "/create",
+        "component": CreateCategory,
+        "label": "Thêm kiểu giày"
+    },
+    {
+        "path": PAGES_URL.category.url + "/edit/:CategoryId",
+        "component": EditCategory,
+        "label": "Chỉnh sửa kiểu giày"
+    },
+    {
+        "path": PAGES_URL.user.url ,
+        "component": ManageUser,
+        "label": "Quản lý người dùng"
+    },
+    {
+        "path": PAGES_URL.user.url + "/create",
+        "component": CreateUser,
+        "label": "Thêm người dùng"
+    },
+    {
+        "path": PAGES_URL.user.url + "/edit/:AccountId",
+        "component": EditUser,
+        "label": "Chỉnh sửa người dùng"
+    },
+    {
+        "path": PAGES_URL.shoes.url,
+        "component": ManageShoes,
+        "label": "Quản lý sản phẩm"
+    },
+    {
+        "path": PAGES_URL.shoes.url + "/create",
+        "component": CreateShoes,
+        "label": "Thêm sản phẩm"
+    },
+    {
+        "path": PAGES_URL.shoes.url + "/edit/:ShoesId",
+        "component": EditShoes,
+        "label": "Chỉnh sửa sản phẩm"
+    },
+    {
+        "path": PAGES_URL.order.url,
+        "component": ManageOrder,
+        "label": "Quản lý đơn hàng"
+    },
+    {
+        "path": PAGES_URL.order.url + "/create",
+        "component": CreateOrder,
+        "label": "Tạo đơn hàng"
+    },
+    {
+        "path": PAGES_URL.order.url + "/edit/:OrderId",
+        "component": EditOrder,
+        "label": "Chỉnh sửa đơn hàng"
+    },
+    {
+        "path": PAGES_URL.discount.url,
+        "component": ManageDiscount,
+        "label": "Quản lý khuyến mãi"
+    },
+    {
+        "path": PAGES_URL.discount.url + "/create",
+        "component": CreateDiscount,
+        "label": "Tạo khuyến mãi"
+    },
+    {
+        "path": PAGES_URL.discount.url + "/edit/:DiscountId",
+        "component": EditDiscount,
+        "label": "Chỉnh sửa khuyến mãi"
+    },
 ]
 
 // error page

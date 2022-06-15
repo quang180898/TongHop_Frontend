@@ -5,10 +5,10 @@ import { showNotification } from "functions/Utils";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { brandAction } from "store/actions";
-import ModalDeleteBrand from "./ModalDeleteBrand";
+import { categoryAction } from "store/actions";
+import ModalDeleteCategory from "./ModalDeleteCategory";
 
-const ManageBrand = () => {
+const ManageCategory = () => {
     const dispatch = useDispatch();
 
     const [state, setState] = React.useState();
@@ -18,33 +18,33 @@ const ManageBrand = () => {
         isShowModal: false,
     });
 
-    const store = useSelector((state) => state.brandReducer);
-    const { listBrand, deleteBrand } = store;
+    const store = useSelector((state) => state.categoryReducer);
+    const { listCategory, deleteCategory } = store;
 
     React.useEffect(() => {
-        dispatch(brandAction.getListBrand());
+        dispatch(categoryAction.getListCategory());
     }, []);
 
     React.useEffect(() => {
-        if (listBrand) {
-            let detail = listBrand.detail;
-            if (listBrand.success) {
+        if (listCategory) {
+            let detail = listCategory.detail;
+            if (listCategory.success) {
                 setState(detail);
             }
-            dispatch(brandAction.clearData());
+            dispatch(categoryAction.clearData());
         }
-    }, [listBrand]);
+    }, [listCategory]);
 
     React.useEffect(() => {
-        if (deleteBrand) {
-            let detail = listBrand.detail;
-            if (listBrand.success) {
-                showNotification.success({title: "Cập nhật thành công"})
-                dispatch(brandAction.getListBrand());
+        if (deleteCategory) {
+            let detail = listCategory.detail;
+            if (listCategory.success) {
+                showNotification.success({ title: "Cập nhật thành công" });
+                dispatch(categoryAction.getlistCategory());
             }
-            dispatch(brandAction.clearData());
+            dispatch(categoryAction.clearData());
         }
-    }, [deleteBrand]);
+    }, [deleteCategory]);
 
     const handleDelete = (id) => {
         const newArray = [].concat(state);
@@ -53,9 +53,9 @@ const ManageBrand = () => {
             name: null,
         };
         for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].brand_id === id) {
-                params.id = newArray[i].brand_id;
-                params.name = newArray[i].brand_name;
+            if (newArray[i].category_id === id) {
+                params.id = newArray[i].category_id;
+                params.name = newArray[i].category_name;
             }
         }
         setStateLocal((e) => ({
@@ -69,7 +69,10 @@ const ManageBrand = () => {
         {
             label: (
                 <div className="d-flex">
-                    <Link to={PAGES_URL.brand.url + "/create"}> + Tạo thương hiệu</Link>
+                    <Link to={PAGES_URL.category.url + "/create"}>
+                        {" "}
+                        + Tạo kiểu giày
+                    </Link>
                 </div>
             ),
         },
@@ -101,13 +104,14 @@ const ManageBrand = () => {
     };
 
     return (
-        <CardWrap title="Quản lý thương hiệu giày" childrenHeading={Heading()}>
+        <CardWrap title="Quản lý kiểu giày" childrenHeading={Heading()}>
             <div class="cus-table">
                 <table>
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th scope="col">Tên thương hiệu</th>
+                            <th scope="col">Tên kiểu giày</th>
+                            <th scope="col">Mô tả</th>
                             <th scope="col">
                                 <i class="fas fa-cog"></i>
                             </th>
@@ -122,20 +126,23 @@ const ManageBrand = () => {
                                         <td>
                                             <Link
                                                 to={
-                                                    PAGES_URL.brand.url +
+                                                    PAGES_URL.category.url +
                                                     "/edit/" +
-                                                    item.brand_id
+                                                    item.category_id
                                                 }
                                                 className=""
                                             >
-                                                {item.brand_name}
+                                                {item.category_name}
                                             </Link>
                                         </td>
+                                        <td>{item.category_description}</td>
                                         <td>
                                             <i
                                                 className="click-action fas fa-trash-alt"
                                                 onClick={() =>
-                                                    handleDelete(item.brand_id)
+                                                    handleDelete(
+                                                        item.category_id
+                                                    )
                                                 }
                                             ></i>
                                         </td>
@@ -145,8 +152,8 @@ const ManageBrand = () => {
                     </tbody>
                 </table>
             </div>
-            <ModalDeleteBrand state={stateLocal} setState={setStateLocal} />
+            <ModalDeleteCategory state={stateLocal} setState={setStateLocal} />
         </CardWrap>
     );
 };
-export default ManageBrand;
+export default ManageCategory;

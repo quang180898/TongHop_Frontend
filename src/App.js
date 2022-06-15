@@ -8,8 +8,6 @@ import {
 import { Provider } from "react-redux";
 import configureStore from "./store";
 import { ADMIN, getPathList, LOGINS, MAIN, PERSONAL } from "./routes";
-// import MainLogin from './MainLogin';
-// import MainAdmin from "./MainAdmin";
 import { PAGES_URL } from "contant";
 import { TOKEN, TOKENADMIN } from "./functions/Utils";
 import MainPage from "redirect/MainPage";

@@ -1,14 +1,14 @@
 import { DropdownBase } from "components/base/Dropdown";
 import CardWrap from "components/common/Card/CardWarp";
 import { PAGES_URL } from "contant";
-import { showNotification } from "functions/Utils";
+import { convertCurrency, showNotification } from "functions/Utils";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { brandAction } from "store/actions";
-import ModalDeleteBrand from "./ModalDeleteBrand";
+import { shoesAction } from "store/actions";
+import ModalDeleteShoes from "./ModalDeleteShoes";
 
-const ManageBrand = () => {
+const ManageShoes = () => {
     const dispatch = useDispatch();
 
     const [state, setState] = React.useState();
@@ -18,33 +18,33 @@ const ManageBrand = () => {
         isShowModal: false,
     });
 
-    const store = useSelector((state) => state.brandReducer);
-    const { listBrand, deleteBrand } = store;
+    const store = useSelector((state) => state.shoesReducer);
+    const { listShoes, deleteShoes } = store;
 
     React.useEffect(() => {
-        dispatch(brandAction.getListBrand());
+        dispatch(shoesAction.getListShoes());
     }, []);
 
     React.useEffect(() => {
-        if (listBrand) {
-            let detail = listBrand.detail;
-            if (listBrand.success) {
+        if (listShoes) {
+            let detail = listShoes.detail;
+            if (listShoes.success) {
                 setState(detail);
             }
-            dispatch(brandAction.clearData());
+            dispatch(shoesAction.clearData());
         }
-    }, [listBrand]);
+    }, [listShoes]);
 
     React.useEffect(() => {
-        if (deleteBrand) {
-            let detail = listBrand.detail;
-            if (listBrand.success) {
-                showNotification.success({title: "Cập nhật thành công"})
-                dispatch(brandAction.getListBrand());
+        if (deleteShoes) {
+            let detail = listShoes.detail;
+            if (listShoes.success) {
+                showNotification.success({ title: "Cập nhật thành công" });
+                dispatch(shoesAction.getListShoes());
             }
-            dispatch(brandAction.clearData());
+            dispatch(shoesAction.clearData());
         }
-    }, [deleteBrand]);
+    }, [deleteShoes]);
 
     const handleDelete = (id) => {
         const newArray = [].concat(state);
@@ -53,9 +53,9 @@ const ManageBrand = () => {
             name: null,
         };
         for (let i = 0; i < newArray.length; i++) {
-            if (newArray[i].brand_id === id) {
-                params.id = newArray[i].brand_id;
-                params.name = newArray[i].brand_name;
+            if (newArray[i].shoes_id === id) {
+                params.id = newArray[i].shoes_id;
+                params.name = newArray[i].shoes_name;
             }
         }
         setStateLocal((e) => ({
@@ -69,7 +69,10 @@ const ManageBrand = () => {
         {
             label: (
                 <div className="d-flex">
-                    <Link to={PAGES_URL.brand.url + "/create"}> + Tạo thương hiệu</Link>
+                    <Link to={PAGES_URL.shoes.url + "/create"}>
+                        {" "}
+                        + Tạo giày
+                    </Link>
                 </div>
             ),
         },
@@ -101,13 +104,18 @@ const ManageBrand = () => {
     };
 
     return (
-        <CardWrap title="Quản lý thương hiệu giày" childrenHeading={Heading()}>
+        <CardWrap title="Quản lý sản phẩm" childrenHeading={Heading()}>
             <div class="cus-table">
                 <table>
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th scope="col">Tên thương hiệu</th>
+                            <th scope="col">Tên giày</th>
+                            <th scope="col">Giá giày</th>
+                            <th scope="col">Giá khuyến mãi</th>
+                            <th scope="col">Mã giày</th>
+                            <th scope="col">Thương hiệu</th>
+                            <th scope="col">Tình trạng</th>
                             <th scope="col">
                                 <i class="fas fa-cog"></i>
                             </th>
@@ -122,20 +130,44 @@ const ManageBrand = () => {
                                         <td>
                                             <Link
                                                 to={
-                                                    PAGES_URL.brand.url +
+                                                    PAGES_URL.shoes.url +
                                                     "/edit/" +
-                                                    item.brand_id
+                                                    item.shoes_id
                                                 }
                                                 className=""
                                             >
-                                                {item.brand_name}
+                                                {item.shoes_name}
                                             </Link>
+                                        </td>
+                                        <td>
+                                            {convertCurrency(
+                                                item.retail_price,
+                                                "đ"
+                                            )}
+                                        </td>
+                                        <td>
+                                            {convertCurrency(
+                                                item.sale_price,
+                                                "đ"
+                                            )}
+                                        </td>
+                                        <td>{item.shoes_code}</td>
+                                        <td>{item.shoes_brand_name}</td>
+                                        <td>
+                                            {item.shoes_quantity
+                                                .map((item) => item.quantity)
+                                                .reduce(
+                                                    (prev, next) => prev + next,
+                                                    0
+                                                ) > 0
+                                                ? "Còn hàng"
+                                                : "Hết hàng"}
                                         </td>
                                         <td>
                                             <i
                                                 className="click-action fas fa-trash-alt"
                                                 onClick={() =>
-                                                    handleDelete(item.brand_id)
+                                                    handleDelete(item.shoes_id)
                                                 }
                                             ></i>
                                         </td>
@@ -145,8 +177,8 @@ const ManageBrand = () => {
                     </tbody>
                 </table>
             </div>
-            <ModalDeleteBrand state={stateLocal} setState={setStateLocal} />
+            <ModalDeleteShoes state={stateLocal} setState={setStateLocal} />
         </CardWrap>
     );
 };
-export default ManageBrand;
+export default ManageShoes;
