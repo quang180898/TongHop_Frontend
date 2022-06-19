@@ -7,7 +7,7 @@ import { listColor, listSize } from "dataFake/dataFake";
 import React from "react";
 import { SelectSwatch } from "components/common/Swatch";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, convertCurrency } from "functions/Utils";
+import { addToCart, convertCurrency, showNotification } from "functions/Utils";
 import { cartAction } from "store/actions";
 import { ModalNotification } from "components/base/Modal";
 
@@ -58,14 +58,25 @@ const ProductContent = () => {
         } else {
             newData = state;
         }
-        setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
-        dispatch(
-            cartAction.addToCart({
-                product: state,
-                size: data.size,
-                quantity: data.updown,
-            })
+        const indexQuantity = state.shoes_quantity.indexOf(
+            state.shoes_quantity.filter((e) => e.size === data.size)[0]
         );
+        if (
+            state.shoes_quantity[indexQuantity].quantity ==
+            cartItems?.cart[index]?.quantity
+        ) {
+            showNotification.error({ title: "Sản phẩm tồn kho không đủ" });
+        }
+        else {
+            setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
+            dispatch(
+                cartAction.addToCart({
+                    product: newData,
+                    size: data.size,
+                    quantity: data.updown,
+                })
+            );
+        }
     };
 
     return (

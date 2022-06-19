@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { IMAGE_URL, PAGES_URL } from "contant";
 import { BreadcrumbCustom } from "components/common/Breadcrumb";
 import { ButtonBase } from "components/base/Button";
-import { CollapseBase } from "components/base/Collapse";
 import { InputBase } from "components/base/Input";
-import { RadioCheckout, RadioGroupCustom } from "components/base/Radio";
-import { SelectBase } from "components/base/Select";
-import { TableCustom } from "components/base/Table";
+import {  RadioGroupCustom } from "components/base/Radio";
 import { Form } from "antd";
+import { RULES } from "functions/Utils";
 
 const dataRouter = [
     {
@@ -43,78 +41,40 @@ const optionsRadioPayment = [
 ];
 
 const MainCheckout = () => {
+
     return (
         <div className="main">
             <div className="main-header">
                 <Link to={PAGES_URL.home.url} className="logo">
                     <img src={`${IMAGE_URL + "logo-sneaker.jpg"}`} />
                 </Link>
-                <BreadcrumbCustom router={dataRouter} isCheckout={true}/>
+                <BreadcrumbCustom router={dataRouter} isCheckout={true} />
             </div>
             <div className="main-content">
                 <div className="content-header">
                     <h2 className="content-title">Thông tin giao hàng</h2>
                 </div>
                 <div className="checkout-address">
-                    <p className="text-account">
-                        Bạn đã có tài khoản? <Link to={"/#"}>Đăng nhập</Link>
-                    </p>
                     <div className="row">
                         <div className="col-12 col-sm-12">
-                            <Form.Item label="Họ và tên">
-                                <InputBase placeholder="Họ và tên" />
+                            <Form.Item name="name" label="Họ và tên">
+                                <InputBase placeholder="Họ và tên" disabled={true}/>
                             </Form.Item>
                         </div>
-                        <div className="col-12 col-sm-8 pr-0">
-                            <Form.Item label="Email">
-                                <InputBase placeholder="Email" />
+                        <div className="col-12 col-sm-12">
+                            <Form.Item name="mail" label="Email">
+                                <InputBase placeholder="Email" disabled={true}/>
                             </Form.Item>
                         </div>
-                        <div className="col-12 col-sm-4">
+                        {/* <div className="col-12 col-sm-12">
                             <Form.Item label="Số điện thoại">
                                 <InputBase placeholder="Số điện thoại" />
                             </Form.Item>
-                        </div>
-                    </div>
-                </div>
-                <div className="checkout-delivery">
-                    <div className="content-box">
-                        <div className="radio-wrapper">
-                            <RadioCheckout
-                                form={true}
-                                name="radio_delivery"
-                                checked={true}
-                            />
-                            <span>Giao tận nơi</span>
-                        </div>
-                        <div className="address-wrapper">
-                            <div className="row">
-                                <div className="col-12 col-sm-12">
-                                    <Form.Item label="Địa chỉ">
-                                        <InputBase placeholder="Địa chỉ" />
-                                    </Form.Item>
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <Form.Item label="Quốc gia">
-                                        <SelectBase placeholder="Chọn quốc gia" />
-                                    </Form.Item>
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <Form.Item label="Tỉnh / thành">
-                                        <SelectBase placeholder="Chọn tỉnh / thành" />
-                                    </Form.Item>
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <Form.Item label="Quận / huyện">
-                                        <SelectBase placeholder="Chọn quận / huyện" />
-                                    </Form.Item>
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <Form.Item label="Phường / xã">
-                                        <SelectBase placeholder="Chọn phường / xã" />
-                                    </Form.Item>
-                                </div>
-                            </div>
+                        </div> */}
+                        <div className="col-12 col-sm-12">
+                            <Form.Item name="address" label="Địa chỉ" className="form-group" rules={RULES.text.form(true, 'Vui lòng nhập địa chỉ')}>
+                                <InputBase placeholder="Địa chỉ" />
+                            </Form.Item>
                         </div>
                     </div>
                 </div>
@@ -125,7 +85,7 @@ const MainCheckout = () => {
                         </h2>
                     </div>
                     <div className="content-box">
-                        <Form.Item name="radio-payment" noStyle>
+                        <Form.Item name="payment" noStyle>
                             <RadioGroupCustom options={optionsRadioPayment} />
                         </Form.Item>
                     </div>

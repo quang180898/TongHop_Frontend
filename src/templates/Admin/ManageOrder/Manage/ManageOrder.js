@@ -37,9 +37,13 @@ const ManageOrder = () => {
 
     React.useEffect(() => {
         if (deleteOrder) {
-            let detail = listOrder.detail;
-            if (listOrder.success) {
+            let detail = deleteOrder.detail;
+            if (deleteOrder.success) {
                 showNotification.success({ title: "Cập nhật thành công" });
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
                 dispatch(orderAction.getListOrder());
             }
             dispatch(orderAction.clearData());
@@ -69,10 +73,7 @@ const ManageOrder = () => {
         {
             label: (
                 <div className="d-flex">
-                    <Link to={PAGES_URL.order.url + "/create"}>
-                        {" "}
-                        + Tạo đơn hàng
-                    </Link>
+                    Gửi mã khuyến mãi
                 </div>
             ),
         },
@@ -111,13 +112,17 @@ const ManageOrder = () => {
                         <tr>
                             <th>STT</th>
                             <th scope="col">Tên giày</th>
-                            <th scope="col-2" style={{ width: '15%' }}>Giá giày</th>
+                            <th scope="col-2" style={{ width: "15%" }}>
+                                Giá giày
+                            </th>
                             <th scope="col">Kích cỡ</th>
                             <th scope="col">Số lượng</th>
-                            <th scope="col-2" style={{ width: '15%' }}>Tổng</th>
+                            <th scope="col-2" style={{ width: "15%" }}>
+                                Tổng
+                            </th>
                             <th scope="col">Địa chỉ</th>
                             <th scope="col">Ngày tạo</th>
-                            <th scope="col">Tạo bởi</th>
+                            <th scope="col">Người tạo</th>
                             <th scope="col">
                                 <i class="fas fa-cog"></i>
                             </th>
@@ -136,7 +141,6 @@ const ManageOrder = () => {
                                                     "/edit/" +
                                                     item.id
                                                 }
-                                                className=""
                                             >
                                                 {item.shoes_name}
                                             </Link>
@@ -144,25 +148,15 @@ const ManageOrder = () => {
                                         <td>
                                             {convertCurrency(item.price, "đ")}
                                         </td>
-                                        <td>
-                                            {item.size}
-                                        </td>
-                                        <td>
-                                            {item.quantity}
-                                        </td>
+                                        <td>{item.size}</td>
+                                        <td>{item.quantity}</td>
                                         <td>
                                             {convertCurrency(item.total, "đ")}
                                         </td>
-                                        <td>
-                                            {item.address}
-                                        </td>
+                                        <td>{item.address}</td>
 
-                                        <td>
-                                            {item.created_at}
-                                        </td>
-                                        <td>
-                                            {item.customer_name}
-                                        </td>
+                                        <td>{item.created_at}</td>
+                                        <td>{item.customer_name}</td>
                                         <td>
                                             <i
                                                 className="click-action fas fa-trash-alt"

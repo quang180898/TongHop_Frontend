@@ -1,18 +1,42 @@
-import { PAGES_URL } from 'contant'
+import { IMAGE_URL, PAGES_URL } from 'contant'
+import { getLocalStore } from 'functions/Utils'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 import { MENU } from 'router/routesMenu'
+import { accountAction } from 'store/actions'
 import PopoverDropdown from '../Popover/PopoverDropdown'
 
 const Sidebar = () => {
 
     const dispatch = useDispatch()
 
+    const user = getLocalStore('admin')
+
+    const [state, setState] = useState(user)
+
     const [menuChildActive, setMenuChildActive] = useState(null)
 
     // reducer 
     const store = useSelector(state => state.accountReducer)
+    const { detailAccount } = store
+
+    React.useEffect(() => {
+        dispatch(accountAction.getDetailAccount({user_id: user.customer_id}))
+    }, [])
+
+    React.useEffect(() => {
+        if (detailAccount) {
+            let detail = detailAccount.detail
+            if (detailAccount.success) {
+                if (detail.permission_code === "1") {
+                    setState(detail)
+                    localStorage.setItem("admin", JSON.stringify(detail));
+                }
+            }
+        }
+    }, [detailAccount])
+
 
     const openMenuChild = (active, position) => {
         setMenuChildActive(position)
@@ -35,7 +59,7 @@ const Sidebar = () => {
                     <div className="dropdown sub-dropdown">
                         <div className="profile-pic rounded-circle position-relative" type="button"
                            >
-                            <img className="profile-pic rounded-circle position-relative"/>
+                            <img className="profile-pic rounded-circle position-relative" src={`data:image/jpeg;base64, ${state?.image_bytes}`}/>
                             <span className="badge rounded-circle badge-success profile-dd text-center ">
                                 <i className="las la-check text-white" style={{ fontSize: '9px' }}></i>
                             </span>
@@ -48,7 +72,7 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="profile">
-                    <p className="name" style={{ fontFamily: '"Open Sans", sans-serif !important', fontWeight: 600 }}> </p>
+                    <p className="name" style={{ fontFamily: '"Open Sans", sans-serif !important', fontWeight: 600 }}>{state?.name}</p>
                     <p className="position"></p>
                     <div className="actions">
                         <div className="item dropdown">

@@ -54,12 +54,26 @@ export function* postDeleteDiscount(payload) {
     }
 }
 
+// post delete Discount
+export function* getGmailDiscount(payload) {
+    try {
+        const response = yield discountService.getGmailDiscount({ params: payload.params })
+        response.success
+            ? yield put({ type: discountAction.GET_GMAIL_DISCOUNT_SUCCESS, response })
+            : yield put({ type: discountAction.GET_GMAIL_DISCOUNT_FAILURE, response });
+
+    } catch (err) {
+        yield put({ type: discountAction.GET_GMAIL_DISCOUNT_FAILURE, response: { detail: err } });
+    }
+}
+
 export default function* rootSaga() {
     yield all([
         takeLatest(discountAction.GET_LIST_DISCOUNT_REQUEST, getListDiscount),
         takeLatest(discountAction.GET_DETAIL_DISCOUNT_REQUEST, getDetailDiscount),
         takeLatest(discountAction.POST_UPDATE_DISCOUNT_REQUEST, postUpdateDiscount),
         takeLatest(discountAction.POST_DELETE_DISCOUNT_REQUEST, postDeleteDiscount),
+        takeLatest(discountAction.GET_GMAIL_DISCOUNT_REQUEST, getGmailDiscount),
     ]);
 
 }

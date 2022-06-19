@@ -37,9 +37,13 @@ const ManageBrand = () => {
 
     React.useEffect(() => {
         if (deleteBrand) {
-            let detail = listBrand.detail;
-            if (listBrand.success) {
+            let detail = deleteBrand.detail;
+            if (deleteBrand.success) {
                 showNotification.success({title: "Cập nhật thành công"})
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
                 dispatch(brandAction.getListBrand());
             }
             dispatch(brandAction.clearData());

@@ -4,6 +4,7 @@ import { shoesService } from "./Shoes"
 import { accountService } from "./Account"
 import { orderService } from "./Order"
 import { discountService } from "./Discount"
+import { chartService } from "./Chart"
 
 export {
     brandService,
@@ -12,4 +13,5 @@ export {
     accountService,
     orderService,
     discountService,
+    chartService,
 }

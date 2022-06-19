@@ -43,7 +43,7 @@ const ModalChangePass = ({ visible, setVisible }) => {
     const onSubmitPass = (e) => {
         if (e) {
             let params = {
-                user_id: parseInt(accountId),
+                user_id: parseInt(AccountId),
                 new_password: e.new_pass,
                 new_password_repeat: e.enter_pass,
                 current_password: e.old_pass,

@@ -106,11 +106,10 @@ const AdminPage = () => {
                         </Suspense>
                     </div>
                     <footer class="footer text-center text-muted">
-                        <span className="pr-1">Copyright © 2020</span>
+                        <span className="pr-1">Copyright © 2022</span>
                         <a class="text-bold-800 grey darken-2" target="_blank">
-                            G Sneaker{" "}
+                            G Shoes{" "}
                         </a>
-                        , All rights reserved.
                     </footer>
                 </div>
             </div>

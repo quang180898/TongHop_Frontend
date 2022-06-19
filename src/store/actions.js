@@ -7,6 +7,7 @@ import shoesAction from "./shoes/action";
 import accountAction from "./account/action";
 import orderAction from "./order/action";
 import discountAction from "./discount/action";
+import chartAction from "./chart/action";
 
 export {
     commonAction,
@@ -18,4 +19,5 @@ export {
     accountAction,
     orderAction,
     discountAction,
+    chartAction,
 }

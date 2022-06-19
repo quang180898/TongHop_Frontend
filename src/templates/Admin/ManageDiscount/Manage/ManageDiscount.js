@@ -19,7 +19,7 @@ const ManageDiscount = () => {
     });
 
     const store = useSelector((state) => state.discountReducer);
-    const { listDiscount, deleteDiscount } = store;
+    const { listDiscount, deleteDiscount, gmailDiscount } = store;
 
     React.useEffect(() => {
         dispatch(discountAction.getListDiscount());
@@ -36,10 +36,26 @@ const ManageDiscount = () => {
     }, [listDiscount]);
 
     React.useEffect(() => {
+        if (gmailDiscount) {
+            let detail = gmailDiscount.detail;
+            if (gmailDiscount.success) {
+                showNotification.success({ title: "Cập nhật thành công" });
+            } else {
+                showNotification.error({ title: detail });
+            }
+            dispatch(discountAction.clearData());
+        }
+    }, [gmailDiscount]);
+
+    React.useEffect(() => {
         if (deleteDiscount) {
             let detail = listDiscount.detail;
             if (listDiscount.success) {
                 showNotification.success({ title: "Cập nhật thành công" });
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
                 dispatch(discountAction.getListDiscount());
             }
             dispatch(discountAction.clearData());
@@ -68,11 +84,11 @@ const ManageDiscount = () => {
     const optionsAction = [
         {
             label: (
-                <div className="d-flex">
-                    <Link to={PAGES_URL.discount.url + "/create"}>
-                        {" "}
-                        + Tạo khuyến mãi
-                    </Link>
+                <div
+                    className="d-flex"
+                    onClick={() => dispatch(discountAction.getGmailDiscount())}
+                >
+                    Gửi mã khuyến mãi
                 </div>
             ),
         },
@@ -104,7 +120,7 @@ const ManageDiscount = () => {
     };
 
     return (
-        <CardWrap title="Quản lý đơn hàng" childrenHeading={Heading()}>
+        <CardWrap title="Quản lý khuyến mãi" childrenHeading={Heading()}>
             <div class="cus-table">
                 <table>
                     <thead>
@@ -136,17 +152,15 @@ const ManageDiscount = () => {
                                                 {item.shoes_name}
                                             </Link>
                                         </td>
-                                        <td>
-                                            {item.discount_percent}%
-                                        </td>
-                                        <td>
-                                            {item.end_discount_date}
-                                        </td>
+                                        <td>{item.discount_percent}%</td>
+                                        <td>{item.end_discount_date}</td>
                                         <td>
                                             <i
                                                 className="click-action fas fa-trash-alt"
                                                 onClick={() =>
-                                                    handleDelete(item.discount_id)
+                                                    handleDelete(
+                                                        item.discount_id
+                                                    )
                                                 }
                                             ></i>
                                         </td>

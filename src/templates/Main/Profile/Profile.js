@@ -138,6 +138,7 @@ const Profile = () => {
 
     const logoutAccount = () => {
         getLocalStore("user", true);
+        getLocalStore("coupon", true);
         window.location.reload();
     }
 

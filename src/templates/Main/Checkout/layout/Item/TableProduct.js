@@ -36,7 +36,9 @@ const TableProduct = () => {
                             <img
                                 className="product-thumbnail-image"
                                 alt="image-product"
-                                src={item.image}
+                                src={`data:image/jpeg;base64, ${item?.image_bytes}`}
+                                width={80}
+                                height={60}
                             />
                         </div>
                         <span className="product-thumbnail-quantity">
@@ -45,14 +47,14 @@ const TableProduct = () => {
                     </div>
                 </td>
                 <td colSpan={2} className="product-description">
-                    <span className="order-summary-emphasis">{item.name}</span>
+                    <span className="order-summary-emphasis">{item?.shoes_name}</span>
                     <span className="order-summary-small-text">
-                        {item.size}
+                        {item?.size}
                     </span>
                 </td>
                 <td className="product-price">
                     <span className="order-summary-emphasis">
-                        {convertCurrency(item.price * item.quantity, "đ")}
+                        {convertCurrency(item?.sale_price * item?.quantity, "đ")}
                     </span>
                 </td>
             </tr>
@@ -62,7 +64,7 @@ const TableProduct = () => {
     return (
         <TableCustom
             isTable={false}
-            classNameWrap="table-checkout"
+            className="table-checkout"
             childrenHead={<Theader />}
             childrenBody={
                 state?.dataCart?.length > 0 &&

@@ -22,7 +22,7 @@ const ManageShoes = () => {
     const { listShoes, deleteShoes } = store;
 
     React.useEffect(() => {
-        dispatch(shoesAction.getListShoes());
+        dispatch(shoesAction.getListShoes({limit: 100}));
     }, []);
 
     React.useEffect(() => {
@@ -37,10 +37,14 @@ const ManageShoes = () => {
 
     React.useEffect(() => {
         if (deleteShoes) {
-            let detail = listShoes.detail;
-            if (listShoes.success) {
+            let detail = deleteShoes.detail;
+            if (deleteShoes.success) {
                 showNotification.success({ title: "Cập nhật thành công" });
-                dispatch(shoesAction.getListShoes());
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
+                dispatch(shoesAction.getListShoes({limit: 100}));
             }
             dispatch(shoesAction.clearData());
         }
@@ -122,7 +126,7 @@ const ManageShoes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {state &&
+                        {state && state.length > 0 &&
                             state.map((item, index) => {
                                 return (
                                     <tr key={index}>
@@ -154,7 +158,7 @@ const ManageShoes = () => {
                                         <td>{item.shoes_code}</td>
                                         <td>{item.shoes_brand_name}</td>
                                         <td>
-                                            {item.shoes_quantity
+                                            {item && item?.shoes_quantity?.length > 0 && item?.shoes_quantity
                                                 .map((item) => item.quantity)
                                                 .reduce(
                                                     (prev, next) => prev + next,

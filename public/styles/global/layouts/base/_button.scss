@@ -262,3 +262,23 @@ $btn-black-bg: #000000;
         color: #fff;
     }
 }
+
+.btn-uni-purple {
+    background-color: #6d30ab;
+    border: 1px solid #6d30ab;
+    padding: 6px 30px !important;
+    border-radius: 0 !important;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.btn-uni-cancel {
+    border: solid 1px #d8d8d8;
+    background-color: #ffffff;
+    color: #f33652;
+    padding: 6px 30px !important;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 0 !important;
+}

@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import { convertCurrency } from "functions/Utils";
 import React from "react";
 
 const ModalNotification = (props) => {
@@ -6,6 +7,7 @@ const ModalNotification = (props) => {
 
     React.useEffect(() => {
         if (visible.isShow) {
+            console.log(visible)
             const timer = setTimeout(() => {
                 onCancel()
             }, 3000);
@@ -43,13 +45,13 @@ const ModalNotification = (props) => {
                     <div className="media-left">
                         <span className="quantity">{visible.item.quantity ? visible.item.quantity + 1 : 1}</span>
                         <div className="thumb-cart">
-                            <img width="70px" src={`data:image/jpeg;base64, ${visible?.item?.image_bytes}`} alt="image"/>
+                            <img width="70px" src={`data:image/jpeg;base64, ${typeof visible?.item?.image_bytes == "string" ?  visible?.item?.image_bytes : visible?.item?.image_bytes[0]?.image_bytes}`} alt="image"/>
                         </div>
                     </div>
                     <div className="media-body">
                         <div className="media-title">{visible?.item?.shoes_name}</div>
                         <div className="media-price">
-                            <span>{visible?.item?.sale_price}</span>
+                            <span>{convertCurrency(visible?.item?.sale_price ? visible?.item?.sale_price : visible?.item?.retail_price, "đ")}</span>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import { SliderMain } from "components/base/Slider";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { shoesAction } from "store/actions";
-import { IMAGE_URL } from "contant";
+import { IMAGE_URL, PAGES_URL } from "contant";
 
 const dataFake = [
     {
@@ -17,21 +17,19 @@ const dataFake = [
 const Home = () => {
     const dispatch = useDispatch();
     const [state, setState] = React.useState(null);
-    const store = useSelector((state) => state.shoesReducer);
-    const { homeShoes } = store;
+
+    const store = useSelector((state) => state);
+
+    const { homeShoes } = store.shoesReducer;
 
     React.useEffect(() => {
         dispatch(shoesAction.getHomeShoes());
-        // fetch("http://127.0.0.1:8000/api/backend/v1/brand/")
-        //     .then((response) => console.log(response))
-        //     .then((data) => console.log(data));
     }, []);
 
     React.useEffect(() => {
         if (homeShoes) {
             let detail = homeShoes.detail;
             if (homeShoes.success) {
-                console.log(detail);
                 setState(detail);
             }
         }
@@ -71,7 +69,7 @@ const Home = () => {
                                             )}
                                     </div>
                                     <div className="view-more">
-                                        <a href="/#">See More </a>
+                                        <a href={PAGES_URL.collection.url + "/" +  item.shoes_brand_id}>See More </a>
                                     </div>
                                 </div>
                             </div>

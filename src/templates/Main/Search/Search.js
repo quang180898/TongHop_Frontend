@@ -2,12 +2,12 @@ import { PaginationBase } from "components/base/Pagination";
 import { Breadcrumb } from "components/common/Breadcrumb";
 import { ProductBlock } from "components/common/Product";
 import { PAGES_URL } from "contant";
+import { LoadDataPaging } from "functions/Utils";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MAIN } from "routes";
 import { shoesAction } from "store/actions";
-import { usePagination } from "useHook";
 
 const Search = () => {
     const history = useHistory();
@@ -18,10 +18,10 @@ const Search = () => {
     const [state, setState] = React.useState({
         dataShoes: null,
         dataSearch: "",
-        totalPage: null,
-        totalRecord: null,
+        total_page: 0,
+        total_record: 0,
         page: 1,
-        limit: 2,
+        limit: 12,
     });
 
     const [dataSearch, setDataSearch] = React.useState("");
@@ -29,19 +29,12 @@ const Search = () => {
     const store = useSelector((state) => state.shoesReducer);
     const { listShoes } = store;
 
-    const pagination = usePagination({
-        page: state.page,
-        totalRecord: state.totalRecord,
-        totalPage: state.totalPage,
-        limit: state.limit,
-    });
-
     const callApi = (shoesSearch = dataSearch) => {
         dispatch(
             shoesAction.getListShoes({
                 page: state.page,
                 shoes_name: shoesSearch,
-                limit: 2,
+                limit: 12,
             })
         );
     };
@@ -62,25 +55,19 @@ const Search = () => {
         if (listShoes) {
             let detail = [].concat(listShoes.detail);
             if (listShoes.success) {
-                let totalPage = listShoes.total_page;
-                let totalRecord = listShoes.total_record;
+                let total_page = listShoes.total_page;
+                let total_record = listShoes.total_record;
                 let page = listShoes.page;
                 setState((e) => ({
                     ...e,
-                    totalPage,
-                    totalRecord,
+                    total_page,
+                    total_record,
                     page,
                     dataShoes: detail,
                 }));
             }
         }
     }, [listShoes]);
-
-    React.useEffect(() => {
-        if (pagination.page > 0 && pagination.page != state.page) {
-            setState((e) => ({ ...e, page: pagination.page }));
-        }
-    }, [pagination.page]);
 
     const onSearch = (e) => {
         if (e.key === "Enter") {
@@ -91,6 +78,10 @@ const Search = () => {
             });
         }
     };
+
+    const onPageChange = (value) => {
+        setState({ ...state, page: value })
+    }
 
     return (
         <div className="search-main">
@@ -169,8 +160,17 @@ const Search = () => {
                                         )
                                     )}
 
-                                    {state.totalRecord > 0 &&
-                                        pagination.Pagination}
+                                    {state.total_record > 0 && (
+                                        <PaginationBase
+                                            data={LoadDataPaging(
+                                                state.total_record,
+                                                state.page,
+                                                state.total_page,
+                                                state.limit
+                                            )}
+                                            onChange={onPageChange}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -1080,7 +1080,6 @@ export const addToCart = (data, items) => {
     const quantity = items.quantity ? items.quantity : 1;
 
     if (cartItems.filter((p) => p.shoes_id === product.shoes_id).length === 0) {
-        console.log("chua co cart:", product)
         cartItems.push({
             ...product,
             shoes_id: product.shoes_id,
@@ -1094,7 +1093,6 @@ export const addToCart = (data, items) => {
             .filter((p) => p.shoes_id === product.shoes_id && p.size === selectedValue)
             .map((p) => p.size)[0] !== selectedValue
     ) {
-        console.log("co cart:", product)
         cartItems.push({
             ...product,
             shoes_id: product.shoes_id,
@@ -1127,7 +1125,7 @@ export const addToCart = (data, items) => {
 
     let cartTotal = data.total ? data.total : 0;
 
-    cartTotal += product.sale_price * quantity;
+    cartTotal += product.sale_price ? product.sale_price * quantity : product.retail_price * quantity;
 
     newData.total = cartTotal;
     localStorage.setItem("carts", JSON.stringify(newData));
@@ -1165,7 +1163,7 @@ export const decreaseQuantity = (data, items) => {
 
     let cartTotal = data.total;
 
-    cartTotal -= product.sale_price;
+    cartTotal -= product.sale_price ? product.sale_price : product.retail_price;
 
     newData.total = cartTotal;
 
@@ -1202,7 +1200,7 @@ export const removeFormCart = (data, items) => {
 
     let cartTotal = data.total;
 
-    cartTotal -= product.sale_price * quantity;
+    cartTotal -= product.sale_price  ? product.sale_price * quantity : product.retail_price * quantity;
 
     newData.total = cartTotal;
 

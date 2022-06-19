@@ -1,5 +1,4 @@
 import { Form } from "antd";
-import { DropdownBase } from "components/base/Dropdown";
 import { InputBase } from "components/base/Input";
 import { TableCustom } from "components/base/Table";
 import React from "react";
@@ -16,16 +15,19 @@ const TableSize = ({ form }) => {
     const addSize = () => {
         const newForm =
             state.length > 0 ? form.getFieldValue(["size_quantity"]) : [];
-        console.log(newForm);
         const newDoc = {
             size: null,
-            quanity: null,
+            quantity: null,
         };
         newForm.push(newDoc);
         setState(newForm);
     };
 
-    const optionAction = () => {};
+    const handleDelete = (index) => {
+        const newData = form.getFieldValue("size_quantity");
+        newData.splice(index, 1);
+        setState(newData);
+    };
 
     const Theader = () => {
         return (
@@ -54,6 +56,12 @@ const TableSize = ({ form }) => {
                     <Form.Item
                         name={["size_quantity", index, "size"]}
                         className="form-group mb-0"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Vui lòng nhập!",
+                            },
+                        ]}
                     >
                         <InputBase />
                     </Form.Item>
@@ -62,18 +70,21 @@ const TableSize = ({ form }) => {
                     <Form.Item
                         name={["size_quantity", index, "quantity"]}
                         className="form-group mb-0"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Vui lòng nhập!",
+                            },
+                        ]}
                     >
                         <InputBase />
                     </Form.Item>
                 </td>
                 <td>
-                    {/* <DropdownBase
-                        overlayClassName="dropdown-table"
-                        className="dropdown-chatbot"
-                        options={optionAction(data, index)}
-                    >
-                        <i className="icon-dots las la-ellipsis-h"></i>
-                    </DropdownBase> */}
+                    <i
+                        className="click-action fas fa-trash-alt"
+                        onClick={() => handleDelete(index)}
+                    ></i>
                 </td>
             </tr>
         );

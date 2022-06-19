@@ -27,8 +27,11 @@ let ORDER = {
     ORDER_LIST: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/",
     ORDER_DETAIL: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/detail/",
     ORDER_MOST_BUY: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/most_buy/",
-    ORDER_UPDATE: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/create_or_update/",
+    ORDER_UPDATE: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/update/",
     ORDER_DELETE: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/delete/",
+    ORDER_CREATE: DOMAIN.api + PREFIX_BE + "v1/customer_shoes/create/",
+    ORDER_HISTORY : DOMAIN.api + PREFIX_BE + "v1/customer_shoes/history/",
+    MOMO_PAY: DOMAIN.api + PREFIX_BE + "v1/momo/pay/",
 }
 
 let DISCOUNT = {
@@ -36,6 +39,7 @@ let DISCOUNT = {
     DISCOUNT_DETAIL: DOMAIN.api + PREFIX_BE + "v1/discount/detail/",
     DISCOUNT_UPDATE: DOMAIN.api + PREFIX_BE + "v1/discount/update/",
     DISCOUNT_DELETE: DOMAIN.api + PREFIX_BE + "v1/discount/delete/",
+    DISCOUNT_GMAIL:  DOMAIN.api + PREFIX_BE + "v1/account/send_discount/",
 }
 
 let BRAND = {
@@ -61,6 +65,12 @@ let SHOES = {
     SHOES_HOME: DOMAIN.api + PREFIX_BE + "v1/shoes/home/",
 };
 
+let CHART = {
+    CHART_ALL: DOMAIN.api + PREFIX_BE + "v1/chart/all/",
+    CHART_TOTAL: DOMAIN.api + PREFIX_BE + "v1/chart/total/",
+}
+
+
 export default {
     ...BRAND,
     ...CATEGORY,
@@ -68,4 +78,5 @@ export default {
     ...ACCOUNT,
     ...ORDER,
     ...DISCOUNT,
+    ...CHART,
 };

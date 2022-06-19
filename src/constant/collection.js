@@ -101,3 +101,14 @@ export const size_category = [
         value: 42
     },
 ]
+
+export const gender_category = [
+    {
+        label: "Nam",
+        value: "0"
+    },
+    {
+        label: "Nữ",
+        value: "1"
+    },
+]

@@ -1,13 +1,13 @@
 import { DropdownCollection } from "components/base/Dropdown";
+import { PaginationBase } from "components/base/Pagination";
 import { ProductBlock } from "components/common/Product";
-import { convertContant, getValueNumber, getValueText } from "functions/Utils";
+import { convertContant, getValueNumber, getValueText, LoadDataPaging } from "functions/Utils";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { brandAction, shoesAction } from "store/actions";
-import { usePagination } from "useHook";
 
-const CollectionList = () => {
+const CollectionList = ({ isPage, setPage }) => {
     const { BrandId } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
@@ -16,42 +16,39 @@ const CollectionList = () => {
     const [state, setState] = React.useState({
         dataShoes: null,
         dataBrand: null,
-        totalPage: null,
-        totalRecord: null,
+        dataSort: null,
+        total_page: 0,
+        total_record: 0,
         page: 1,
-        limit: 6,
+        limit: 12,
     });
 
     const store = useSelector((state) => state);
     const { detailBrand } = store.brandReducer;
     const { listShoes } = store.shoesReducer;
 
-    const pagination = usePagination({
-        showTotal: true,
-        page: state.page,
-        totalRecord: state.totalRecord,
-        totalPage: state.totalPage,
-        limit: state.limit,
-    });
+    let paramsSearch = new URLSearchParams(history.location.search);
+    let category = paramsSearch.get("category");
 
-    React.useEffect(() => {
-        dispatch(brandAction.getDetailBrand({ brand_id: BrandId }));
-    }, []);
-
-    const callApi = () => {
+    const callApi = (category, dataSort = state.dataSort) => {
         dispatch(
             shoesAction.getListShoes({
-                page: state.page,
-                limit: 6,
+                page: isPage ? 1 : state.page,
+                limit: state.limit,
+                category_id: category,
                 brand_id: BrandId,
+                sort_key: dataSort
             })
         );
     };
 
     React.useEffect(() => {
+        dispatch(brandAction.getDetailBrand({ brand_id: BrandId }));
+    }, []);
+
+    React.useEffect(() => {
         if (listLocation.length > 0) {
-            let paramsSearch = new URLSearchParams(history.location.search);
-            callApi();
+            callApi(category);
         }
     }, [history.location, state.page]);
 
@@ -61,7 +58,7 @@ const CollectionList = () => {
             if (detailBrand.success) {
                 setState((e) => ({
                     ...e,
-                    dataBrand: detail
+                    dataBrand: detail,
                 }));
             }
         }
@@ -71,32 +68,42 @@ const CollectionList = () => {
         if (listShoes) {
             let detail = [].concat(listShoes.detail);
             if (listShoes.success) {
-                let totalPage = listShoes.total_page;
-                let totalRecord = listShoes.total_record;
+                let total_page = listShoes.total_page;
+                let total_record = listShoes.total_record;
                 let page = listShoes.page;
                 setState((e) => ({
                     ...e,
-                    totalPage,
-                    totalRecord,
+                    total_page,
+                    total_record,
                     page,
                     dataShoes: detail,
                 }));
+                setPage(false);
             }
         }
     }, [listShoes]);
+
+    const onPageChange = (value) => {
+        setState({ ...state, page: value })
+    }
+    const onChangeSort = (sort) => {
+        callApi(category, sort);
+    }
 
     return (
         <div className="col-md-9 col-sm-12 col-xs-12 collection-list">
             <div className="collection-top-bar">
                 <div className="collection-title">
                     <h1>
-                        {state?.dataBrand ? state?.dataBrand?.brand_name : "Tất cả sản phẩm"}
+                        {state?.dataBrand
+                            ? state?.dataBrand?.brand_name
+                            : "Tất cả sản phẩm"}
                     </h1>
                 </div>
                 <div className="product-short">
                     <div className="wrap-box-sort">
                         <label>Sắp xếp:</label>
-                        <DropdownCollection></DropdownCollection>
+                        <DropdownCollection onChange={onChangeSort}/>
                     </div>
                 </div>
             </div>
@@ -114,6 +121,7 @@ const CollectionList = () => {
                         );
                     })}
             </div>
+            {state.total_record > 0 && <PaginationBase data={LoadDataPaging(state.total_record, state.page, state.total_page, state.limit)} onChange={onPageChange}/>}
         </div>
     );
 };

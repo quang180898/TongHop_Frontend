@@ -1,8 +1,12 @@
-import api from 'api';
-import { getHeader, getUrl, handleRequest } from "functions/Services";
+import api from "api";
+import {
+    getHeader,
+    getUrl,
+    handleRequest,
+    postWithFormData,
+} from "functions/Services";
 
 export const orderService = {
-
     getListOrder() {
         const requestOptions = {
             method: "GET",
@@ -12,7 +16,7 @@ export const orderService = {
         return handleRequest(url, requestOptions);
     },
 
-    getDetailOrder({params}) {
+    getDetailOrder({ params }) {
         const requestOptions = {
             method: "GET",
             headers: getHeader(),
@@ -21,7 +25,7 @@ export const orderService = {
         return handleRequest(url, requestOptions);
     },
 
-    getMostOrder({params}) {
+    getMostOrder({ params }) {
         const requestOptions = {
             method: "GET",
             headers: getHeader(),
@@ -30,27 +34,44 @@ export const orderService = {
         return handleRequest(url, requestOptions);
     },
 
-    postUpdateOrder({ params }) {
+    getHistoryOrder({ params }) {
         const requestOptions = {
-            method: 'POST',
+            method: "GET",
             headers: getHeader(),
-            body: params
+        };
+        const url = getUrl(api.ORDER_HISTORY, params);
+        return handleRequest(url, requestOptions);
+    },
+
+    postUpdateOrder({ params }) {
+        const body = params;
+        return postWithFormData(body, api.ORDER_UPDATE);
+    },
+
+    postCreateOrder({ params }) {
+        const requestOptions = {
+            method: "POST",
+            headers: getHeader(),
+            body: params,
         };
 
-        const url = getUrl(api.ORDER_UPDATE)
-        return handleRequest(url, requestOptions) 
+        const url = getUrl(api.ORDER_CREATE);
+        return handleRequest(url, requestOptions);
     },
 
     postDeleteOrder({ params }) {
         const requestOptions = {
-            method: 'POST',
+            method: "POST",
             headers: getHeader(),
-            body: params
+            body: params,
         };
 
-        const url = getUrl(api.ORDER_DELETE)
-        return handleRequest(url, requestOptions) 
+        const url = getUrl(api.ORDER_DELETE);
+        return handleRequest(url, requestOptions);
     },
-    
-}
 
+    postMomoOrder({ params }) {
+        const body = params;
+        return postWithFormData(body, api.MOMO_PAY);
+    },
+};

@@ -7,6 +7,7 @@ import shoesSaga from "./shoes/saga";
 import accountSaga from "./account/saga";
 import orderSaga from "./order/saga";
 import discountSaga from "./discount/saga";
+import chartSaga from "./chart/saga";
 
 function* allSaga() {
   yield all([
@@ -16,6 +17,7 @@ function* allSaga() {
     accountSaga(),
     orderSaga(),
     discountSaga(),
+    chartSaga(),
   ]);
 }
 

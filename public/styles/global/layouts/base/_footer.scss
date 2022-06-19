@@ -1,7 +1,7 @@
-/*footer*/
-footer * {
+.footer-container * {
     color: #ffffff;
 }
+
 .footer-container {
     background-size: cover !important;
     background-repeat: no-repeat;
@@ -10,6 +10,12 @@ footer * {
     background: #212121;
     margin: 0;
     font-size: 14px;
+
+    .footer-section {
+        padding: 45px 0;
+        color: #ffffff;
+       
+    }
     a {
         text-decoration: none;
         outline: none;
@@ -31,10 +37,7 @@ footer * {
             }
         }
     }
-    .footer-section {
-        padding: 45px 0;
-        color: #ffffff;
-    }
+
     .copyright-wanda {
         border-top: 1px solid #e8e8f2;
         padding: 15px 0;
@@ -113,7 +116,7 @@ footer * {
             margin: 0 !important;
         }
         &.zalo {
-            background: #008FE5;
+            background: #008fe5;
             line-height: 26px;
         }
         &.tiktok {
@@ -121,16 +124,16 @@ footer * {
             background: #000;
         }
         &.twitter {
-            background: #03A9F4;
+            background: #03a9f4;
         }
         &.youtube {
-            background: #FF0000;
+            background: #ff0000;
         }
         &.instagram {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
         &.facebook {
-            background: #4267B3;
+            background: #4267b3;
         }
     }
 }

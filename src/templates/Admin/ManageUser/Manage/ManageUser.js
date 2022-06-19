@@ -42,6 +42,10 @@ const ManageUser = () => {
             let detail = deleteAccount.detail;
             if (deleteAccount.success) {
                 showNotification.success({ title: "Cập nhật thành công" });
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
                 dispatch(accountAction.getListAccount());
             }
             dispatch(accountAction.clearData());
@@ -136,7 +140,7 @@ const ManageUser = () => {
     };
 
     return (
-        <CardWrap title="Quản lý kiểu giày" childrenHeading={Heading()}>
+        <CardWrap title="Quản lý người dùng" childrenHeading={Heading()}>
             <div class="cus-table">
                 <table>
                     <thead>

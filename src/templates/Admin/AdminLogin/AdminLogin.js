@@ -10,6 +10,7 @@ import { showNotification } from "functions/Utils";
 
 const AdminLogin = () => {
     const [form] = Form.useForm();
+    
     const dispatch = useDispatch();
 
     const store = useSelector(state => state)
@@ -87,9 +88,9 @@ const AdminLogin = () => {
                             </Form.Item>
 
                             <div className="text-right">
-                                <Link className="forgot-pwd d-inline">
+                                <a className="forgot-pwd d-inline">
                                     Quên mật khẩu?
-                                </Link>
+                                </a>
                             </div>
 
                             <ButtonBase

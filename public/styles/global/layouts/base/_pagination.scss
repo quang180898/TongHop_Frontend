@@ -63,6 +63,116 @@
 //         color: #666b77;
 //     }
 // }
+.m_pagination {
+    .m_pagination {
+        @include flexbox;
+        @include align-items(center);
+        @include flex-wrap(wrap);
+        padding-top: 20px;
+    
+        @media (max-width: 991px) {
+            @include flex-direction(column);
+            width: 100%;
+        }
+    
+        .content {
+            display: inline-block;
+            font-size: 14px;
+            color: #000;
+            min-width: 32px;
+            height: 32px;
+    
+            &_border {
+                cursor: pointer;
+                padding: 0 11px;
+                border: solid 1px #f9f9f9;
+                border-radius: 2px;
+                background-color: #f9f9f9;
+                margin: 0 5px;
+                display: inline-flex;
+    
+                align-items: center;
+                transition: all 0.3s;
+    
+                &:hover :not(.text-page) {
+                    color: #000;
+                }
+            }
+        }
+    
+        .item {
+            border: solid 1px #f9f9f9;
+            background-color: #f9f9f9;
+            color: inherit;
+            font-size: 14px;
+            transition: all 0.1s;
+            text-decoration: none !important;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            display: flex;
+            align-items: center;
+            &.disabled {
+                color: #6d6d6d;
+                font-weight: 200;
+                opacity: 0.9;
+                background-color: #f9f9f9;
+                cursor: not-allowed;
+            }
+        }
+    
+        .text-page {
+            padding-right: 12px;
+            cursor: auto;
+            background-color: unset;
+            border: unset;
+        }
+    
+        .page-current {
+            padding-left: 12px;
+            background-color: unset;
+            border: unset;
+        }
+    
+        .vertical-dash {
+            color: #6d6d6d;
+            // font-weight: 200;
+            opacity: 0.5;
+            margin-left: 20px;
+            margin-right: 20px;
+            // border: solid 1px #d8d8d8;
+            height: 22px;
+            // font-size: 18px;
+        }
+    
+        .page-number {
+            max-width: 65px;
+            height: 25px;
+            line-height: normal;
+            border: 1px solid #d8d8d8;
+            font-size: 13px;
+            padding-left: 5px;
+            padding-right: 5px;
+            @include align-items(center);
+        }
+    
+        .ant-pagination {
+            @media (max-width: 991px) {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+    
+            @media (max-width: 480px) {
+                flex-wrap: wrap;
+    
+                .ant-pagination-prev,
+                .ant-pagination-next {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
 .ant-pagination-disabled {
     color: #6d6d6d;
     opacity: 0.9;
@@ -105,5 +215,96 @@
 
     &.ant-pagination-item-active {
         border: 1px solid #000 !important;
+    }
+}
+
+.m_pager {
+	.form-group {
+		margin-bottom: 0;
+	}
+
+	.text-page {
+		align-items: center;
+	}
+}
+
+.m_pager ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.m_pager ul li {
+    display: inline-block;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+}
+
+.m_pager ul li a {
+    background-color: #f9f9f9;
+    border: solid 1px #f9f9f9;
+    color: #6d6d6d;
+    font-size: 14px;
+    padding: 5px 11px;
+    display: block;
+    transition: all 0.1s;
+    text-decoration: none !important;
+    @media (max-width: 480px) {
+        margin: 5px 0;
+    }
+}
+
+.m_pager ul li a:hover {
+    border-color: #000;
+    color: #000;
+}
+
+.m_pager .active a {
+    border-color: #000;
+    color: #000;
+}
+
+.m_pager .disable a {
+    color: #6d6d6d;
+    font-weight: 200;
+    opacity: 0.9;
+    background-color: #f9f9f9;
+}
+
+.m_pager .vertical-dash {
+    color: #6d6d6d;
+    font-weight: 200;
+    opacity: 0.9;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.m_pager .page-number {
+    max-width: 65px;
+    height: 25px;
+    line-height: normal;
+    border: 1px solid #d8d8d8;
+    font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.m_pager .text-page {
+    padding-right: 12px;
+    cursor: auto;
+    @media (max-width: 480px) {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+.m_pager .page-current {
+    padding-left: 12px;
+    @media (max-width: 480px) {
+        width: 100%;
+        margin-top: 5px;
+        padding-left: 0;
     }
 }

@@ -3,8 +3,8 @@ import { discountAction } from "store/actions";
 const initialState = {};
 
 export default (state = initialState, action) => {
-    switch (action.type) {
 
+    switch (action.type) {
         // list Discount
         case discountAction.GET_LIST_DISCOUNT_REQUEST:
             return {
@@ -66,7 +66,7 @@ export default (state = initialState, action) => {
                 success: false,
                 error: false,
             };
-        case discountAction.POST_REGISTER_SUCCESS:
+        case discountAction.POST_UPDATE_DISCOUNT_SUCCESS:
             return {
                 ...state,
                 updateDiscount: action.response,
@@ -74,7 +74,7 @@ export default (state = initialState, action) => {
                 success: true,
                 error: false,
             };
-        case discountAction.POST_REGISTER_FAILURE:
+        case discountAction.POST_UPDATE_DISCOUNT_FAILURE:
             return {
                 ...state,
                 updateDiscount: action.response,
@@ -109,6 +109,32 @@ export default (state = initialState, action) => {
                 error: action.err,
             };
 
+        // get gmail Discount
+        case discountAction.GET_GMAIL_DISCOUNT_REQUEST:
+            return {
+                ...state,
+                gmailDiscount: null,
+                isLoadingGmailDiscountResponse: true,
+                success: false,
+                error: false,
+            };
+        case discountAction.GET_GMAIL_DISCOUNT_SUCCESS:
+            return {
+                ...state,
+                gmailDiscount: action.response,
+                isLoadingGmailDiscountResponse: false,
+                success: true,
+                error: false,
+            };
+        case discountAction.GET_GMAIL_DISCOUNT_FAILURE:
+            return {
+                ...state,
+                gmailDiscount: action.response,
+                isLoadingGmailDiscountResponse: false,
+                success: false,
+                error: action.err,
+            };
+
         case discountAction.CLEAR_DATA_DISCOUNT:
             return {
                 ...state,
@@ -116,6 +142,7 @@ export default (state = initialState, action) => {
                 detailDiscount: null,
                 updateDiscount: null,
                 deleteDiscount: null,
+                gmailDiscount: null,
             };
 
         default:

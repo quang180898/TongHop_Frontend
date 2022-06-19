@@ -1,5 +1,5 @@
 import api from "api";
-import { getHeader, getUrl, handleRequest } from "functions/Services";
+import { getHeader, getUrl, handleRequest, postMultiFormData, postWithFormData } from "functions/Services";
 
 export const shoesService = {
     getShoesList({ params }) {
@@ -39,13 +39,10 @@ export const shoesService = {
     },
 
     postShoesUpdate({params}) {
-        const requestOptions = {
-            method: "POST",
-            headers: getHeader(),
-            body: params,
-        };
-        const url = getUrl(api.SHOES_UPDATE);
-        return handleRequest(url, requestOptions);
+        const body = params;
+        console.log(body)
+        return postMultiFormData(body, api.SHOES_UPDATE);
+  
     },
 
     postShoesDelete({params}) {

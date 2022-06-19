@@ -17,6 +17,8 @@ const Collection = () => {
         dataBrand: null,
     })
 
+    const [isPage, setPage] = React.useState(false)
+
     const store = useSelector((state) => state);
     const { listBrand } = store.brandReducer;
 
@@ -54,8 +56,8 @@ const Collection = () => {
                         <img src={`${IMAGE_URL + "banner-collection.jpg"}`} />
                     </div>
                     <div className="row d-flex">
-                        <CollectionFilter />
-                        <CollectionList />
+                        <CollectionFilter setPage={setPage}/>
+                        <CollectionList isPage={isPage} setPage={setPage}/>
                     </div>
                 </div>
             </div>

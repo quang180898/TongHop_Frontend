@@ -92,7 +92,7 @@ export default (state = initialState, action) => {
                 success: false,
                 error: false,
             };
-        case orderAction.POST_REGISTER_SUCCESS:
+        case orderAction.POST_UPDATE_ORDER_SUCCESS:
             return {
                 ...state,
                 updateOrder: action.response,
@@ -100,7 +100,7 @@ export default (state = initialState, action) => {
                 success: true,
                 error: false,
             };
-        case orderAction.POST_REGISTER_FAILURE:
+        case orderAction.POST_UPDATE_ORDER_FAILURE:
             return {
                 ...state,
                 updateOrder: action.response,
@@ -135,6 +135,84 @@ export default (state = initialState, action) => {
                 error: action.err,
             };
 
+         // post create order
+         case orderAction.POST_CREATE_ORDER_REQUEST:
+            return {
+                ...state,
+                createOrder: null,
+                isLoadingCreateOrderResponse: true,
+                success: false,
+                error: false,
+            };
+        case orderAction.POST_CREATE_ORDER_SUCCESS:
+            return {
+                ...state,
+                createOrder: action.response,
+                isLoadingCreateOrderResponse: false,
+                success: true,
+                error: false,
+            };
+        case orderAction.POST_CREATE_ORDER_FAILURE:
+            return {
+                ...state,
+                createOrder: action.response,
+                isLoadingCreateOrderResponse: false,
+                success: false,
+                error: action.err,
+            };
+
+        // post create order
+        case orderAction.GET_HISTORY_ORDER_REQUEST:
+            return {
+                ...state,
+                historyOrder: null,
+                isLoadingHistoryOrderResponse: true,
+                success: false,
+                error: false,
+            };
+        case orderAction.GET_HISTORY_ORDER_SUCCESS:
+            return {
+                ...state,
+                historyOrder: action.response,
+                isLoadingHistoryOrderResponse: false,
+                success: true,
+                error: false,
+            };
+        case orderAction.GET_HISTORY_ORDER_FAILURE:
+            return {
+                ...state,
+                historyOrder: action.response,
+                isLoadingHistoryOrderResponse: false,
+                success: false,
+                error: action.err,
+            };
+
+        // post momo order
+        case orderAction.POST_MOMO_ORDER_REQUEST:
+            return {
+                ...state,
+                momoOrder: null,
+                isLoadingMomoOrderResponse: true,
+                success: false,
+                error: false,
+            };
+        case orderAction.POST_MOMO_ORDER_SUCCESS:
+            return {
+                ...state,
+                momoOrder: action.response,
+                isLoadingMomoOrderResponse: false,
+                success: true,
+                error: false,
+            };
+        case orderAction.POST_MOMO_ORDER_FAILURE:
+            return {
+                ...state,
+                momoOrder: action.response,
+                isLoadingMomoOrderResponse: false,
+                success: false,
+                error: action.err,
+            };
+
         case orderAction.CLEAR_DATA_ORDER:
             return {
                 ...state,
@@ -143,6 +221,9 @@ export default (state = initialState, action) => {
                 mostOrder: null,
                 updateOrder: null,
                 deleteOrder: null,
+                createOrder: null,
+                historyOrder: null,
+                momoOrder: null,
             };
 
         default:

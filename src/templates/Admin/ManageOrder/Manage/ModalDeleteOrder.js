@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalConfirm } from 'components/base/Modal';
 import { useDispatch } from 'react-redux';
-import { brandAction } from 'store/actions';
+import { brandAction, orderAction } from 'store/actions';
 
 const ModalDeleteOrder = ({ state, setState}) => {
 
@@ -10,7 +10,7 @@ const ModalDeleteOrder = ({ state, setState}) => {
     const onSubmit = () => {
         if (state) {
             let id = state.saveParams.id
-            dispatch(brandAction.postDeleteBrand({brand_id: id}))
+            dispatch(orderAction.postDeleteOrder({customer_shoes_id: id}))
         }
     }
 

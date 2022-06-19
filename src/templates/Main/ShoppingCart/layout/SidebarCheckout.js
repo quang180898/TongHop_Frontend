@@ -1,9 +1,17 @@
 import { ButtonBase } from "components/base/Button";
 import { InputBase } from "components/base/Input";
+import { PAGES_URL } from "contant";
+import { convertCurrency } from "functions/Utils";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 const SidebarCheckout = () => {
+
+    const history = useHistory();
+
+    const { cartItems } = useSelector((state) => state.cartReducer);
+
     return (
         <div className="col-xs-12 col-lg-3 col-md-4 col-sm-5">
             <div className="sidebar-checkout">
@@ -12,7 +20,7 @@ const SidebarCheckout = () => {
                 </div>
                 <div className="order-total">
                     <p>
-                        Tổng tiền: <span className="total-price">123</span>
+                        Tổng tiền: <span className="total-price">{convertCurrency(cartItems?.total, "đ")}</span>
                     </p>
                 </div>
                 <div className="order-text">
@@ -31,9 +39,10 @@ const SidebarCheckout = () => {
                         className="btn-black-outline mb-3"
                         label="Thanh toán ngay"
                         style={{ width: "100%" }}
+                        onClick={() => history.push(PAGES_URL.checkout.url)}
                     />
                     <p className="link-contunue text-center">
-                        <Link to="/#">
+                        <Link to={PAGES_URL.collection.url}>
                             <i className="fa fa-reply"/> Tiếp tục mua hàng
                         </Link>
                     </p>

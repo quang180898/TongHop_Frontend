@@ -1,5 +1,5 @@
 import api from "api";
-import { getHeader, getUrl, handleRequest } from "functions/Services";
+import { getHeader, getUrl, handleRequest, postWithFormData } from "functions/Services";
 
 export const brandService = {
     getBrandList() {
@@ -20,17 +20,12 @@ export const brandService = {
         return handleRequest(url, requestOptions);
     },
 
-    postBrandUpdate({params}) {
-        const requestOptions = {
-            method: "POST",
-            headers: getHeader(),
-            body: params,
-        };
-        const url = getUrl(api.BRAND_UPDATE);
-        return handleRequest(url, requestOptions);
+    postBrandUpdate({ params }) {
+        const body = params;
+        return postWithFormData(body, api.BRAND_UPDATE);
     },
 
-    postBrandDelete({params}) {
+    postBrandDelete({ params }) {
         const requestOptions = {
             method: "POST",
             headers: getHeader(),
@@ -38,6 +33,5 @@ export const brandService = {
         };
         const url = getUrl(api.BRAND_DELETE);
         return handleRequest(url, requestOptions);
-    }
-    
+    },
 };

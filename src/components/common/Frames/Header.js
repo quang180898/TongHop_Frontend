@@ -47,7 +47,7 @@ const Header = () => {
                     </div>
                     <div className="navbar-brand">
                         <div className="logo">
-                            Sneaker
+                            G Shoes
                         </div>
                         <div className="sidebartoggler" onClick={() => toggleSidebar(!header.isSidebar)}>
                             <span className="line line-1" />
@@ -61,7 +61,7 @@ const Header = () => {
                 </div>
 
                 <div className={`navbar-collapse collapse ${header.isHeaderTopBar && 'show'}`}>
-                    <span className="text-exchange-rate text-center w-100 d-block d-sm-none">Quản lý thư viện sách</span>
+                    <span className="text-exchange-rate text-center w-100 d-block d-sm-none">Quản lý G Shoes</span>
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <div className="nav-link log-out">

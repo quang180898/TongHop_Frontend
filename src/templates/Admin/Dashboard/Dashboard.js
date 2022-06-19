@@ -1,6 +1,31 @@
-import React from 'react';
+import CardWrap from "components/common/Card/CardWarp";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { chartAction } from "store/actions";
+import { ChartPrice } from "./Layout";
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
+    const [state, setState] = useState({
+        dataAll: null,
+    });
+    const store = useSelector((state) => state.chartReducer);
+    const { allChart } = store;
+
+    useEffect(() => {
+        dispatch(chartAction.getChartAll());
+        dispatch(chartAction.getChartTotal());
+    }, []);
+
+    useEffect(() => {
+        if (allChart) {
+            let detail = allChart.detail;
+            if (allChart.success) {
+                setState({ ...state, dataAll: detail });
+            }
+        }
+    }, [allChart]);
+
     return (
         <div className="PageDashboard">
             <div className="row sales_summary">
@@ -10,12 +35,16 @@ const Dashboard = () => {
                             <i className="icon las la-store" />
                         </div>
                         <div className="text">
-                            <div className="text-1">30</div>
-                            <div className="text-2">Tổng sản phẩm</div>
-                            <div className="text-3">
-                                <span style={{ width: '20%' }} className="done" />
+                            <div className="text-1">
+                                {state?.dataAll?.total_admin}
                             </div>
-                            <div className="text-4"><i className="las la-arrow-up fs-12" /> 86</div>
+                            <div className="text-2">Tổng quản lý</div>
+                            <div className="text-3">
+                                <span
+                                    style={{ width: "20%" }}
+                                    className="done"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,10 +54,15 @@ const Dashboard = () => {
                             <i className="icon las la-shopping-basket" />
                         </div>
                         <div className="text">
-                            <div className="text-1">5</div>
-                            <div className="text-2">Tổng nhân viên</div>
+                            <div className="text-1">
+                                {state?.dataAll?.total_customer}
+                            </div>
+                            <div className="text-2">Tổng người dùng</div>
                             <div className="text-3">
-                                <span style={{ width: '20%' }} className="done" />
+                                <span
+                                    style={{ width: "20%" }}
+                                    className="done"
+                                />
                             </div>
                         </div>
                     </div>
@@ -39,10 +73,15 @@ const Dashboard = () => {
                             <i className="icon las la-building" />
                         </div>
                         <div className="text">
-                            <div className="text-1">6</div>
-                            <div className="text-2">Tổng khách hàng</div>
+                            <div className="text-1">
+                                {state?.dataAll?.total_product}
+                            </div>
+                            <div className="text-2">Tổng sản phẩm</div>
                             <div className="text-3">
-                                <span style={{ width: '20%' }} className="done" />
+                                <span
+                                    style={{ width: "20%" }}
+                                    className="done"
+                                />
                             </div>
                         </div>
                     </div>
@@ -53,18 +92,25 @@ const Dashboard = () => {
                             <i className="icon las la-hotel" />
                         </div>
                         <div className="text">
-                            <div className="text-1">15</div>
+                            <div className="text-1">
+                                {state?.dataAll?.total_product_sell}
+                            </div>
                             <div className="text-2">Tổng sản phẩm đã bán</div>
                             <div className="text-3">
-                                <span style={{ width: '20%' }} className="done" />
+                                <span
+                                    style={{ width: "20%" }}
+                                    className="done"
+                                />
                             </div>
-                            <div className="text-4"><i className="las la-arrow-up fs-12" /> 6</div>
                         </div>
                     </div>
                 </div>
             </div>
+            <CardWrap title={"Thống kê doanh thu"}>
+                <ChartPrice />
+            </CardWrap>
         </div>
-    )
-}
+    );
+};
 
 export default Dashboard;

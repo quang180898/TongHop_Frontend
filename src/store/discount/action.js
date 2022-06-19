@@ -16,6 +16,10 @@ const actions = {
     POST_DELETE_DISCOUNT_FAILURE: name + 'POST_DELETE_DISCOUNT_FAILURE',
     POST_DELETE_DISCOUNT_SUCCESS: name + 'POST_DELETE_DISCOUNT_SUCCESS',
 
+    GET_GMAIL_DISCOUNT_REQUEST: name + 'GET_GMAIL_DISCOUNT_REQUEST',
+    GET_GMAIL_DISCOUNT_FAILURE: name + 'GET_GMAIL_DISCOUNT_FAILURE',
+    GET_GMAIL_DISCOUNT_SUCCESS: name + 'GET_GMAIL_DISCOUNT_SUCCESS',
+
     CLEAR_DATA_DISCOUNT: name + 'CLEAR_DATA_DISCOUNT',
 
     getListDiscount: (params) => ({
@@ -35,6 +39,11 @@ const actions = {
 
     postDeleteDiscount: (params) => ({
         type: actions.POST_DELETE_DISCOUNT_REQUEST,
+        params
+    }),
+
+    getGmailDiscount: (params) => ({
+        type: actions.GET_GMAIL_DISCOUNT_REQUEST,
         params
     }),
 

@@ -37,10 +37,14 @@ const ManageCategory = () => {
 
     React.useEffect(() => {
         if (deleteCategory) {
-            let detail = listCategory.detail;
-            if (listCategory.success) {
+            let detail = deleteCategory.detail;
+            if (deleteCategory.success) {
                 showNotification.success({ title: "Cập nhật thành công" });
-                dispatch(categoryAction.getlistCategory());
+                setStateLocal((e) => ({
+                    ...e,
+                    isShowModal: false,
+                }));
+                dispatch(categoryAction.getListCategory());
             }
             dispatch(categoryAction.clearData());
         }

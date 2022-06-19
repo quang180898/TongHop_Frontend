@@ -7,6 +7,7 @@ import shoesReducer from "./shoes/reducer"
 import accountReducer from "./account/reducer"
 import orderReducer from "./order/reducer"
 import discountReducer from "./discount/reducer"
+import chartReducer from "./chart/reducer"
 
 import { combineReducers } from 'redux';
 
@@ -20,6 +21,7 @@ const allReducers = combineReducers({
     accountReducer,
     orderReducer,
     discountReducer,
+    chartReducer,
 });
 
 export default allReducers;

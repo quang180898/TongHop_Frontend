@@ -10,17 +10,23 @@ import { CheckboxBase } from "components/base/Checkbox";
 import { CollapseBase } from "components/base/Collapse";
 import { Form } from "antd";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getValueNumber, getValueText } from "functions/Utils";
+import { PAGES_URL } from "contant";
+import { ButtonBase } from "components/base/Button";
 
-const CollectionFilter = () => {
+const CollectionFilter = ({setPage}) => {
     const { BrandId } = useParams();
-
+    const history = useHistory();
     const [formFilter] = Form.useForm();
 
     const [state, setState] = React.useState({
         dataBrand: null,
         dataCategory: null,
+        totalPage: null,
+        totalRecord: null,
+        page: 1,
+        limit: 8,
     });
 
     const store = useSelector((state) => state);
@@ -69,13 +75,28 @@ const CollectionFilter = () => {
         }
     }, [listCategory]);
 
+    const onChangeBrand = (e) => {
+        history.push(PAGES_URL.collection.url + "/" + e.target.value);
+    };
+
     const onChange = (e) => {
         console.log(e.target.value);
     };
 
     const onValuesChange = (e, all) => {
-        console.log(e, all);
+        const { category = "" } = all;
+        let location = history.location;
+        setPage(true)
+        history.push({
+            pathname: location.pathname,
+            search: `?category=${category}`,
+        });
     };
+
+    const onResetSearch = () => {
+        formFilter.resetFields()
+        history.push(PAGES_URL.collection.url)
+    }
 
     return (
         <div className="col-md-3 col-sm-12 col-xs-12 collection-filter">
@@ -84,18 +105,18 @@ const CollectionFilter = () => {
                     <CollapseBase
                         className="collapse-collection"
                         forceRender={true}
-                        iconPosition="right"
+                        iconPosition="end"
                     >
                         <div header={"Danh mục sản phẩm"}>
                             <Form.Item name="collection_product">
                                 <RadioBase
                                     options={state.dataBrand}
-                                    onChange={onChange}
+                                    onChange={onChangeBrand}
                                 />
                             </Form.Item>
                         </div>
                         <div header={"Loại sản phẩm"}>
-                            <Form.Item name="collection_category">
+                            <Form.Item name="category">
                                 <RadioBase
                                     options={state.dataCategory}
                                     onChange={onChange}
@@ -103,7 +124,7 @@ const CollectionFilter = () => {
                             </Form.Item>
                         </div>
                         <div header={"Giá sản phẩm"}>
-                            <Form.Item name="collection_price">
+                            <Form.Item name="price">
                                 <RadioBase
                                     options={price_category}
                                     onChange={onChange}
@@ -120,7 +141,7 @@ const CollectionFilter = () => {
                         </div>
 
                         <div header={"Kích thước"}>
-                            <Form.Item name="collection_size">
+                            <Form.Item name="size">
                                 <CheckboxBase
                                     options={size_category}
                                     onChange={onChange}
@@ -129,6 +150,9 @@ const CollectionFilter = () => {
                         </div>
                     </CollapseBase>
                 </Form>
+                <div className="text-center mt-2">
+                    <ButtonBase className="btn-blue" label="Huỷ tìm kiếm" onClick={onResetSearch}/>
+                </div>
             </div>
         </div>
     );

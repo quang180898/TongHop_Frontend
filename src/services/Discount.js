@@ -41,6 +41,15 @@ export const discountService = {
         const url = getUrl(api.DISCOUNT_DELETE)
         return handleRequest(url, requestOptions) 
     },
+
+    getGmailDiscount({params}) {
+        const requestOptions = {
+            method: "GET",
+            headers: getHeader(),
+        };
+        const url = getUrl(api.DISCOUNT_GMAIL, params);
+        return handleRequest(url, requestOptions);
+    },
     
 }
 

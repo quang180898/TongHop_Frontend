@@ -4,7 +4,7 @@ import React from 'react';
 const TableCustom = ({ isFixed, maxHeightTb, className, classNameWrap, childrenHead, childrenBody, childrenFoot, style, isTable = true }) => {
     return (
         // mb-3 m_table m_table--list_project m_table--sales max-height-100 table_fixed
-        <div className="cus-table">
+        <div className={`${isTable ? 'cus-table' : ''} ${getValueAndSetDefault(classNameWrap, '')} ${isFixed ? "table_fixed" : ""}` }>
             <table className={getValueAndSetDefault(className, '')} style={style}>
                 <thead>
                     {childrenHead}

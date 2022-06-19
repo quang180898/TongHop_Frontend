@@ -53,7 +53,10 @@ const ListCart = () => {
                                 <li className="item-info">
                                     <div className="item-img">
                                         <a>
-                                            <img src={`data:image/jpeg;base64, ${item.image_bytes}`} alt="image"/>
+                                            <img
+                                                src={`data:image/jpeg;base64, ${item.image_bytes}`}
+                                                alt="image"
+                                            />
                                         </a>
                                     </div>
                                     <div className="item-title">
@@ -67,7 +70,9 @@ const ListCart = () => {
                                         <span className="item-option">
                                             <span>
                                                 {convertCurrency(
-                                                    item.sale_price,
+                                                    item.sale_price
+                                                        ? item.sale_price
+                                                        : item.retail_price,
                                                     "đ"
                                                 )}
                                             </span>
@@ -112,7 +117,32 @@ const ListCart = () => {
                         );
                     })
                 ) : (
-                    <div className="text-center">Không có dữ liệu</div>
+                    <div className="text-center">
+                        <svg width="60" height="60" viewBox="0 0 81 70">
+                            <g
+                                transform="translate(0 2)"
+                                stroke-width="4"
+                                stroke="#000"
+                                fill="none"
+                                fill-rule="evenodd"
+                            >
+                                <circle
+                                    stroke-linecap="square"
+                                    cx="34"
+                                    cy="60"
+                                    r="6"
+                                ></circle>
+                                <circle
+                                    stroke-linecap="square"
+                                    cx="67"
+                                    cy="60"
+                                    r="6"
+                                ></circle>
+                                <path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path>
+                            </g>
+                        </svg>
+                        <p>Hiện chưa có sản phẩm</p>
+                    </div>
                 )}
             </div>
         </div>

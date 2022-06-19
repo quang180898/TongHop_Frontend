@@ -23,6 +23,13 @@
     &.max-height-300 {
         max-height: 300px;
     }
+    .table-basic {
+        min-width: unset;
+        margin-bottom: unset;
+        th {
+            border-bottom: unset;
+        }
+    }
 
     table {
         min-width: 1000px;

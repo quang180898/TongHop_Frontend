@@ -12,6 +12,10 @@ const actions = {
     GET_MOST_ORDER_FAILURE: name + 'GET_MOST_ORDER_FAILURE',
     GET_MOST_ORDER_SUCCESS: name + 'GET_MOST_ORDER_SUCCESS',
 
+    GET_HISTORY_ORDER_REQUEST: name + 'GET_HISTORY_ORDER_REQUEST',
+    GET_HISTORY_ORDER_FAILURE: name + 'GET_HISTORY_ORDER_FAILURE',
+    GET_HISTORY_ORDER_SUCCESS: name + 'GET_HISTORY_ORDER_SUCCESS',
+
     POST_UPDATE_ORDER_REQUEST: name + 'POST_UPDATE_ORDER_REQUEST',
     POST_UPDATE_ORDER_FAILURE: name + 'POST_UPDATE_ORDER_FAILURE',
     POST_UPDATE_ORDER_SUCCESS: name + 'POST_UPDATE_ORDER_SUCCESS',
@@ -19,6 +23,14 @@ const actions = {
     POST_DELETE_ORDER_REQUEST: name + 'POST_DELETE_ORDER_REQUEST',
     POST_DELETE_ORDER_FAILURE: name + 'POST_DELETE_ORDER_FAILURE',
     POST_DELETE_ORDER_SUCCESS: name + 'POST_DELETE_ORDER_SUCCESS',
+
+    POST_CREATE_ORDER_REQUEST: name + 'POST_CREATE_ORDER_REQUEST',
+    POST_CREATE_ORDER_FAILURE: name + 'POST_CREATE_ORDER_FAILURE',
+    POST_CREATE_ORDER_SUCCESS: name + 'POST_CREATE_ORDER_SUCCESS',
+
+    POST_MOMO_ORDER_REQUEST: name + 'POST_MOMO_ORDER_REQUEST',
+    POST_MOMO_ORDER_FAILURE: name + 'POST_MOMO_ORDER_FAILURE',
+    POST_MOMO_ORDER_SUCCESS: name + 'POST_MOMO_ORDER_SUCCESS',
 
     CLEAR_DATA_ORDER: name + 'CLEAR_DATA_ORDER',
 
@@ -37,6 +49,11 @@ const actions = {
         params
     }),
 
+    getHistoryOrder: (params) => ({
+        type: actions.GET_HISTORY_ORDER_REQUEST,
+        params
+    }),
+
     postUpdateOrder: (params) => ({
         type: actions.POST_UPDATE_ORDER_REQUEST,
         params
@@ -44,6 +61,16 @@ const actions = {
 
     postDeleteOrder: (params) => ({
         type: actions.POST_DELETE_ORDER_REQUEST,
+        params
+    }),
+
+    postCreateOrder: (params) => ({
+        type: actions.POST_CREATE_ORDER_REQUEST,
+        params
+    }),
+
+    postMomoOrder: (params) => ({
+        type: actions.POST_MOMO_ORDER_REQUEST,
         params
     }),
 

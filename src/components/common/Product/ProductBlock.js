@@ -9,7 +9,7 @@ import { InputUpDown } from "components/base/Input";
 import { SliderDouble, SliderMain } from "components/base/Slider";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction, favoriteAction, shoesAction } from "store/actions";
-import { convertCurrency } from "functions/Utils";
+import { convertCurrency, showNotification } from "functions/Utils";
 import { Link } from "react-router-dom";
 
 const ProductBlock = ({ item }) => {
@@ -57,8 +57,12 @@ const ProductBlock = ({ item }) => {
         } else {
             newData = item;
         }
-        setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
-        dispatch(cartAction.addToCart({ product: item }));
+        if (item.shoes_quantity[0].quantity == cartItems?.cart[index]?.quantity) {
+            showNotification.error({title: "Sản phảm tồn kho không đủ" })
+        } else {
+            setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
+            dispatch(cartAction.addToCart({ product: item }));
+        }
     };
 
     const showQuickModal = (e) => {
@@ -66,13 +70,13 @@ const ProductBlock = ({ item }) => {
         setVisible((e) => ({ ...e, isShow: true }));
     };
 
-    const onSubmitFormLayout = (e) => {
+    const onSubmitFormLayout = (data) => {
         let newData = {};
         const index = cartItems.cart.indexOf(
             cartItems.cart.filter(
                 (e) =>
                     e.shoes_id === item?.shoes_id &&
-                    e.size === e.size
+                    e.size === data.size
             )[0]
         );
         if (index != -1) {
@@ -80,9 +84,20 @@ const ProductBlock = ({ item }) => {
         } else {
             newData = item;
         }
-        setVisible((e) => ({ ...e, isShow: false }))
-        setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
-        dispatch(cartAction.addToCart({ product: item , size: e.size, quantity: e.updown }));
+        const indexQuantity = state.shoes_quantity.indexOf(
+            state.shoes_quantity.filter((e) => e.size === data.size)[0]
+        );
+        if (
+            state.shoes_quantity[indexQuantity].quantity ==
+            cartItems?.cart[index]?.quantity
+        ) {
+            showNotification.error({ title: "Sản phẩm tồn kho không đủ" });
+        }
+        else {
+            setVisible((e) => ({ ...e, isShow: false }))
+            setModalSuccess((e) => ({ ...e, isShow: true, item: newData }));
+            dispatch(cartAction.addToCart({ product: item , size: data.size, quantity: data.updown }));
+        }
     };
 
     return (
@@ -95,7 +110,7 @@ const ProductBlock = ({ item }) => {
                 ) : (
                     ""
                 )}
-                <a href="/#" className="image-resize">
+                <a href={PAGES_URL.product.url + "/" + item?.shoes_id} className="image-resize">
                     <img
                         src={`data:image/jpeg;base64, ${item?.image_bytes}`}
                         alt="product image"

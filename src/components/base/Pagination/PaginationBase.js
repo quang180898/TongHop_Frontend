@@ -1,91 +1,65 @@
 import React from "react";
 import { Pagination as PaginationAntd } from "antd";
-import { useTranslation } from "react-i18next";
 
 const PaginationBase = ({
     className = "m_pager",
-    showSizeChanger = false,
-    totalRecord,
-    page,
-    limit = 10,
-    totalPage,
+    data,
     onChange,
     itemRenderProp,
+    showSizeChanger = false,
     showLessItems = false,
 }) => {
-    const [state, setState] = React.useState({
-        page: 1,
-        limit: 10,
-        totalRecord: 0,
-        totalPage: 0,
-        inputPage: 0,
-    });
 
-    let timeOut;
+    let timeOut
     React.useEffect(() => {
-        if (page > 0) {
-            setState((e) => ({
-                ...e,
-                limit: limit,
-                page: parseInt(page),
-                totalRecord: totalRecord,
-                totalPage: totalPage,
-            }));
-        }
-
-        if (timeOut) clearTimeout(timeOut);
+        if (timeOut) clearTimeout(timeOut)
         timeOut = setTimeout(() => {
-            onHide(totalPage);
+            onHide(data.total_page)
         }, 0);
-    }, [page, totalPage]);
 
-    React.useEffect(() => {
-        if (page > 0) {
-            setState((e) => ({
-                ...e,
-                limit: limit,
-                totalRecord: totalRecord,
-                totalPage: totalPage,
-                inputPage: 0,
-            }));
-        }
-    }, [totalRecord]);
+    }, [data.page, data.total_page])
 
     const onHide = (totalPage) => {
-        let doc = document.getElementsByClassName(`ant-pagination-item`);
-        let total = totalPage - page;
+        let doc = document.getElementsByClassName(`ant-pagination-item`)
+        let total = totalPage - data.page;
         if (doc.length == 6) {
             for (let i = 0; i < doc.length; i++) {
                 if (total > 2) {
                     if (i == 5) {
-                        doc[i].hidden = true;
-                    } else {
-                        doc[i].hidden = false;
+                        doc[i].hidden = true
                     }
-                } else {
+                    else {
+                        doc[i].hidden = false
+                    }
+                }
+                else {
                     if (i == 0) {
-                        doc[i].hidden = true;
-                    } else {
-                        doc[i].hidden = false;
+                        doc[i].hidden = true
                     }
-                }
-            }
-        } else {
-            if (doc.length == 7) {
-                for (let i = 0; i < doc.length; i++) {
-                    if (i == 0 || i == 6) {
-                        doc[i].hidden = true;
-                    } else {
-                        doc[i].hidden = false;
+                    else {
+                        doc[i].hidden = false
                     }
-                }
-            } else {
-                for (let i = 0; i < doc.length; i++) {
-                    doc[i].hidden = false;
                 }
             }
         }
-    };
+        else {
+            if (doc.length == 7) {
+                for (let i = 0; i < doc.length; i++) {
+                    if (i == 0 || i == 6) {
+                        doc[i].hidden = true
+                    }
+                    else {
+                        doc[i].hidden = false
+                    }
+                }
+            }
+            else {
+                for (let i = 0; i < doc.length; i++) {
+                    doc[i].hidden = false
+                }
+            }
+        }
+    }
 
     const itemRender = (current, type, originalElement) => {
         if (type === "prev") {
@@ -114,28 +88,33 @@ const PaginationBase = ({
                 className="content content_border"
                 onClick={() => handlePageChange(1)}
             >
-                <a className={page > 1 ? "item" : "item disabled"}>Trang đầu</a>
+                <a
+                    className={`item ${data.page > 1 ? "" : " disabled"}`}
+                    disabled={data.page > 1 ? false : true}
+                >
+                    Trang đầu
+                </a>
             </div>
             <PaginationAntd
                 className={className}
-                // defaultCurrent={page}
-                pageSize={state.limit}
-                current={state.page}
+                pageSize={data.limit}
+                current={data.page}
                 onChange={handlePageChange}
                 itemRender={itemRenderProp ? itemRenderProp : itemRender}
-                total={state.totalRecord}
+                total={data.total_record}
                 responsive={true}
                 showLessItems={showLessItems}
                 showSizeChanger={showSizeChanger}
             />
             <div
                 className="content content_border"
-                onClick={() => handlePageChange(state.totalPage)}
+                onClick={() => handlePageChange(data.total_page)}
             >
                 <a
-                    className={
-                        page < state.totalPage ? "item" : "item disabled"
-                    }
+                    className={`item ${
+                        data.page < data.total_page ? "" : " disabled"
+                    }`}
+                    disabled={data.page < data.total_page ? false : true}
                 >
                     Trang cuối
                 </a>

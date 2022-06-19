@@ -1,7 +1,26 @@
 import { TableCustom } from "components/base/Table";
-import React from "react";
+import { convertCurrency, getLocalStore } from "functions/Utils";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const TableTotal = () => {
+const TableTotal = ({checkCoupon}) => {
+
+    const [newCoupon, setNewCoupon] = useState(0)
+
+    
+
+    const { cartItems } = useSelector((state) => state.cartReducer);
+
+    useEffect(() => {
+        if (checkCoupon != 0) {
+            const newTotal = cartItems.total - ((cartItems.total * 10) / 100)
+            setNewCoupon(newTotal)
+        } else {
+            setNewCoupon(0)
+        }
+
+    }, [checkCoupon])
+
     const Theader = () => {
         return (
             <tr>
@@ -16,20 +35,17 @@ const TableTotal = () => {
                 <tr>
                     <td className="total-line-name">Tạm tính</td>
                     <td className="total-line-price">
-                        <span className="order-summary-emphasis">597,000₫</span>
+                        <span className="order-summary-emphasis">{convertCurrency(cartItems.total, "đ")}</span>
                     </td>
                 </tr>
                 <tr>
                     <td className="total-line-name">
                         <span>Mã giảm giá</span>
-                        <span className="applied-reduction-code">
-                            <i className="icon fas fa-tag"></i>
-                            <span className="text-coupon">NEWMERLY</span>
-                            <span className="delete-coupon" />
-                        </span>
                     </td>
                     <td className="total-line-price">
-                        <span className="order-summary-emphasis">—</span>
+                        <span className="order-summary-emphasis">
+                            {checkCoupon}%
+                        </span>
                     </td>
                 </tr>
                 <tr className="">
@@ -50,11 +66,7 @@ const TableTotal = () => {
                 </td>
                 <td className="total-line-name payment-due">
                     <span className="payment-due-currency">VND</span>
-                    <span
-                        className="payment-due-price"
-                    >
-                        577,000₫
-                    </span>
+                    <span className="payment-due-price">{convertCurrency(newCoupon > 0 ? newCoupon : cartItems.total, "đ")}</span>
                 </td>
             </tr>
         );
@@ -62,7 +74,7 @@ const TableTotal = () => {
 
     return (
         <TableCustom
-            className="table-checkout-total"
+            className="table-checkout-total table-basic"
             isTable={false}
             childrenHead={<Theader />}
             childrenBody={<Tbody />}
